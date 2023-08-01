@@ -3,6 +3,5 @@ class Platfomer {
     this.x = x;
     this.y = y;
     this.w = w;
-    
   }
 }

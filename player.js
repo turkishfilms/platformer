@@ -1,7 +1,13 @@
-function setup() {
-    createCanvas(windowWidth, windowHeight);
-    background(125);
- let boxA =  Bodies.rectangle(0, 0, 50, 50, { isStatic: true })
-    
-  }
-box 
+let x = 100
+let y = 100
+let width = 50
+let height = 50
+class player{
+  constructor(){
+  background(125);
+  let player = Bodies.rectangle(x, y, width, height, {
+    isStatic: true
+  })
+
+}
+}

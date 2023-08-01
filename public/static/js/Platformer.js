@@ -1,0 +1,4 @@
+class Platformer{
+constructor({}={}){}
+
+}

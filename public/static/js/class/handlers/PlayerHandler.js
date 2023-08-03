@@ -10,5 +10,7 @@ playerJumps = (player)=>{
 
 
 playerFeelsPhyics
-
+update(){
+    //every frame check collisions
+}
 }

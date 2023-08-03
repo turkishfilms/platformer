@@ -21,11 +21,14 @@ Have a x and y
 `
 
 */
+  
+
+jump (){
+  // this code will make the y higher then minus by the y how high it jumped
+
 }
-  let player = Bodies.rectangle(x, y, width, height, {
-    isStatic: true
-  })
 
-const jump = {
 
-  };
+}
+
+ 

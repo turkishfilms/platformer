@@ -1,12 +1,20 @@
-class LayerHandler {
+/*
+--LevelHandler
+--Levels
+--Physics
 
+methods
+--collides
 
-  constructor({}={}){
-    this.levels = []
+*/
 
+class LevelHandler {
+  constructor() {
+    //properties
+    this.x;
   }
-
-
-
-
 }
+
+let myFavoriteLevleHandler = new LevelHandler();
+myFavoriteLevleHandler.x;
+myFavoriteLevleHandler.y; //levelhandler.y is undefined

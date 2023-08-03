@@ -1,19 +1,31 @@
 class obstacle{
-constructor(/*parameters for object creaution*/){
+constructor(x, y, w, h, color ){
 //initializing the properties
-rect()
-rect()
-rect()
-rect()
-rect()
-}
-
-
+//x y w h , block 
+this.x = x;
+this.y = y;
+this.w = w; 
+this.h = h; 
+this.color = color;
+ }
 //defining the methods
 //(this) refers to this instance of object
-e()
+ 
 
 
 
 
+}
+class spikes{
+    constructor(x, y, w, h, color ){
+this.x 
+this.y
+this.w
+this.h
+
+
+
+
+
+    }
 }

@@ -1,10 +1,21 @@
+
+/**
+ * playerhandler manages players staate 
+ * methods jump, addPlayer, removePlayer, signalplayerlostlife, signalPLayerGainLife, player physics happens here 
+ * properties: physics
+ * keyboard handled by game not player handler
+ * 
+ */
+
+
 class PlayerHandler{
-constructor({}={}){
+constructor({physics=new Physics(), currentLevelobstacles = []}={}){
 this.players = []
-this.playerJumpSpeed = 3 
+this.physics = physics
+this.currentLevelobstacles = this.currentLevelobstacles
 }
 
-playerJumps = (player)=>{
+jump = (player)=>{
     player.speed.y -=this.playerJumpSpeed
 }
 

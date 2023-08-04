@@ -1,5 +1,5 @@
 class player {
-  constructor(playerHander = new PlayerHander() , color = {
+  constructor(playerHander = new PlayerHander(), color = {
     r: 222,
     g: 150,
     b: 35,
@@ -20,6 +20,7 @@ class player {
     this.speed = speed
     this.lives = lives
     this.playerHander = playerHander
+
   }
   /*
 
@@ -37,7 +38,13 @@ class player {
 
   jump() {
     // this code will make the y higher then minus by the y how high it jumped 
-
+    this.playerHander.jump(this)
   }
-
+  livesplus() {
+    this.lives++
+  }
+  livesminus() {
+    this.lives--
+    if (this.lives == 0) this.playerHander.Die(this)
+  }
 }

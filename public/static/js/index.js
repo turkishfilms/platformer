@@ -1,4 +1,4 @@
-import { GameHandler } from "./gameHandler";
+import { GameHandler } from "./class/handlers/gameHandler";
 let game;
 
 function setup() {
@@ -7,7 +7,9 @@ function setup() {
   const boundaries = { width: windowWidth, height: windowHeight };
   game = new GameHandler(boundaries);
 }
-
+function keyPressed() {
+  //any commands from user are understood -domp
+}
 function draw() {
   game.nextFrame();
 }

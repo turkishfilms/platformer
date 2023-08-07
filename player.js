@@ -50,4 +50,24 @@ class player {
     this.lives--
     if (this.lives == 0) this.playerHander.Die(this)
   }
+  playerhealthcolor() {
+    if (this.lives >= 3) this.color = {
+      r: 0,
+      g: 250,
+      b: 0,
+      a: 250
+    }
+    else if (this.lives == 2) this.color = {
+      r: 250,
+      g: 250,
+      b: 0,
+      a: 250
+    }
+    else if (this.lives == 1) this.color = {
+      r: 250,
+      g: 0,
+      b: 0,
+      a: 250
+    }
+  }
 }

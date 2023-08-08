@@ -32,4 +32,11 @@ class PlayerHandler {
   update() {
     //every frame check collisions
   }
+moveplayer(player, direction){
+if 
 }
+}
+
+  
+
+

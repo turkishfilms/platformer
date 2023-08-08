@@ -1,5 +1,8 @@
+/**
+ * direction is degrees
+ */
 class Spike {
-    constructor(color, length, positionX, positionY, direction) {
+    constructor(color=[r= 255, g= 1, b= 1,], length=25, positionX=100, positionY=100, direction=0) {
         this.color = color
 
         this.length = length

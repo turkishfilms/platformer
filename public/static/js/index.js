@@ -11,11 +11,13 @@ function setup() {
   // const boundaries = { width: windowWidth, height: windowHeight };
   // game = new GameHandler(boundaries);
 }
+
 function keyPressed() {
   //any commands from user are understood -domp
 if("keyistheleftjey"){
   game.playerHandler.movePlayer(-5)
 }
+<<<<<<< HEAD
 if("keyisright"){ 
   game.playerHandler.movePlayer(5)
 }
@@ -30,6 +32,8 @@ playerHandler : {
 }
 
 }
+=======
+>>>>>>> 179b2a683382728c06976debdefb66f54ca2f881
 
 function draw() {
   background(0);

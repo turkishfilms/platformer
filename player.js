@@ -10,7 +10,7 @@ class player {
   }, size = {
     width: 50,
     height: 50
-  }, postion = {
+  }, position = {
     x: 50,
     y: 50
   }, speed = {
@@ -19,7 +19,7 @@ class player {
   }, lives = 3) {
     this.color = color
     this.size = size
-    this.postion = postion
+    this.position = position
     this.speed = speed
     this.lives = lives
     this.playerHander = playerHander

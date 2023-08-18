@@ -1,11 +1,11 @@
 import ScoreHandler from './ScoreHandler'
-
-export class GameHandler {
+import LevelHandler from './LevelHandler'
+export default class GameHandler {
   constructor({
     scoreHandler = new ScoreHandler(),
-    playerHandler = new PlayerHandler(),
+    // playerHandler = new PlayerHandler(),
     levelHandler = new LevelHandler(),
-    physics = new physics()
+    // physics = new physics()
   } = {}) {
     this.scoreHandler = scoreHandler;
     this.playerHandler = playerHandler;
@@ -15,14 +15,17 @@ export class GameHandler {
   nextFrame =()=>{
     //players to feel physics -
     //health to change
-    
+
     // levels should be updated - 
     //score shoul be updated -
-    this.playerHandler.update(physics)
+    // this.playerHandler.update(physics)
     this.levelHandler.update(physics)
-    this.scoreHandler.update()
-
+    this.scoreHandler.update(1)
+    fill(255)
+    ellipse(this.nextFrame,50,50,50)
   }
-
+moveplayer(p,dir){
+  
+}
 
 }

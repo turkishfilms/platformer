@@ -10,8 +10,7 @@ class PlayerHandler {
   constructor({ physics = new Physics(), currentLevelobstacles = [] } = {}) {
     this.players = [];
     this.physics = physics;
-    this.currentLevelobstacles = currentLevelobstacles
-    this.jumpheight = 20;
+    this.currentLevelobstacles = currentLevelobstacles;
   }
 
   updateCurrentLevelObstacles(obstacles) {
@@ -26,23 +25,17 @@ class PlayerHandler {
   }
 
   jump(player) {
-  // the y will go higher = jump
-  player.potion.y -= this.jumpheight
- 
+    player.speed.y -= this.playerJumpSpeed;
   }
+movePlayer(direction){
+  this.players[0].x += direction
 
-  playerFeelsPhyics;
+}
+  // playerFeelsPhyics;
   update() {
     //every frame check collisions
   }
-  direction = 50
-moveplayer(player, direction){
-//directioin will be negative when we want to go to the left
-//posiitve if to the right
-player.x += direction
+  show(){
+    ellipse(this.players[0].position.x,this.players[0].position.y,this.players[0].size.width)
+  }
 }
-}
-
-  
-
-

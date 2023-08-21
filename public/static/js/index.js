@@ -1,25 +1,26 @@
-// import  GameHandler  from "./class/handlers/gameHandler";
-
-const FLOOR_OFFSET= 10
-const FLOOR_DEPTH = 50
-
-let game;
-let x = 0;
+// import { GameHandler } from "./class/handlers/gameHandler";
+// let game;
+let x =0
+let playerHandler = new PlayerHandler()
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(50);
+  playerHandler.players.push(new player())
   // const boundaries = { width: windowWidth, height: windowHeight };
   // game = new GameHandler(boundaries);
 }
 
+
+
+if (keyPressed(RIGHTARROW))
+
 function keyPressed() {
   //any commands from user are understood -domp
-if("keyistheleftjey"){
-  game.playerHandler.movePlayer(-5)
+if(key == "RIGHT_ARROW"){
+  playerHandler.movePlayer(5)
 }
-<<<<<<< HEAD
-if("keyisright"){ 
-  game.playerHandler.movePlayer(5)
+if(key == "LEFT_ARROW"){
+  playerHandler.movePlayer(-5)
 }
 }
 
@@ -32,8 +33,6 @@ playerHandler : {
 }
 
 }
-=======
->>>>>>> 179b2a683382728c06976debdefb66f54ca2f881
 
 function draw() {
   background(0);
@@ -55,4 +54,7 @@ for(let i = 0; i<4;i++){
   triangle(35, 700, 90, 700, 60, 600)
 
 }
+
+fill(0,0,255)
+playerHandler.show()
 }

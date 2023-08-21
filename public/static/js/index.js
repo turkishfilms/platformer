@@ -2,6 +2,14 @@
 // let game;
 // import  GameHandler  from "./class/handlers/gameHandler";
 
+// module aliases
+const Engine = Matter.Engine,
+  Bodies = Matter.Bodies,
+  Composite = Matter.Composite;
+
+// create an engine
+const engine = Engine.create();
+
 const FLOOR_OFFSET = 10;
 const FLOOR_DEPTH = 50;
 const NUMBER_OF_SPIKES = 36;
@@ -27,8 +35,12 @@ let playerHandler = new PlayerHandler();
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(50);
-  playerHandler.players.push(new player());
-
+  const player = new Player();
+  playerHandler.players.push(player);
+  Composite.add(
+    engine.world,
+    Bodies.circle(player.position.x, player.position.y, player.size.width / 2)
+  );
   for (let i = 0; i < NUMBER_OF_SPIKES; i++) {
     let startpoint = i * 35;
     l1Spikes.push([
@@ -40,25 +52,43 @@ function setup() {
       600,
     ]);
   }
+  let shapes = [];
+  level1Obstacles.forEach((rect) => {
+    shapes.push(
+      Bodies.rectangle(rect.x, rect.y, rect.w, rect.h, { isStatic: true })
+    );
+  });
 
+  Composite.add(engine.world, shapes);
   // const boundaries = { width: windowWidth, height: windowHeight };
   // game = new GameHandler(boundaries);
 }
 
-if (keyPressed(RIGHTARROW))
-  function keyPressed() {
-    //any commands from user are understood -domp
-    if (key == "RIGHT_ARROW") {
-      playerHandler.movePlayer(5);
-    }
-    if (key == "LEFT_ARROW") {
-      playerHandler.movePlayer(-5);
-    }
+function keyPressed() {
+  //any commands from user are understood -domp
+  if (key == "RIGHT_ARROW") {
+    playerHandler.movePlayer(5);
   }
+  if (key == "LEFT_ARROW") {
+    playerHandler.movePlayer(-5);
+  }
+}
 
+function drawRectBody(body) {
+  const x = body.position.x;
+  const y = body.position.y;
+  const w = body.bounds.max.x - body.bounds.min.x;
+  const h = body.bounds.max.y - body.bounds.min.y;
+
+  rect(x, y, w, h);
+}
 
 function draw() {
   background(0);
+  Engine.update(engine);
+  Composite.allBodies(engine.world).forEach((body) => {
+    if ((body.label = "Rectangle Body")) drawRectBody(body); //rect only
+  });
   fill(255, 255, 255);
   ellipse(x, 100, 50, 100);
   x++;
@@ -67,9 +97,6 @@ function draw() {
   fill(0, 0, 255);
   playerHandler.show();
 
-  level1Obstacles.forEach((obstacle) =>
-    rect(obstacle.x, obstacle.y, obstacle.w, obstacle.h)
-  );
   l1Spikes.forEach((spike) =>
     triangle(spike[0], spike[1], spike[2], spike[3], spike[4], spike[5])
   );

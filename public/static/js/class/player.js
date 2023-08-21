@@ -1,8 +1,8 @@
 class player {
-  constructor(JumpSpeed = {
+  constructor(jumpSpeed = {
     x: 5,
     y: 5
-  }, playerHander = new PlayerHander(), color = {
+  }, playerHandler = new PlayerHandler(), color = {
     r: 222,
     g: 150,
     b: 35,
@@ -10,7 +10,7 @@ class player {
   }, size = {
     width: 50,
     height: 50
-  }, postion = {
+  }, position = {
     x: 50,
     y: 50
   }, speed = {
@@ -19,11 +19,11 @@ class player {
   }, lives = 3) {
     this.color = color
     this.size = size
-    this.postion = postion
+    this.position = position
     this.speed = speed
     this.lives = lives
-    this.playerHander = playerHander
-    thisJumpSpeed = JumpSpeed
+    this.playerHandler = playerHandler
+    this.jumpSpeed = jumpSpeed
   }
   /*
 

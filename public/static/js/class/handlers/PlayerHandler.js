@@ -33,6 +33,9 @@ const player =Composite.allBodies(engine.world).filter(body=> body.id==1)
 player[0].position.x += direction
 
 }
+addPlayer(player){
+  this.players.push(player) 
+}
   // playerFeelsPhyics;
   update() {
     //every frame check collisions

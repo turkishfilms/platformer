@@ -37,10 +37,12 @@ function setup() {
   background(50);
   const player = new Player();
   playerHandler.players.push(player);
-  const playerBody = Bodies.circle(
+  const playerBody = Bodies.rectangle(
     player.position.x,
     player.position.y,
-    player.size.width / 2
+    player.size.width ,
+    player.size.height,
+    {friction:1}
   );
   Composite.add(engine.world, playerBody);
   for (let i = 0; i < NUMBER_OF_SPIKES; i++) {
@@ -57,7 +59,7 @@ function setup() {
   let shapes = [];
   level1Obstacles.forEach((rect) => {
     shapes.push(
-      Bodies.rectangle(rect.x, rect.y, rect.w, rect.h, { isStatic: true })
+      Bodies.rectangle(rect.x, rect.y, rect.w, rect.h, { isStatic: true, frictionStatic:1 })
     );
   });
 

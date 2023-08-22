@@ -37,10 +37,12 @@ function setup() {
   background(50);
   const player = new Player();
   playerHandler.players.push(player);
-  Composite.add(
-    engine.world,
-    Bodies.circle(player.position.x, player.position.y, player.size.width / 2)
+  const playerBody = Bodies.circle(
+    player.position.x,
+    player.position.y,
+    player.size.width / 2
   );
+  Composite.add(engine.world, playerBody);
   for (let i = 0; i < NUMBER_OF_SPIKES; i++) {
     let startpoint = i * 35;
     l1Spikes.push([
@@ -66,10 +68,9 @@ function setup() {
 
 function keyPressed() {
   //any commands from user are understood -domp
-  if (key == "RIGHT_ARROW") {
+  if (key == "d") {
     playerHandler.movePlayer(5);
-  }
-  if (key == "LEFT_ARROW") {
+  } else if (key == "a") {
     playerHandler.movePlayer(-5);
   }
 }

@@ -28,7 +28,9 @@ class PlayerHandler {
     player.speed.y -= this.playerJumpSpeed;
   }
 movePlayer(direction){
-  this.players[0].x += direction
+  // this.players[0].x += direction
+const player =Composite.allBodies(engine.world).filter(body=> body.id==1)
+player[0].position.x += direction
 
 }
   // playerFeelsPhyics;

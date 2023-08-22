@@ -1,4 +1,4 @@
-class player {
+class Player {
   constructor(jumpSpeed = {
     x: 5,
     y: 5

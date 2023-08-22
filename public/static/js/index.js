@@ -37,10 +37,17 @@ function setup() {
   background(50);
   const player = new Player();
   playerHandler.players.push(player);
-  const playerBody = Bodies.circle(
+  const playerBody = Bodies.rectangle(
     player.position.x,
     player.position.y,
-    player.size.width / 2
+    player.size.width,
+    player.size.height,
+    {
+      friction: 1,
+      frictionStatic: 1,
+      width: player.size.width,
+      height: player.size.height,
+    }
   );
   Composite.add(engine.world, playerBody);
   for (let i = 0; i < NUMBER_OF_SPIKES; i++) {
@@ -57,7 +64,13 @@ function setup() {
   let shapes = [];
   level1Obstacles.forEach((rect) => {
     shapes.push(
-      Bodies.rectangle(rect.x, rect.y, rect.w, rect.h, { isStatic: true })
+      Bodies.rectangle(rect.x, rect.y, rect.w, rect.h, {
+        width: rect.w,
+        height: rect.h,
+        isStatic: true,
+        friction: 1,
+        frictionStatic: 1,
+      })
     );
   });
 
@@ -76,10 +89,10 @@ function keyPressed() {
 }
 
 function drawRectBody(body) {
-  const x = body.position.x;
+  const w = body.width;
+  const h = body.height;
   const y = body.position.y;
-  const w = body.bounds.max.x - body.bounds.min.x;
-  const h = body.bounds.max.y - body.bounds.min.y;
+  const x = body.position.x - w / 2;
 
   rect(x, y, w, h);
 }
@@ -87,18 +100,18 @@ function drawRectBody(body) {
 function draw() {
   background(0);
   Engine.update(engine);
+  fill(255, 0, 0);
   Composite.allBodies(engine.world).forEach((body) => {
     if ((body.label = "Rectangle Body")) drawRectBody(body); //rect only
   });
-  fill(255, 255, 255);
-  ellipse(x, 100, 50, 100);
-  x++;
-  fill(255, 0, 0);
 
-  fill(0, 0, 255);
-  playerHandler.show();
+  // fill(0, 0, 255);
+  // playerHandler.show();
 
   l1Spikes.forEach((spike) =>
     triangle(spike[0], spike[1], spike[2], spike[3], spike[4], spike[5])
   );
+  fill(255, 255, 255);
+  ellipse(x, 100, 50, 100);
+  x++;
 }

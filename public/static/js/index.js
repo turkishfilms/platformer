@@ -36,8 +36,13 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   background(50);
   const player = new Player();
+<<<<<<< HEAD
   playerHandler.players.push(player);
   const playerBody = Bodies.rectangle(
+=======
+  playerHandler.addPlayer(player);
+  const playerBody = Bodies.circle(
+>>>>>>> 290fafd8a3730a7a18c4f15ca5363a2965e4b91d
     player.position.x,
     player.position.y,
     player.size.width,
@@ -49,7 +54,11 @@ function setup() {
       height: player.size.height,
     }
   );
+  playerBody.label = "Player Body"
   Composite.add(engine.world, playerBody);
+  const bodiesYo = Composite.allBodies(engine.world)
+  bodiesYo.forEach(body=>console.log(body.label))
+
   for (let i = 0; i < NUMBER_OF_SPIKES; i++) {
     let startpoint = i * 35;
     l1Spikes.push([
@@ -102,8 +111,14 @@ function draw() {
   Engine.update(engine);
   fill(255, 0, 0);
   Composite.allBodies(engine.world).forEach((body) => {
-    if ((body.label = "Rectangle Body")) drawRectBody(body); //rect only
+    if (body.label == "Rectangle Body") drawRectBody(body); //rect only
   });
+<<<<<<< HEAD
+=======
+  fill(255, 255, 255);
+  ellipse(x, 100, 50, 100);
+  x++;
+>>>>>>> 290fafd8a3730a7a18c4f15ca5363a2965e4b91d
 
   // fill(0, 0, 255);
   // playerHandler.show();

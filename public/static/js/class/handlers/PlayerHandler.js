@@ -27,6 +27,7 @@ class PlayerHandler {
   jump(player) {
     player.speed.y -= this.playerJumpSpeed;
   }
+<<<<<<< HEAD
   movePlayer(direction) {
     // this.players[0].x += direction
     const player = Composite.allBodies(engine.world).filter(
@@ -40,6 +41,17 @@ class PlayerHandler {
       direction
     );
   }
+=======
+movePlayer(direction){
+  // this.players[0].x += direction
+const player =Composite.allBodies(engine.world).filter(body=> body.id==1)
+player[0].position.x += direction
+
+}
+addPlayer(player){
+  this.players.push(player) 
+}
+>>>>>>> 290fafd8a3730a7a18c4f15ca5363a2965e4b91d
   // playerFeelsPhyics;
   update() {
     //every frame check collisions

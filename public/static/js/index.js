@@ -12,6 +12,18 @@ let l1Spikes = []
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(50);
+  const boundaries = { width: windowWidth, height: windowHeight };
+  game = new GameHandler(boundaries);
+}
+function keyPressed() {
+  //any commands from user are understood -domp
+if("keyistheleftjey"){
+  game.playerHandler.movePlayer(-5)
+}
+if("keyisright"){ 
+  game.playerHandler.movePlayer(5)
+}
+}
   // const boundaries = { width: windowWidth, height: windowHeight };
   // game = new GameHandler(boundaries);
 

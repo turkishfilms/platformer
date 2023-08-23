@@ -36,13 +36,23 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   background(50);
   const player = new Player();
+<<<<<<< HEAD
+  playerHandler.players.push(player);
+  const playerBody = Bodies.rectangle(
+=======
   playerHandler.addPlayer(player);
   const playerBody = Bodies.circle(
+>>>>>>> 290fafd8a3730a7a18c4f15ca5363a2965e4b91d
     player.position.x,
     player.position.y,
-    player.size.width ,
+    player.size.width,
     player.size.height,
-    {friction:1}
+    {
+      friction: 1,
+      frictionStatic: 1,
+      width: player.size.width,
+      height: player.size.height,
+    }
   );
   playerBody.label = "Player Body"
   Composite.add(engine.world, playerBody);
@@ -63,7 +73,13 @@ function setup() {
   let shapes = [];
   level1Obstacles.forEach((rect) => {
     shapes.push(
-      Bodies.rectangle(rect.x, rect.y, rect.w, rect.h, { isStatic: true, frictionStatic:1 })
+      Bodies.rectangle(rect.x, rect.y, rect.w, rect.h, {
+        width: rect.w,
+        height: rect.h,
+        isStatic: true,
+        friction: 1,
+        frictionStatic: 1,
+      })
     );
   });
 
@@ -82,10 +98,10 @@ function keyPressed() {
 }
 
 function drawRectBody(body) {
-  const x = body.position.x;
+  const w = body.width;
+  const h = body.height;
   const y = body.position.y;
-  const w = body.bounds.max.x - body.bounds.min.x;
-  const h = body.bounds.max.y - body.bounds.min.y;
+  const x = body.position.x - w / 2;
 
   rect(x, y, w, h);
 }
@@ -97,14 +113,20 @@ function draw() {
   Composite.allBodies(engine.world).forEach((body) => {
     if (body.label == "Rectangle Body") drawRectBody(body); //rect only
   });
+<<<<<<< HEAD
+=======
   fill(255, 255, 255);
   ellipse(x, 100, 50, 100);
   x++;
+>>>>>>> 290fafd8a3730a7a18c4f15ca5363a2965e4b91d
 
-  fill(0, 0, 255);
-  playerHandler.show();
+  // fill(0, 0, 255);
+  // playerHandler.show();
 
   l1Spikes.forEach((spike) =>
     triangle(spike[0], spike[1], spike[2], spike[3], spike[4], spike[5])
   );
+  fill(255, 255, 255);
+  ellipse(x, 100, 50, 100);
+  x++;
 }

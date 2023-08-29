@@ -1,5 +1,5 @@
-import ScoreHandler from './ScoreHandler'
-import LevelHandler from './LevelHandler'
+// import ScoreHandler from './ScoreHandler'
+// import LevelHandler from './LevelHandler'
 export default class GameHandler {
   constructor({
     scoreHandler = new ScoreHandler(),

@@ -1,6 +1,4 @@
-// import { GameHandler } from "./class/handlers/gameHandler";
-// let game;
-// import  GameHandler  from "./class/handlers/gameHandler";
+
 
 // module aliases
 const Engine = Matter.Engine,
@@ -39,7 +37,6 @@ function setup() {
   // game = new GameHan:dler(boundaries);
 
   const player = new Player();
-<<<<<<<<< Temporary merge branch 1
 }
 function keyPressed() {
   //any commands from user are understood -domp
@@ -66,12 +63,9 @@ function draw() {
   Composite.allBodies(engine.world).forEach((body) => {
     if (body.label == "Rectangle Body") drawRectBody(body); //rect only
   });
-<<<<<<< HEAD
-=======
   fill(255, 255, 255);
   ellipse(x, 100, 50, 100);
   x++;
->>>>>>> 290fafd8a3730a7a18c4f15ca5363a2965e4b91d
 
   // fill(0, 0, 255);
   // playerHandler.show();

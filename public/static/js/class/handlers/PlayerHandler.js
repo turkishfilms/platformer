@@ -31,15 +31,9 @@ class PlayerHandler {
   }
 
   jump(player) {
-<<<<<<< HEAD
-    // the y will go higher = jump
-    player.postion.y -= this.jumpheight
-
-=======
     player.speed.y -= this.playerJumpSpeed;
->>>>>>> 29e93f42df313f7901538cfa2a6b23c321d1123d
   }
-<<<<<<< HEAD
+
   movePlayer(direction) {
     // this.players[0].x += direction
     const player = Composite.allBodies(engine.world).filter(
@@ -53,71 +47,56 @@ class PlayerHandler {
       direction
     );
   }
-=======
-movePlayer(direction){
-  // this.players[0].x += direction
-const player =Composite.allBodies(engine.world).filter(body=> body.id==1)
-player[0].position.x += direction
+  movePlayer(direction) {
+    // this.players[0].x += direction
+    const player = Composite.allBodies(engine.world).filter(body => body.id == 1)
+    player[0].position.x += direction
 
-<<<<<<< HEAD
-=======
-}
-addPlayer(player){
-  this.players.push(player) 
-}
->>>>>>> 290fafd8a3730a7a18c4f15ca5363a2965e4b91d
+  }
+  addPlayer(player) {
+    this.players.push(player)
+  }
   // playerFeelsPhyics;
->>>>>>> 29e93f42df313f7901538cfa2a6b23c321d1123d
   update() {
     //every frame check collisions
-    
+
   }
-playercollision(player, obstacle){
-  //code for make the player doesn't phase through walls
-  /**
+  playercollision(player, obstacle) {
+    //code for make the player doesn't phase through walls
+    /**
  
    */
-  if ( typeof obstacle == Spike) { 
-this.reset()
+    if (typeof obstacle == Spike) {
+      this.reset()
+    } else if (typeof obstacle == Obstacle) {
+
+    } else if (typeof obstacle == Disappear) {
+      obstacle.Disappear()
+    }
   }
-  else if (typeof obstacle == Obstacle){
+
+  /**
+   * returns true if colliding false otherwise
+   * @param {number} x1 player x 
+   * @param {number} y1 player y 
+   * @param {number} w1 player width
+   * @param {number} h1 player height
+   * @param {number} x2 obstacle x 
+   * @param {number} y2 obstacle y 
+   * @param {number} w2 obstacle width
+   * @param {number} h2 obstacle height
+   * @returns {bool}
+   */
+  checkCollided(x1, y1, w1, h1, x2, y2, w2, h2) {
+    return !(x1 + w1 < x2 || y1 + h1 < y2 || x1 > x2 + w2 || y2 + h2 < y1)
 
   }
-  else if (typeof obstacle == Disappear ){
-obstacle.Disappear()
+  gravityForce(player) {
+    this.player.position
+
   }
-<<<<<<< HEAD
-}
 
-/**
- * returns true if colliding false otherwise
- * @param {number} x1 player x 
- * @param {number} y1 player y 
- * @param {number} w1 player width
- * @param {number} h1 player height
- * @param {number} x2 obstacle x 
- * @param {number} y2 obstacle y 
- * @param {number} w2 obstacle width
- * @param {number} h2 obstacle height
- * @returns {bool}
- */
-checkCollided(x1,y1,w1,h1,x2,y2,w2,h2){
-  return !(x1 + w1< x2 || y1 + h1 < y2|| x1> x2 + w2 || y2 + h2 < y1)
 
-}
-  gravityForce(player){
-this.player.position
-
-}
-
-  moveplayer(player, direction) {
-    //directioin will be negative when we want to go to the left
-    //posiitve if to the right
-  
-    player.x += direction
-  }
-}
-=======
   show() {
     ellipse(
       this.players[0].position.x,
@@ -125,5 +104,18 @@ this.player.position
       this.players[0].size.width
     );
   }
+
+  losesLife(player = this.players[0], numberOfLives) {
+    for (let index = 0; index < numberOfLives; index++) {
+      if (this.lives == 0) {
+        this.die(player)
+        break
+      }
+      player.livesminus()
+    }
+  }
+
+  die(){
+    console.log("you are really dead")
+  }
 }
->>>>>>> 29e93f42df313f7901538cfa2a6b23c321d1123d

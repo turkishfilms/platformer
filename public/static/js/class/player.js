@@ -49,7 +49,6 @@ class Player {
   }
   livesminus() {
     this.lives--
-    if (this.lives == 0) this.playerHander.Die(this)
   }
   playerhealthcolor() {
     if (this.lives >= 3) this.color = {//green

@@ -1,5 +1,5 @@
 // import  GameHandler  from "./class/handlers/gameHandler";
-import levelData from "./Levels/levelData";
+// import levelData from "./Levels/levelData";
 
 const FLOOR_OFFSET = 10
 const FLOOR_DEPTH = 50
@@ -7,14 +7,14 @@ const NUMBER_OF_SPIKES = 36
 
 let game;
 let x = 0;
-let level = levelData.level2Obstacles
+let level = levelData.level1Obstacles
 
 let l1Spikes = []
-
+let player
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(50);
-
+player = new Player()
   // const player = new Player();
 }
 function keyPressed() {

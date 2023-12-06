@@ -14,8 +14,8 @@ let player
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(50);
-player = new Player()
-  // const player = new Player();
+  player = new Player()
+  game = new GameHandler()
 }
 function keyPressed() {
   //any commands from user are understood -domp

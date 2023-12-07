@@ -12,18 +12,27 @@
     this.levelHandler = levelHandler;
     // this.physics = physics
   }
-  nextFrame =()=>{
+  nextFrame() {
     //players to feel physics -
     //health to change
 
     // levels should be updated - 
     //score shoul be updated -
     // this.playerHandler.update(physics)
-    this.levelHandler.update(physics)
+    // this.levelHandler.update(physics)
     this.scoreHandler.update(1)
   }
-moveplayer(p,dir){
+  movePlayerRight(){
+    this.playerHandler.movePlayer(1)
+  }
+
+  movePlayerLeft(){
+    this.playerHandler.movePlayer(-1)
+
+  }
+
+  show(){
   
-}
+  }
 
 }

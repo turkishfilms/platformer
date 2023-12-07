@@ -8,6 +8,28 @@ methods
 
 */
 
+
+
+/**
+ *]
+
+let level = levelData.level1Obstacles
+
+let l1Spikes = []
+const FLOOR_OFFSET = 10
+const FLOOR_DEPTH = 50
+const NUMBER_OF_SPIKES = 36
+
+function drawRectBody(body) {
+  const w = body.width;
+  const h = body.height;
+  const y = body.position.y;
+  const x = body.position.x - w / 2;
+
+  rect(x, y, w, h);
+}
+
+ * **/
 class LevelHandler {
   constructor({ levels = [] } = {}) {
     this.levels = levels;

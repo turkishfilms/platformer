@@ -26,6 +26,11 @@ On initalization of the game.
 2. The Game Handler will create all necessary components
 3. The first level will start
 
+OPEN QUESTIONS:
+1. What determines Player Speed? is it:
+	a. the level
+	b. upgrades (i.e. the player)
+	c. the user (i.e. the game)
 
 
 
@@ -34,4 +39,30 @@ On initalization of the game.
 
 
 
-hello
+hell
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+o

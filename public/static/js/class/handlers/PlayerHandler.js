@@ -14,6 +14,7 @@ class PlayerHandler {
     this.players = [];
     this.physics = physics;
     this.currentLevelobstacles = currentLevelobstacles;
+    this.addPlayer(new Player())
   }
 
   updateCurrentLevelObstacles(obstacles) {
@@ -64,7 +65,7 @@ class PlayerHandler {
   playercollision(player, obstacle) {
     //code for make the player doesn't phase through walls
     /**
- 
+
    */
     if (typeof obstacle == Spike) {
       this.reset()

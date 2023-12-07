@@ -1,6 +1,6 @@
 
 class Player {
-  constructor(jumpSpeed = {
+  cnonstructor({jumpSpeed = {
     x: 5,
     y: 5
   }, playerHandler = new PlayerHandler(), color = {
@@ -17,7 +17,7 @@ class Player {
   }, speed = {
     xSpeed: 50,
     ySpeed: 50
-  }, lives = 3) {
+  }, lives = 3}={}) {
     this.color = color
     this.size = size
     this.position = position

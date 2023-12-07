@@ -4,7 +4,7 @@
   constructor({
     scoreHandler = new ScoreHandler(),
     playerHandler = new PlayerHandler(),
-    levelHandler = new LevelHandler(),
+    levelHandler = new LevelHandler({levels:levelDataArr}),
     // physics = new physics()
   } = {}) {
     this.scoreHandler = scoreHandler;
@@ -23,16 +23,18 @@
     this.scoreHandler.update(1)
   }
   movePlayerRight(){
-    this.playerHandler.movePlayer(1)
+    this.playerHandler.movePlayer2(1)
   }
 
   movePlayerLeft(){
-    this.playerHandler.movePlayer(-1)
+
+    this.playerHandler.movePlayer2(-1)
 
   }
 
   show(){
-  
+    this.levelHandler.showLevel1()
+    this.playerHandler.showPlayer()
   }
 
 }

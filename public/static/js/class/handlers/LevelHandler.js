@@ -41,9 +41,11 @@ class LevelHandler {
     this.show(this.currentLevel); //show the level
     //move the level
   }
-
+showLevel1(){
+this.show(this.levels[0])
+  }
   show(level) {
-    level.obstacles.forEach((obstacle) => {
+    level.forEach((obstacle) => {
       const {
         color: { r, g, b, a },
         size: { w, h },

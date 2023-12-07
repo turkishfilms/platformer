@@ -9,7 +9,7 @@ function setup() {
 function keyPressed() {
   //any commands from user are understood -domp
   if (key == "d") {
-    game.movePlayerRight(); //5 is just for testing purposes
+    game.movePlayerRight(); 
   } else if (key == "a") {
     game.movePlayerLeft();
   }

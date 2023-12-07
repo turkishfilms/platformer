@@ -14,7 +14,15 @@ class PlayerHandler {
     this.players = [];
     this.physics = physics;
     this.currentLevelobstacles = currentLevelobstacles;
-    this.addPlayer(new Player())
+    this.addPlayer(new Player({playerHandler:this}))
+  }
+
+showPlayer(){
+    const {color:{r,g,b,a}, size:{width:w,height:h},position:{x,y}}=this.players[0]
+    fill(r,g,b,a)
+    ellipse(x,y,w,h)
+
+
   }
 
   updateCurrentLevelObstacles(obstacles) {
@@ -33,6 +41,10 @@ class PlayerHandler {
 
   jump(player) {
     player.speed.y -= this.playerJumpSpeed;
+  }
+
+  movePlayer2(direction){
+ this.players[0].position.x += direction 
   }
 
   movePlayer(direction) {
@@ -54,9 +66,11 @@ class PlayerHandler {
     player[0].position.x += direction
 
   }
+
   addPlayer(player) {
     this.players.push(player)
   }
+
   // playerFeelsPhyics;
   update() {
     //every frame check collisions

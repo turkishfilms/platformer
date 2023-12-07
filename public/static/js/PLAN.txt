@@ -2,7 +2,7 @@ There are many levels to this game.
 Lots of abtraction. 
 
 This is A platforming game.
-Basic COmponents include:
+Basic Components include:
 1. platoforms
 2. player(s)
 3. obstacles

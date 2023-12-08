@@ -1,28 +1,25 @@
 // import ScoreHandler from './ScoreHandler'
 // import LevelHandler from './LevelHandler'
-/* export default */ class GameHandler {
+class GameHandler {
   constructor({
     scoreHandler = new ScoreHandler(),
     playerHandler = new PlayerHandler(),
     levelHandler = new LevelHandler({levels:levelDataArr}),
-    physics = new Physics()
+    physicsHandler = new PhysicsHandler()
+    renderHandler = new RenderHandler()
+
   } = {}) {
     this.scoreHandler = scoreHandler;
     this.playerHandler = playerHandler;
     this.levelHandler = levelHandler;
-    this.physics = physics
+    this.physicsHandler = physicsHandler
+    this.renderHandler = renderHandler
   }
   nextFrame() {
-    this.show()
-    //players to feel physics -
-    //health to change
-
-    // levels should be updated - 
-    //score shoul be updated -
-    // this.playerHandler.update(physics)
-    // this.levelHandler.update(physics)
-    this.scoreHandler.update(1)
+    this.rederHandler.show()
+    this.physicsHandler.simulateWorldByOneFrame()
   }
+
   movePlayerRight(){
     this.playerHandler.movePlayer2(1)
   }
@@ -30,10 +27,6 @@
   movePlayerLeft(){
     this.playerHandler.movePlayer2(-1)
   }
-
-  show(){
-    this.levelHandler.showLevel1()
-    this.playerHandler.showPlayer()
-  }
+  
 
 }

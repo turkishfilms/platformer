@@ -5,14 +5,15 @@
     scoreHandler = new ScoreHandler(),
     playerHandler = new PlayerHandler(),
     levelHandler = new LevelHandler({levels:levelDataArr}),
-    // physics = new physics()
+    physics = new Physics()
   } = {}) {
     this.scoreHandler = scoreHandler;
     this.playerHandler = playerHandler;
     this.levelHandler = levelHandler;
-    // this.physics = physics
+    this.physics = physics
   }
   nextFrame() {
+    this.show()
     //players to feel physics -
     //health to change
 
@@ -27,9 +28,7 @@
   }
 
   movePlayerLeft(){
-
     this.playerHandler.movePlayer2(-1)
-
   }
 
   show(){

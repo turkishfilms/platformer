@@ -4,7 +4,7 @@ Lots of abtraction.
 
 This is A platforming game.
 Basic Components include:
-1. platoforms
+1. platforms
 2. player(s)
 3. obstacles
 4. enemies
@@ -21,7 +21,7 @@ Basic Classes
 7. Obstacle Class
 8. Enemy class
 
-CHECKPOINT 1!
+CHECKPOINT 1! 
 On initalization of the game.
 1. One Game Handler will be created
 2. The Game Handler will create all necessary components
@@ -31,7 +31,7 @@ OPEN QUESTIONS:
 1. What determines Player Speed? is it:
 	a. the level
 	b. upgrades (i.e. the player)
-	c. the user (i.e. the game)
+	c. the user (i.e. the game) ##THIS ONE##
 
 
 
@@ -40,7 +40,7 @@ OPEN QUESTIONS:
 
 
 
-hell
+hello
 
 
 

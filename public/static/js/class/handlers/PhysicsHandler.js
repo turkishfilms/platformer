@@ -6,8 +6,8 @@ class PhysicsHandler{
     this.physics= physics
   }
   //method
-  simulateWorldByOneFrame(){}
-  getPlayerPosition(){}
+  simulateWorldByOneFrame(){console.log("simulating one frame of the world")}
+  getPlayerPosition(){console.log("heres player pos")}
   getObstaclePosition(){}
   getEnemiePosition(){}
   getPlatformPosition(){}

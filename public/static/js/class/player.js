@@ -1,6 +1,6 @@
 
 class Player {
-  cnonstructor({jumpSpeed = {
+  constructor({jumpSpeed = {
     x: 5,
     y: 5
   }, playerHandler = new PlayerHandler(), color = {
@@ -26,34 +26,13 @@ class Player {
     this.playerHandler = playerHandler
     this.jumpSpeed = jumpSpeed
   }
-  /*
-
+/**
 
 
   Player can jump and move left and right 
   Have a any color that the player could choose
   Have a speeed!
-  Have size
-  Have a x and y 
-  `
-
-  */
-
-
-  jump() {
-    // this code will make the y higher then minus by the y how high it jumped 
-    this.playerHander.jump(this)
-  }
-  livesplus() {
-    this.lives++
-  }
-  livesminus() {
-    this.lives--
-  }
-  playerhealthcolor() {
-    if (this.lives >= 3) this.color = {//green
-      r: 0,
-      g: 250,
+  Have sizePlayer50,
       b: 0,
       a: 250
     }
@@ -69,5 +48,5 @@ class Player {
       b: 0,
       a: 250
     }
-  }
+  }**/
 }

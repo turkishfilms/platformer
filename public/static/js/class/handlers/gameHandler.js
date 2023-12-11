@@ -28,5 +28,21 @@ class GameHandler {
     this.playerHandler.movePlayer2(-1)
   }
   
+enUpdate(player, enemy, obstacles, x, y, ){
+/**It holds all of the entity information like player and enemy and obstacles
+ * player = object
+ * enemy = object
+ * obstacles = object
+ * x =
+ * y = 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
 
+
+
+}
 }

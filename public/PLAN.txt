@@ -36,7 +36,11 @@ OPEN QUESTIONS:
 
 
 
-
+Git Branches:
+1. Master
+2. Dev
+3. 1 feature branch per person
+4. 5 branches max, 5 branches minimum
 
 
 

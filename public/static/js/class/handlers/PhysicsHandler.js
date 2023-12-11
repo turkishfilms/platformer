@@ -5,8 +5,21 @@ class PhysicsHandler{
     this.world = world
     this.physics= physics
   }
+
   //method
-  simulateWorldByOneFrame(){console.log("simulating one frame of the world")}
+  simulateWorldByOneFrame(){
+/**use the matter.js engine
+ * 
+ * 
+ * 
+ */
+
+
+
+
+
+  }
+
   getPlayerPosition(){console.log("heres player pos")}
   getObstaclePosition(){}
   getEnemiePosition(){}

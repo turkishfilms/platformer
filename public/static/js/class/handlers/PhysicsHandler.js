@@ -1,5 +1,7 @@
 class PhysicsHandler{
-  constructor({engine = Matter.Engine.create(), world = Matter.Composite.create(), physics = new Physics()}={}){
+  constructor({engine = Matter.Engine.create(),
+     world = Matter.Composite.create(), 
+     physics = new Physics()}={}){
     //properties
     this.engine = engine 
     this.world = world

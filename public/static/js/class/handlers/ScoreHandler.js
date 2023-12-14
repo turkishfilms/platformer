@@ -1,4 +1,4 @@
-export default class ScoreHandler {
+/* export default */ class ScoreHandler {
   constructor({ score = 0 } = {}) {
     this.score = score;
   }

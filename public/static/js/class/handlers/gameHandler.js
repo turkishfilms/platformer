@@ -5,7 +5,7 @@ class GameHandler {
     scoreHandler = new ScoreHandler(),
     playerHandler = new PlayerHandler(),
     levelHandler = new LevelHandler({levels:levelDataArr}),
-    physicsHandler = new PhysicsHandler()
+    physicsHandler = new PhysicsHandler(),
     renderHandler = new RenderHandler()
 
   } = {}) {

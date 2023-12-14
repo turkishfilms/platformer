@@ -47,6 +47,20 @@ showPlayer(){
  this.players[0].position.x += direction 
   }
 
+changeColor(color){
+this.players[0].color=color
+
+
+
+
+
+
+
+
+
+}
+
+
   movePlayer(direction) {
     // this.players[0].x += direction
     const player = Composite.allBodies(engine.world).filter(

@@ -17,5 +17,5 @@ function keyPressed() {
 
 function draw() {
   background(0);
-  game.nextFrame()
+  game.nextFrame("HOWDY PARTNERS")
 }

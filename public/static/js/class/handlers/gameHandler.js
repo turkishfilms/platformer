@@ -1,22 +1,23 @@
-// import ScoreHandler from './ScoreHandler'
-// import LevelHandler from './LevelHandler'
+
 class GameHandler {
   constructor({
+levels=[],
     scoreHandler = new ScoreHandler(),
     playerHandler = new PlayerHandler(),
-    levelHandler = new LevelHandler({levels:levelDataArr}),
-    physicsHandler = new PhysicsHandler()
-    renderHandler = new RenderHandler()
+    levelHandler = new LevelHandler({levels:levels}),
+    physicsHandler = new PhysicsHandler(),
+    renderHandler = {show:()=>console.log("rendering")}
 
   } = {}) {
-    this.scoreHandler = scoreHandler;
+    //this.scoreHandler = scoreHandler;
     this.playerHandler = playerHandler;
     this.levelHandler = levelHandler;
     this.physicsHandler = physicsHandler
     this.renderHandler = renderHandler
   }
   nextFrame() {
-    this.rederHandler.show()
+    // this.renderHandler.show()
+    this.levelHandler.show(this.levelHandler.currentLevel)
     this.physicsHandler.simulateWorldByOneFrame()
   }
 

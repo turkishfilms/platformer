@@ -8,7 +8,7 @@
 
 class PlayerHandler {
   constructor({
-    physics = new Physics(),
+    physics = new PhysicsHandler(),
     currentLevelobstacles = []
   } = {}) {
     this.players = [];

@@ -1,9 +1,10 @@
 
+
 let game;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(50);
-  game = new GameHandler()
+  game = new GameHandler({levels:levelData})
 }
 
 function keyPressed() {
@@ -17,5 +18,5 @@ function keyPressed() {
 
 function draw() {
   background(0);
-  game.nextFrame("HOWDY PARTNERS")
+  game.nextFrame()
 }

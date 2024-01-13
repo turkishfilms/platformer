@@ -1,7 +1,7 @@
 class PhysicsHandler {
   constructor({ engine = Matter.Engine.create(),
     world = Matter.Composite.create(),
-    physics = {}
+    physics = new Physics()
   } = {}) {
     this.engine = engine
     this.world = world
@@ -9,9 +9,11 @@ class PhysicsHandler {
   }
 
   simulateWorldByOneFrame() {
-    /**use the matter.js engine
-     */
     Matter.Engine.update(this.engine)
+  }
+
+  addItems(items) {
+    items.forEach(item => Matter.Composite.add(this.world, item))
   }
 
   getPlayerPosition() { console.log("heres player pos") }
@@ -35,10 +37,15 @@ class PhysicsHandler {
   }
 
   getEnemiePosition() { }
+
   getPlatformPosition() { }
+
   updatePlayerProperties() { }
+
   updateObstacleProperties() { }
+
   updateEnemyProperties() { }
+
   updatePlatformProperties() { }
 
 }

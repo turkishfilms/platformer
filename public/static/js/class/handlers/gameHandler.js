@@ -17,6 +17,7 @@ class GameHandler {
   }
 
   gameStart() {
+<<<<<<< HEAD
     /**
      * Wipe screen, 
      * display next level screen
@@ -24,6 +25,9 @@ class GameHandler {
       * **/
     this.physicsHandler.addItems(this.levelHandler.levels[this.getCurrentLevel()])
 
+=======
+    this.physicsHandler.addItems(this.levelHandler.levels[this.getCurrentLevel()])
+>>>>>>> 64512f54383552632dbc71069c69c2633ba4f479
   }
 
   nextFrame() {

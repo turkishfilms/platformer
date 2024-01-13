@@ -43,31 +43,9 @@ Git Branches:
 4. 5 branches max, 5 branches minimum
 
 
-
-hello
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-o
+FIRST LEVEL PLAYABLE:
+X hitbox
+X player work on this
+X contorls
+gravity
+X obstcales 

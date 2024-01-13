@@ -15,7 +15,14 @@ class PhysicsHandler {
   }
 
   getPlayerPosition() { console.log("heres player pos") }
-  getObstaclePosition() { }
+
+  getObstaclePosition() {
+    //goal
+    //ingredinets
+    //english
+    //translate code
+  }
+
   getEnemiePosition() { }
   getPlatformPosition() { }
   updatePlayerProperties() { }

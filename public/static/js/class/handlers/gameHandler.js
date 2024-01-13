@@ -1,12 +1,12 @@
 
 class GameHandler {
   constructor({
-levels=[],
+    levels = [],
     scoreHandler = new ScoreHandler(),
     playerHandler = new PlayerHandler(),
-    levelHandler = new LevelHandler({levels:levels}),
+    levelHandler = new LevelHandler({ levels: levels }),
     physicsHandler = new PhysicsHandler(),
-    renderHandler = {show:()=>console.log("rendering")}
+    renderHandler = { show: () => console.log("rendering") }
 
   } = {}) {
     //this.scoreHandler = scoreHandler;
@@ -15,32 +15,45 @@ levels=[],
     this.physicsHandler = physicsHandler
     this.renderHandler = renderHandler
   }
+
+  gameStart() {
+    /**
+     * Wipe screen, 
+     * display next level screen
+     *
+      * **/
+    this.physicsHandler.addItems(this.levelHandler.levels[this.getCurrentLevel()])
+
+  }
+
   nextFrame() {
     // this.renderHandler.show()
     this.levelHandler.show(this.levelHandler.currentLevel)
     this.physicsHandler.simulateWorldByOneFrame()
   }
 
-  movePlayerRight(){
-    this.playerHandler.movePlayer2(1)
+  movePlayerRight() {
+    this.playerHandler.movePlayer(1)
   }
 
-  movePlayerLeft(){
-    this.playerHandler.movePlayer2(-1)
+  movePlayerLeft() {
+    this.playerHandler.movePlayer(-1)
   }
-  
-setCurrentLevel(levelNumber){
-  this.levelHandler.currentLevel = levelNumber
-}
 
-getPreviousLevel(){ //return a number 1 less than current level unless current level is 1 or less then return 1
-  const currentLevel = this.levelHandler.currentLevel 
-  
-  return currentLevel <= 1 ? 1 : currentLevel - 1
-}
+  getCurrentLevel() {
+    return this.levelHandler.currentLevel
+  }
 
-getNextLevel(){ 
-  return this.levelHandler.currentLevel + 1
-}
+  setCurrentLevel(levelNumber) {
+    this.levelHandler.currentLevel = levelNumber
+  }
+
+  getPreviousLevel() {
+    return Math.max(this.levelHandler.currentLevel - 1, 1)
+  }
+
+  getNextLevel() {
+    return this.levelHandler.currentLevel + 1
+  }
 
 }

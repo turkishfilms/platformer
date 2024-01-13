@@ -6,7 +6,6 @@ function setup() {
 }
 
 function keyPressed() {
-  //any commands from user are understood -domp
   if (key == "d") {
     game.movePlayerRight();
   } else if (key == "a") {

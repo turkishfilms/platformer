@@ -29,5 +29,18 @@ levels=[],
     this.playerHandler.movePlayer2(-1)
   }
   
+setCurrentLevel(levelNumber){
+  this.levelHandler.currentLevel = levelNumber
+}
+
+getPreviousLevel(){ //return a number 1 less than current level unless current level is 1 or less then return 1
+  const currentLevel = this.levelHandler.currentLevel 
+  
+  return currentLevel <= 1 ? 1 : currentLevel - 1
+}
+
+getNextLevel(){ 
+  return this.levelHandler.currentLevel + 1
+}
 
 }

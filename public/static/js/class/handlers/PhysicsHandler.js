@@ -12,11 +12,16 @@ class PhysicsHandler {
     Matter.Engine.update(this.engine)
   }
 
-  addItems(items) {
-    items.forEach(item => Matter.Composite.add(this.world, item))
+  addItems(items, typeID) {
+    const composites = Matter.Composite.allComposites(this.world)
+    const types = Array(this.world.id).push(composites.map(composite => composite.id))
+    if (types.contains(typeID)) {
+      const selectedComposite = composites[types.indexOf(typeID)]
+      items.forEach(item => Matter.Composite.add(selectedComposite, item))
+    }
   }
 
-  getPlayerPosition() { console.log("heres player pos") }
+  getPlayerPosition() { }
 
   getObstaclePosition() {
     //goal to make gravity and when the player jumps it will slowly fall down 
@@ -36,7 +41,7 @@ class PhysicsHandler {
      */
   }
 
-  getEnemiePosition() { }
+  getEnemyPosition() { }
 
   getPlatformPosition() { }
 

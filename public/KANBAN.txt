@@ -1,0 +1,20 @@
+-----------------KANBAN-------------------
+------------------TODO--------------------
+2.Obstacles to matterjs 
+3.Simulate one frame
+4.Obstacles from matterjs
+5.Obstacles from PhysicsHandler
+6.Physics object to PhysicsHandler
+7.Forces to PhysicsHandler
+8.Controls to Forces
+9.RenderHandler Create
+10.RenderHandler Flow
+
+----------------PROGRESS------------------
+1.Obstacles to PhysicsHandler
+
+
+
+------------------DONE--------------------
+
+

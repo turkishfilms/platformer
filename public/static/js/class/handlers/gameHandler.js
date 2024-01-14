@@ -28,8 +28,14 @@ class GameHandler {
   }
 
   nextFrame() {
-    // this.renderHandler.show()
-    this.levelHandler.show(this.levelHandler.currentLevel)
+    /**
+     * each frame this gets called
+     * sometimes game will be in a level
+     * sometimes it will be on a death screen
+     *
+     * **/
+
+    this.levelHandler.show(this.getCurrentLevel())
     this.physicsHandler.simulateWorldByOneFrame()
   }
 

@@ -14,6 +14,7 @@ class PhysicsHandler {
 
   addItems(items, typeID) {
     const composites = Matter.Composite.allComposites(this.world)
+    const you = 0
     const types = Array(this.world.id).push(composites.map(composite => composite.id))
     if (types.contains(typeID)) {
       const selectedComposite = composites[types.indexOf(typeID)]

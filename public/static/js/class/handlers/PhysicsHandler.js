@@ -1,11 +1,12 @@
 class PhysicsHandler {
-  constructor({ engine = Matter.Engine.create(),
+  constructor({
     world = Matter.Composite.create(),
     physics = new Physics()
   } = {}) {
-    this.engine = engine
-    this.world = world
-    this.physics = physics
+    this.engine = Matter.Engine.create({
+      world: world,
+      ...physics
+    })
   }
 
   simulateWorldByOneFrame() {
@@ -13,9 +14,9 @@ class PhysicsHandler {
   }
 
   addItems(items, typeID) {
-    const composites = Matter.Composite.allComposites(this.world)
+    const composites = Matter.Composite.allComposites(this.engine.world)
     const you = 0
-    const types = Array(this.world.id).push(composites.map(composite => composite.id))
+    const types = Array(this.engine.world.id).push(composites.map(composite => composite.id))
     if (types.contains(typeID)) {
       const selectedComposite = composites[types.indexOf(typeID)]
       items.forEach(item => Matter.Composite.add(selectedComposite, item))

@@ -18,8 +18,8 @@ class GameHandler {
   }
 
   gameInit() {
-    this.physicsHandler.addItems(this.playerHandler.players[0], 1) //adding player to physics handler
-    this.physicsHandler.addItems(this.levelHandler.levels[this.getCurrentLevel()], 2) //adding current level obtacles to physics handler
+    this.physicsHandler.addItems(this.playerHandler.players[0], 0) //adding player to physics handler
+    this.physicsHandler.addItems(this.levelHandler.levels[this.getCurrentLevel()], 1) //adding current level obtacles to physics handler
   }
 
   gameStart() {

@@ -1,15 +1,15 @@
-
 class GameHandler {
   constructor({
     levels = [],
     scoreHandler = new ScoreHandler(),
     playerHandler = new PlayerHandler(),
-    levelHandler = new LevelHandler({ levels: levels }),
+    levelHandler = new LevelHandler(
+      { levels: levels }),
     physicsHandler = new PhysicsHandler(),
     renderHandler = { show: () => console.log("rendering") }
 
   } = {}) {
-    //this.scoreHandler = scoreHandler;
+    this.scoreHandler = scoreHandler;
     this.playerHandler = playerHandler;
     this.levelHandler = levelHandler;
     this.physicsHandler = physicsHandler

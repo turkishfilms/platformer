@@ -15,11 +15,15 @@ class PhysicsHandler {
 
   addItems(items, typeID) {
     const composites = Matter.Composite.allComposites(this.engine.world)
-    const you = 0
-    const types = Array(this.engine.world.id).push(composites.map(composite => composite.id))
-    if (types.contains(typeID)) {
-      const selectedComposite = composites[types.indexOf(typeID)]
-      items.forEach(item => Matter.Composite.add(selectedComposite, item))
+    const compositeIds = []
+    composites.forEach(composite => compositeIds.push(composite.id))
+    compositeIds.push(this.engine.world.id)
+    if (compositeIds.indexOf(typeID) != -1) {
+
+      const selectedComposite = composites[compositeIds.indexOf(typeID)]
+      items.forEach(item => {
+        Matter.Composite.add(selectedComposite, Matter.Body.create(item))
+      })
     }
   }
 

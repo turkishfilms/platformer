@@ -40,9 +40,13 @@ class GameHandler {
      * sometimes it will be on a death screen
      *
      * **/
+    this.show()
+    // this.physicsHandler.simulateWorldByOneFrame()
+  }
 
-    this.levelHandler.show(this.getCurrentLevel())
-    this.physicsHandler.simulateWorldByOneFrame()
+  show() {
+
+    this.renderHandler.show(this.physicsHandler.getObstaclePosition())
   }
 
   movePlayerRight() {

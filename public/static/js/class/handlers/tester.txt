@@ -1,0 +1,12 @@
+
+GAMERS
+||
+SCREEN
+-----------GAMEHANDLER-----------
+Player Handler--------Player|
+/---------------------------
+||
+\/
+Level Handler---------LevelData, MatterJs
+Score Handler---------Score
+

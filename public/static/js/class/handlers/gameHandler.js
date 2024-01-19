@@ -1,46 +1,75 @@
-
 class GameHandler {
-  constructor({
-levels=[],
-    scoreHandler = new ScoreHandler(),
-    playerHandler = new PlayerHandler(),
-    levelHandler = new LevelHandler({levels:levels}),
-    physicsHandler = new PhysicsHandler(),
-    renderHandler = {show:()=>console.log("rendering")}
+	constructor({
+		levels = [],
+		scoreHandler = new ScoreHandler(),
+		playerHandler = new PlayerHandler(),
+		levelHandler = new LevelHandler(
+			{ levels: levels }),
+		physicsHandler = new PhysicsHandler(),
+		renderHandler = { show: () => console.log("rendering") }
 
-  } = {}) {
-    //this.scoreHandler = scoreHandler;
-    this.playerHandler = playerHandler;
-    this.levelHandler = levelHandler;
-    this.physicsHandler = physicsHandler
-    this.renderHandler = renderHandler
-  }
-  nextFrame() {
-    // this.renderHandler.show()
-    this.levelHandler.show(this.levelHandler.currentLevel)
-    this.physicsHandler.simulateWorldByOneFrame()
-  }
+	} = {}) {
+		this.scoreHandler = scoreHandler;
+		this.playerHandler = playerHandler;
+		this.levelHandler = levelHandler;
+		this.physicsHandler = physicsHandler
+		this.renderHandler = renderHandler
+		this.gamePaused = true
+	}
 
-  movePlayerRight(){
-    this.playerHandler.movePlayer2(1)
-  }
+	gameInit() {
+		this.physicsHandler.addItems(this.playerHandler.players[0], 0) //adding player to physics handler
+		this.physicsHandler.addItems(this.levelHandler.levels[this.getCurrentLevel()], 1) //adding current level obtacles to physics handler
+	}
 
-  movePlayerLeft(){
-    this.playerHandler.movePlayer2(-1)
-  }
-  
-setCurrentLevel(levelNumber){
-  this.levelHandler.currentLevel = levelNumber
-}
+	gameStart() {
+		/**
+		 * Wipe screen, 
+		 * display next level screen
+		 *
+		  * **/
+		this.physicsHandler.clear()//clears obstacles
+		this.physicsHandler.addItems(this.levelHandler.levels[this.getCurrentLevel()], 1)
 
-getPreviousLevel(){ //return a number 1 less than current level unless current level is 1 or less then return 1
-  const currentLevel = this.levelHandler.currentLevel 
-  
-  return currentLevel <= 1 ? 1 : currentLevel - 1
-}
+	}
 
-getNextLevel(){ 
-  return this.levelHandler.currentLevel + 1
-}
+	nextFrame() {
+		/**
+		 * each frame this gets called
+		 * sometimes game will be in a level
+		 * sometimes it will be on a death screen
+		 *
+		 * **/
+		this.show()
+		// this.physicsHandler.simulateWorldByOneFrame()
+	}
 
+	show() {
+
+		this.renderHandler.show(this.physicsHandler.getObstaclePosition())
+	}
+
+	movePlayerRight() {
+		this.playerHandler.movePlayer(1)
+	}
+
+	movePlayerLeft() {
+		this.playerHandler.movePlayer(-1)
+	}
+
+	getCurrentLevel() {
+		return this.levelHandler.currentLevel
+	}
+
+	setCurrentLevel(levelNumber) {
+		this.levelHandler.currentLevel = levelNumber
+	}
+
+	getPreviousLevel() {
+		return Math.max(this.levelHandler.currentLevel - 1, 1) //Ensure previous level always picks a positive levelNumber
+	}
+
+	getNextLevel() {
+		return this.levelHandler.currentLevel + 1
+	}
 }

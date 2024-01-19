@@ -1,27 +1,39 @@
 class PhysicsHandler {
-  constructor({ engine = Matter.Engine.create(),
+  constructor({
     world = Matter.Composite.create(),
-    physics = {}
+    physics = new Physics()
   } = {}) {
-    this.engine = engine
-    this.world = world
-    this.physics = physics
+    this.engine = Matter.Engine.create({
+      world: world,
+      ...physics
+    })
   }
 
   simulateWorldByOneFrame() {
-    /**use the matter.js engine
-     */
     Matter.Engine.update(this.engine)
   }
 
-  getPlayerPosition() { console.log("heres player pos") }
+  addItems(items, typeID) {
+    const composites = Matter.Composite.allComposites(this.engine.world)
+    const compositeIds = []
+    composites.forEach(composite => compositeIds.push(composite.id))
+    compositeIds.push(this.engine.world.id)
+    if (compositeIds.indexOf(typeID) != -1) {
+
+      const selectedComposite = composites[compositeIds.indexOf(typeID)]
+      items.forEach(item => {
+        Matter.Composite.add(selectedComposite, Matter.Body.create(item))
+      })
+    }
+  }
+
+  getPlayerPosition() { }
 
   getObstaclePosition() {
     //goal to make gravity and when the player jumps it will slowly fall down 
     //ingredinets have a player have controls and have matter.js physics
     //english
     //translate code
-
 
     /**
      * levelData = [[1stv level obstacle],[2nd level obstacel]]
@@ -35,11 +47,16 @@ class PhysicsHandler {
      */
   }
 
-  getEnemiePosition() { }
+  getEnemyPosition() { }
+
   getPlatformPosition() { }
+
   updatePlayerProperties() { }
+
   updateObstacleProperties() { }
+
   updateEnemyProperties() { }
+
   updatePlatformProperties() { }
 
 }

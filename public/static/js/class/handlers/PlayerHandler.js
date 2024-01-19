@@ -14,13 +14,13 @@ class PlayerHandler {
     this.players = [];
     this.physics = physics;
     this.currentLevelobstacles = currentLevelobstacles;
-    this.addPlayer(new Player({playerHandler:this}))
+    this.addPlayer(new Player({ playerHandler: this }))
   }
 
-showPlayer(){
-    const {color:{r,g,b,a}, size:{width:w,height:h},position:{x,y}}=this.players[0]
-    fill(r,g,b,a)
-    ellipse(x,y,w,h)
+  showPlayer() {
+    const { color: { r, g, b, a }, size: { width: w, height: h }, position: { x, y } } = this.players[0]
+    fill(r, g, b, a)
+    ellipse(x, y, w, h)
 
 
   }
@@ -43,8 +43,8 @@ showPlayer(){
     player.speed.y -= this.playerJumpSpeed;
   }
 
-  movePlayer2(direction){
- this.players[0].position.x += direction 
+  movePlayer2(direction) {
+    this.players[0].position.x += direction
   }
 
   movePlayer(direction) {
@@ -130,7 +130,7 @@ showPlayer(){
     }
   }
 
-  die(){
+  die() {
     console.log("you are really dead")
   }
 }

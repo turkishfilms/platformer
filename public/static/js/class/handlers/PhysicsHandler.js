@@ -27,7 +27,7 @@ class PhysicsHandler {
     }
   }
 
-  getPlayerPosition() { }
+  getPlayerPosition() {}
 
   getObstaclePosition() {
     //goal to make gravity and when the player jumps it will slowly fall down 
@@ -47,16 +47,21 @@ class PhysicsHandler {
      */
   }
 
-  getEnemyPosition() { }
+  getEnemyPosition() {}
 
-  getPlatformPosition() { }
+  getPlatformPosition() {}
 
-  updatePlayerProperties() { }
+  updatePlayerProperties() {}
 
-  updateObstacleProperties() { }
+  updateObstacleProperties() {}
 
-  updateEnemyProperties() { }
+  updateEnemyProperties() {}
 
-  updatePlatformProperties() { }
+  updatePlatformProperties() {}
+  clearComposite() {
+    
+    Matter.Composite.clear(allComposites, keepStatic, [deep = false])
 
+    // Removes composites from the given composite. 
+  }
 }

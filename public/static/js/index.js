@@ -14,6 +14,9 @@ function keyPressed() {
     game.setCurrentLevel(game.getPreviousLevel())
   } else if (key == "4") {
     game.setCurrentLevel(game.getNextLevel())
+   } else if (key == "5"){
+(game.physicsHandler.clearComposite())
+    
   }
 }
 

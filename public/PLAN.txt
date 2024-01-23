@@ -29,7 +29,7 @@ On initalization of the game.
 
 OPEN QUESTIONS:
 1. What determines Player Speed? is it:
-	a. the level
+	a. the level-
 	b. upgrades (i.e. the player)
 	c. the user (i.e. the game) ##THIS ONE##
 

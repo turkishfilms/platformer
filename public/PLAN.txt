@@ -34,40 +34,29 @@ OPEN QUESTIONS:
 	c. the user (i.e. the game) ##THIS ONE##
 
 
-
-
 Git Branches:
 1. Master
 2. Dev
 3. 1 feature branch per person
 4. 5 branches max, 5 branches minimum
 
+--------
+UPDATES
+:Hsing Health
+:Heng show the player in the game
 
 
-hello
+				/--->player->playerHandler------\
+---Items--->|Game|								|-->physicsHandler<-->Matter.js
+				\-Obtsacles->levelHandler-------/			/
+RenderHandler<---------------------------------------------/
 
+MATTERJS is Hard!!
+What do we need matter js for anyway?
+Simulate the physics.
+what functions do we need to learn in order to use matter js?
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-o
+1. Simulate Physics -----------------------Matter.Engine.update(engine)
+2. Add items to the world -----------------Matter.Composite.add(comp,item)
+3. Pull item data from the world ----------
+4. Manipulate objects while in the world--

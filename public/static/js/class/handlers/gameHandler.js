@@ -2,8 +2,9 @@
 class GameHandler {
   constructor({
     levels = [],
+		player = new Player(),
     scoreHandler = new ScoreHandler(),
-    playerHandler = new PlayerHandler(),
+    playerHandler = new PlayerHandler({player:player}),
     levelHandler = new LevelHandler({ levels: levels }),
     physicsHandler = new PhysicsHandler(),
     renderHandler = { show: () => console.log("rendering") }

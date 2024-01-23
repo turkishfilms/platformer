@@ -9,12 +9,12 @@
 class PlayerHandler {
   constructor({
     physics = new PhysicsHandler(),
-    currentLevelobstacles = []
+    currentLevelobstacles = [],
+		player = new Player()
   } = {}) {
-    this.players = [];
+    this.players = [player];
     this.physics = physics;
     this.currentLevelobstacles = currentLevelobstacles;
-    this.addPlayer(new Player({playerHandler:this}))
   }
 
 showPlayer(){
@@ -62,7 +62,7 @@ showPlayer(){
   }
   movePlayer(direction) {
     // this.players[0].x += direction
-    const player = Composite.allBodies(engine.world).filter(body => body.id == 1)
+    const player =Matter.Composite.allBodies(this.physics.engine.world).filter(body => body.id == 1)
     player[0].position.x += direction
 
   }

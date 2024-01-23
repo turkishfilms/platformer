@@ -1,1 +1,11 @@
-the challenge is
+The challenge is to define the constructor for the GameHandler.
+I want to pass into the GH the 
+1. world Structure (3composites found in constants file.)
+2. the player
+3. the levels
+4. physics
+
+1. world structure goes to physicshandelr
+2. player goes to playerhandler
+3. level goes to levelhandler
+4. physics goes PhyscisHandler

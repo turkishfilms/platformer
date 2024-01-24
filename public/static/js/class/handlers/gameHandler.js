@@ -40,15 +40,19 @@ class GameHandler {
 		 * sometimes game will be in a level
 		 * sometimes it will be on a death screen
 		 *
-		 * **/
+		 * **/                       
 		this.show()
-		this.playerShow()
+		this.playerShow(this.playerHandler.players[0])
 		// this.physicsHandler.simulateWorldByOneFrame()
 	}
 
-	playerShow(){
+	playerShow(player){
 	//HERE IS THE CODE TO SHOW THE PLAYER	
-		
+		let x = player.position.x
+		let y = player.positon.y 
+		let width = player.size.width
+		let height = player.size.height
+		rect(x,y,width,height)
 	}
 
 	show() {

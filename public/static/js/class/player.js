@@ -23,7 +23,7 @@ class Player {
     this.position = position
     this.speed = speed
     this.lives = lives
-    this.playerHandler = playerHandler
+   
     this.jumpSpeed = jumpSpeed
   }
   /**

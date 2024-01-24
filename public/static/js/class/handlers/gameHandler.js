@@ -49,8 +49,8 @@ class GameHandler {
 	playerShow(player){
 		let x = player.position.x
 		let y = player.position.y
-		let width = player.size.width
-		let height = player.size.height
+		let width = player.balance.width
+		let height = player.balance.height
 		rect(x, y, width, height)
 	}
 

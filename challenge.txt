@@ -9,3 +9,22 @@ I want to pass into the GH the
 2. player goes to playerhandler
 3. level goes to levelhandler
 4. physics goes PhyscisHandler
+
+
+REVIEW::
+1.Constructors = a function that creates objects and runs once
+2.Encapsulation = sending lots of parameters wrapped as one object
+
+
+Challenge for today:
+1.Show Player On the Screen
+2.Apply forces to the player
+
+TASK 1:
+GOAL- pLayer to show ( player is a rectangle with a position)
+Ingredients: 
+1.Rectangle (X) rect() in p5
+2.Player (X) playerHandler has it
+3.obstacles  (X) levelData
+4.positon (X) playerHandler.players
+5.p5.js (X) index.html

@@ -42,13 +42,17 @@ class GameHandler {
 		 *
 		 * **/
 		this.show()
-		this.playerShow()
+		
+		this.playerShow(this.playerHandler.players[0])
 		// this.physicsHandler.simulateWorldByOneFrame()
 	}
 
-	playerShow(){
-	//HERE IS THE CODE TO SHOW THE PLAYER	
-		
+	playerShow(player){
+		let x = player.position.x
+		let y = player.position.y
+		let width = player.size.width
+		let height = player.size.height
+		rect(x, y, width, height)
 	}
 
 	show() {

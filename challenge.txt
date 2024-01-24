@@ -17,7 +17,7 @@ REVIEW::
 
 
 Challenge for today:
-1.Show Player On the Screen
+1.Show Player On the Screen X 
 2.Apply forces to the player
 
 TASK 1:

@@ -41,7 +41,7 @@ class GameHandler {
 		 * sometimes it will be on a death screen
 		 *
 		 * **/                       
-		this.show()
+		//this.show()
 		this.playerShow(this.playerHandler.players[0])
 		// this.physicsHandler.simulateWorldByOneFrame()
 	}
@@ -49,8 +49,8 @@ class GameHandler {
 	playerShow(player){
 		let x = player.position.x
 		let y = player.position.y
-		let width = player.balance.width
-		let height = player.balance.height
+		let width = player.bounds.width
+		let height = player.bounds.height
 		rect(x, y, width, height)
 	}
 

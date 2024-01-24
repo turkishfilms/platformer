@@ -40,9 +40,8 @@ class GameHandler {
 		 * sometimes game will be in a level
 		 * sometimes it will be on a death screen
 		 *
-		 * **/
+		 * **/                       
 		this.show()
-		
 		this.playerShow(this.playerHandler.players[0])
 		// this.physicsHandler.simulateWorldByOneFrame()
 	}

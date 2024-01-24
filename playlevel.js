@@ -28,12 +28,12 @@ class Player {
       this.playerHandler = playerHandler
       this.jumpSpeed = jumpSpeed
     }}
-    movePlayer(direction) {
+    movePlayer(direction){
         // this.players[0].x += direction
         const player = Composite.allBodies(engine.world).filter(body => body.id == 1)
         player[0].position.x += direction
-    
-      }
+    }
+      
       class Obstacle {
         constructor(x=50, y=50, w=10 , h=50, color= {r:255, g: 255, b: 255}) {
             this.x = x;

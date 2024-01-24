@@ -1,13 +1,14 @@
 class GameHandler {
 	constructor({
 		levels = [],
+		worldStructure={},
+		physics = new Physics(),
+		player = new Player(),
 		scoreHandler = new ScoreHandler(),
-		playerHandler = new PlayerHandler(),
-		levelHandler = new LevelHandler(
-			{ levels: levels }),
-		physicsHandler = new PhysicsHandler(),
+		playerHandler = new PlayerHandler({ player: player }),
+		levelHandler = new LevelHandler({ levels: levels }),
+		physicsHandler = new PhysicsHandler({ world: worldStructure, physics: physics }),
 		renderHandler = { show: () => console.log("rendering") }
-
 	} = {}) {
 		this.scoreHandler = scoreHandler;
 		this.playerHandler = playerHandler;
@@ -41,7 +42,13 @@ class GameHandler {
 		 *
 		 * **/
 		this.show()
+		this.playerShow()
 		// this.physicsHandler.simulateWorldByOneFrame()
+	}
+
+	playerShow(){
+	//HERE IS THE CODE TO SHOW THE PLAYER	
+		
 	}
 
 	show() {

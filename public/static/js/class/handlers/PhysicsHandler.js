@@ -7,7 +7,12 @@ class PhysicsHandler {
       world: world,
       ...physics
     })
+  
+   
   }
+ movePlayer(player, position){
+  Matter.Body.setPosition(player, position, [updateVelocity=true])
+ }
 
   simulateWorldByOneFrame() {
     Matter.Engine.update(this.engine)

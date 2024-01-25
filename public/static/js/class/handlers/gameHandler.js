@@ -1,7 +1,7 @@
 class GameHandler {
 	constructor({
 		levels = [],
-		worldStructure={},
+		worldStructure = {},
 		physics = new Physics(),
 		player = new Player(),
 		scoreHandler = new ScoreHandler(),
@@ -40,17 +40,22 @@ class GameHandler {
 		 * sometimes game will be in a level
 		 * sometimes it will be on a death screen
 		 *
-		 * **/                       
+		 * **/
 		//this.show()
-		this.playerShow(this.playerHandler.players[0])
+		this.playerShow2(this.playerHandler.players[0])
 		// this.physicsHandler.simulateWorldByOneFrame()
 	}
 
-	playerShow(player){
+	playerShow(player) {
 		let x = player.position.x
 		let y = player.position.y
 		let width = player.bounds.width
 		let height = player.bounds.height
+		rect(x, y, width, height)
+	}
+
+	playerShow2(player) {
+		const { position: { x, y }, bounds: { width, height } } = player
 		rect(x, y, width, height)
 	}
 

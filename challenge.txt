@@ -34,5 +34,5 @@ GOAL: Apply forces to the player (the player moves when we control and gravity)
 INGREDIENTS:
 1.Matter (gravity) () TODO learn how to apply forces
 2.Player (X) playerHandler players[], physicsHandler this.engine.world.composite ID 0 
-3.User controlled input (up down left right) TODO
+3.User controlled input (up down left right) TODO Hsien-Heng
 4.p5 (renderer) (X) playerShow()

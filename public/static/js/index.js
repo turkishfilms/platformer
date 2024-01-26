@@ -10,6 +10,8 @@ function keyPressed() {
     game.movePlayerRight();
   } else if (key == "a") {
     game.movePlayerLeft();
+  } else if (key == "UP_ARROW") {
+    game.movePlayerUp();
   } else if (key == "3") {
     game.setCurrentLevel(game.getPreviousLevel())
   } else if (key == "4") {

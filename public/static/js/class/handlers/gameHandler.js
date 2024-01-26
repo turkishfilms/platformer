@@ -59,7 +59,7 @@ class GameHandler {
 	}
 
 	show() {
-		this.levelShow(this.levelHandler.getLevelObstacles())
+		//this.levelShow(this.levelHandler.getLevelObstacles())
 		this.playerShow2(this.playerHandler.players[0])
 		this.renderHandler.show(this.physicsHandler.getObstaclePosition())
 	}

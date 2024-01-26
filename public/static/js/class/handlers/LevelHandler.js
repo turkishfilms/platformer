@@ -23,4 +23,8 @@ class LevelHandler {
       rect(x, y, w, h);
     });
   }
+
+getLevelObstacles(){
+  console.log("hi")
+}
 }

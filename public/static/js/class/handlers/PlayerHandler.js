@@ -13,6 +13,7 @@ class PlayerHandler {
   } = {}) {
     this.players = [player];
     this.currentLevelobstacles = currentLevelobstacles;
+   
   }
 
   showPlayer() {
@@ -37,8 +38,8 @@ class PlayerHandler {
     //top
   }
 
-  jump(player) {
-    player.speed.y -= this.playerJumpSpeed;
+  jump(jumpSpeed) {
+    this.players[0].speed.ySpeed -= jumpSpeed
   }
 
   movePlayer2(direction) {

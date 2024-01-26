@@ -28,3 +28,11 @@ Ingredients:
 3.obstacles  (X) levelData
 4.positon (X) playerHandler.players
 5.p5.js (X) index.html
+
+TASK 2:
+GOAL: Apply forces to the player (the player moves when we control and gravity)
+INGREDIENTS:
+1.Matter (gravity) () TODO learn how to apply forces
+2.Player (X) playerHandler players[], physicsHandler this.engine.world.composite ID 0 
+3.User controlled input (up down left right)X  Hsien-Heng
+4.p5 (renderer) (X) playerShow()

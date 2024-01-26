@@ -9,6 +9,7 @@ class PhysicsHandler {
 	}
 	movePlayer(player, position) {
 		Matter.Body.setPosition(player, position, [updateVelocity = true])
+    Matter.Body.setVelocity(body, velocity)
 	}
 
 	simulateWorldByOneFrame() {

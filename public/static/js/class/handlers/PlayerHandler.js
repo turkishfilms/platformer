@@ -15,6 +15,9 @@ class PlayerHandler {
     this.currentLevelobstacles = currentLevelobstacles;
    
   }
+force(){
+  Matter.Body.setVelocity(body, velocity)
+}
 
   showPlayer() {
     const { color: { r, g, b, a }, size: { width: w, height: h }, position: { x, y } } = this.players[0]

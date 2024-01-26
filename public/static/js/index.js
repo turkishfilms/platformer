@@ -17,7 +17,7 @@ function keyPressed() {
   } else if (key == "4") {
     game.setCurrentLevel(game.getNextLevel())
    } else if (key == "5"){
-    Matter.Body.setVelocity(body, velocity)
+
     (game.physicsHandler.clearComposite())
     
   }

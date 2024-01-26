@@ -1,72 +1,69 @@
 class PhysicsHandler {
-  constructor({
-    world = Matter.Composite.create(),
-    physics = new Physics()
-  } = {}) {
-    this.engine = Matter.Engine.create({
-      world: world,
-      ...physics
-    })
-  
-   
-  }
- movePlayer(player, position){
-  Matter.Body.setPosition(player, position, [updateVelocity=true])
- }
+	constructor({
+		world = Matter.Composite.create(),
+		physics = new Physics()
+	} = {}) {
+		this.engine = Matter.Engine.create({
+			world: world, ...physics
+		})
+	}
+	movePlayer(player, position) {
+		Matter.Body.setPosition(player, position, [updateVelocity = true])
+	}
 
-  simulateWorldByOneFrame() {
-    Matter.Engine.update(this.engine)
-  }
+	simulateWorldByOneFrame() {
+		Matter.Engine.update(this.engine)
+	}
 
-  addItems(items, typeID) {
-    const composites = Matter.Composite.allComposites(this.engine.world)
-    const compositeIds = []
-    composites.forEach(composite => compositeIds.push(composite.id))
-    compositeIds.push(this.engine.world.id)
-    if (compositeIds.indexOf(typeID) != -1) {
+	addItems(items, typeID) {
+		const composites = Matter.Composite.allComposites(this.engine.world)
+		const compositeIds = []
+		composites.forEach(composite => compositeIds.push(composite.id))
+		compositeIds.push(this.engine.world.id)
+		if (compositeIds.indexOf(typeID) != -1) {
 
-      const selectedComposite = composites[compositeIds.indexOf(typeID)]
-      items.forEach(item => {
-        Matter.Composite.add(selectedComposite, Matter.Body.create(item))
-      })
-    }
-  }
+			const selectedComposite = composites[compositeIds.indexOf(typeID)]
+			items.forEach(item => {
+				Matter.Composite.add(selectedComposite, Matter.Body.create(item))
+			})
+		}
+	}
 
-  getPlayerPosition() {}
+	getPlayerPosition() { }
 
-  getObstaclePosition() {
-    //goal to make gravity and when the player jumps it will slowly fall down 
-    //ingredinets have a player have controls and have matter.js physics
-    //english
-    //translate code
+	getObstaclePosition() {
+		//goal to make gravity and when the player jumps it will slowly fall down 
+		//ingredinets have a player have controls and have matter.js physics
+		//english
+		//translate code
 
-    /**
-     * levelData = [[1stv level obstacle],[2nd level obstacel]]
-     * -> Matter.js ->composite-> bodies 
-     * matter.js simulate the world
-     * 
-     * let allBodies = this.world.allBodies()
-     * let bodyPositions = []
-     * allBodies.forEach(body=>bodyPosition.push(body.position)) 
-     * return bodyPositions
-     */
-  }
+		/**
+		 * levelData = [[1stv level obstacle],[2nd level obstacel]]
+		 * -> Matter.js ->composite-> bodies 
+		 * matter.js simulate the world
+		 * 
+		 * let allBodies = this.world.allBodies()
+		 * let bodyPositions = []
+		 * allBodies.forEach(body=>bodyPosition.push(body.position)) 
+		 * return bodyPositions
+		 */
+	}
 
-  getEnemyPosition() {}
+	getEnemyPosition() { }
 
-  getPlatformPosition() {}
+	getPlatformPosition() { }
 
-  updatePlayerProperties() {}
+	updatePlayerProperties() { }
 
-  updateObstacleProperties() {}
+	updateObstacleProperties() { }
 
-  updateEnemyProperties() {}
+	updateEnemyProperties() { }
 
-  updatePlatformProperties() {}
-  clearComposite() {
-    
-    Matter.Composite.clear(allComposites, keepStatic, [deep = false])
+	updatePlatformProperties() { }
+	clearComposite() {
 
-    // Removes composites from the given composite. 
-  }
+		Matter.Composite.clear(allComposites, keepStatic, [deep = false])
+
+		// Removes composites from the given composite. 
+	}
 }

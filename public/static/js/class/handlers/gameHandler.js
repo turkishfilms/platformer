@@ -8,7 +8,7 @@ class GameHandler {
 		playerHandler = new PlayerHandler({ player: player }),
 		levelHandler = new LevelHandler({ levels: levels }),
 		physicsHandler = new PhysicsHandler({ world: worldStructure, physics: physics }),
-		renderHandler = { show: () => console.log("rendering") }
+		renderHandler = new RenderHandler()
 	} = {}) {
 		this.scoreHandler = scoreHandler;
 		this.playerHandler = playerHandler;
@@ -24,14 +24,8 @@ class GameHandler {
 	}
 
 	gameStart() {
-		/**
-		 * Wipe screen, 
-		 * display next level screen
-		 *
-		  * **/
 		this.physicsHandler.clear()//clears obstacles
 		this.physicsHandler.addItems(this.levelHandler.levels[this.getCurrentLevel()], 1)
-
 	}
 
 	nextFrame() {
@@ -40,10 +34,15 @@ class GameHandler {
 		 * sometimes game will be in a level
 		 * sometimes it will be on a death screen
 		 *
-		 * **/
-		//this.show()
-		this.playerShow2(this.playerHandler.players[0])
+		* **/
+		this.show()
 		// this.physicsHandler.simulateWorldByOneFrame()
+	}
+
+	levelShow(level) {
+		level.forEach(obstacle => {
+			rect(obstacle.x, obstacle.y, obstacle.w, obstacle.h)
+		})
 	}
 
 	playerShow(player) {
@@ -60,7 +59,8 @@ class GameHandler {
 	}
 
 	show() {
-
+		this.levelShow(this.levelHandler.getLevelObstacles())
+		this.playerShow2(this.playerHandler.players[0])
 		this.renderHandler.show(this.physicsHandler.getObstaclePosition())
 	}
 
@@ -69,6 +69,7 @@ class GameHandler {
 	}
 
 	movePlayerLeft() {
+
 		this.playerHandler.movePlayer(-1)
 	}
 

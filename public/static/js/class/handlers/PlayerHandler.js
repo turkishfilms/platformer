@@ -21,25 +21,18 @@ class PlayerHandler {
 		ellipse(x, y, w, h)
 	}
 
-	jump(jumpSpeed) {
-		this.players[0].speed.ySpeed -= jumpSpeed
+	moveplayer(distance) {
+		const position = this.players[0].position
+		game.physicsHandler.movePlayer(this.players[0], { x: position.x + distance, y: position.y })
 	}
 
-	jump2(jumpSpeed) {
+	jump(jumpSpeed) {
 		const position = this.players[0].position
 		game.physicsHandler.movePlayer(this.players[0], { x: position.x, y: position.y - jumpSpeed })
 	}
 
 	addPlayer(player) {
 		this.players.push(player)
-	}
-
-	show() {
-		ellipse(
-			this.players[0].position.x,
-			this.players[0].position.y,
-			this.players[0].size.width
-		);
 	}
 
 	losesLife(player = this.players[0], numberOfLives) {

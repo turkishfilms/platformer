@@ -59,17 +59,19 @@ class GameHandler {
 	}
 
 	show() {
-		this.levelShow(this.levelHandler.getLevelObstacles())
+		// this.levelShow(this.levelHandler.getLevelObstacles())
 		this.playerShow2(this.playerHandler.players[0])
-		this.renderHandler.show(this.physicsHandler.getObstaclePosition())
+		// this.renderHandler.show(this.physicsHandler.getObstaclePosition())
 	}
 
 	movePlayerRight() {
 		this.playerHandler.movePlayer(1)
 	}
-movePlayerUp(){
-	this.playerHandler.jump(player)
-}
+
+	movePlayerUp(jumpSpeed) {
+		this.playerHandler.jump(jumpSpeed)
+	}
+
 	movePlayerLeft() {
 
 		this.playerHandler.movePlayer(-1)

@@ -10,7 +10,8 @@ function keyPressed() {
 		console.log("move player right")
 		game.movePlayerRight();
 	} else if (key == "a") {
-		console.log("move player left")
+		//console.log("move player left")
+		game.physicsHandler.getPlayer()
 		game.movePlayerLeft();
 	} else if (key == "w") {
 		console.log("move player up")

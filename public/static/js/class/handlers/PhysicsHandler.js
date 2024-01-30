@@ -4,7 +4,8 @@ class PhysicsHandler {
 		physics = new Physics()
 	} = {}) {
 		this.engine = Matter.Engine.create({
-			world: world, ...physics
+			world: world,
+			...physics
 		})
 	}
 
@@ -34,7 +35,17 @@ class PhysicsHandler {
 		}
 	}
 
-	getPlayer() { }
+	getPlayer() {
+		//get the body of the player
+		//ingredients: players body
+		//returns player body
+		const playercomposite = Matter.Composite.allComposites(this.engine.world)[0]
+		if (playercomposite.bodies.length >= 1) {
+			const player = playercomposite.bodies[0]
+			return player
+		}
+	}
+
 
 	getObstaclePosition() {
 		//goal to make gravity and when the player jumps it will slowly fall down 
@@ -54,17 +65,17 @@ class PhysicsHandler {
 		 */
 	}
 
-	getEnemyPosition() { }
+	getEnemyPosition() {}
 
-	getPlatformPosition() { }
+	getPlatformPosition() {}
 
-	updatePlayerProperties() { }
+	updatePlayerProperties() {}
 
-	updateObstacleProperties() { }
+	updateObstacleProperties() {}
 
-	updateEnemyProperties() { }
+	updateEnemyProperties() {}
 
-	updatePlatformProperties() { }
+	updatePlatformProperties() {}
 	clearComposite() {
 
 		Matter.Composite.clear(allComposites, keepStatic, [deep = false])

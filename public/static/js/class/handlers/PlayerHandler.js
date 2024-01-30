@@ -20,10 +20,11 @@ class PlayerHandler {
 		fill(r, g, b, a)
 		ellipse(x, y, w, h)
 	}
-
+	//combine moveplayer and jump
 	movePlayer(distance) {
 		const position = this.players[0].position
 		const vector = Matter.Vector.create(position.x - distance, position.y)
+		console.log(vector, typeof vector)
 		game.physicsHandler.movePlayer(this.players[0], vector)
 	}
 

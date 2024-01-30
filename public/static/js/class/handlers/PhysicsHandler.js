@@ -34,7 +34,7 @@ class PhysicsHandler {
 		}
 	}
 
-	getPlayerPosition() { }
+	getPlayer() { }
 
 	getObstaclePosition() {
 		//goal to make gravity and when the player jumps it will slowly fall down 

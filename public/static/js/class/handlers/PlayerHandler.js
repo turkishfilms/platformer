@@ -21,14 +21,16 @@ class PlayerHandler {
 		ellipse(x, y, w, h)
 	}
 
-	moveplayer(distance) {
+	movePlayer(distance) {
 		const position = this.players[0].position
-		game.physicsHandler.movePlayer(this.players[0], { x: position.x + distance, y: position.y })
+		const vector = Matter.Vector.create(position.x - distance, position.y)
+		game.physicsHandler.movePlayer(this.players[0], vector)
 	}
 
 	jump(jumpSpeed) {
 		const position = this.players[0].position
-		game.physicsHandler.movePlayer(this.players[0], { x: position.x, y: position.y - jumpSpeed })
+		const vector = Matter.Vector.create(position.x, position.y - jumpSpeed)
+		game.physicsHandler.movePlayer(this.players[0], vector)
 	}
 
 	addPlayer(player) {

@@ -68,14 +68,14 @@ class GameHandler {
 		this.playerHandler.movePlayer(1)
 	}
 
+	movePlayerLeft() {
+		this.playerHandler.movePlayer(-1)
+	}
+
 	movePlayerUp(jumpSpeed) {
 		this.playerHandler.jump(jumpSpeed)
 	}
 
-	movePlayerLeft() {
-
-		this.playerHandler.movePlayer(-1)
-	}
 
 	getCurrentLevel() {
 		return this.levelHandler.currentLevel

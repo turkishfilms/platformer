@@ -7,8 +7,12 @@ class PhysicsHandler {
 			world: world, ...physics
 		})
 	}
+
 	movePlayer(player, position) {
-		Matter.Body.setPosition(player, position, [updateVelocity = true])
+		console.log(player, position, typeof position)
+		//THIS IS WHERE WE ARE
+		Matter.Body.setPosition(player, position, true)
+		//Matter.Body.setposition(body,pos,velocity)
 		// Matter.Body.setVelocity(body, velocity)
 	}
 

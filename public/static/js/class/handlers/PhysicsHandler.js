@@ -36,6 +36,12 @@ class PhysicsHandler {
 
 	getPlayer() { }
 
+	/**
+ * goal to return body
+ * ingredients 
+ * matter.js
+ * player
+ */
 	getObstaclePosition() {
 		//goal to make gravity and when the player jumps it will slowly fall down 
 		//ingredinets have a player have controls and have matter.js physics

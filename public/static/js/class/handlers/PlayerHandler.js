@@ -16,21 +16,30 @@ class PlayerHandler {
 	}
 
 	showPlayer() {
-		const { color: { r, g, b, a }, size: { width: w, height: h }, position: { x, y } } = this.players[0]
+		const {
+			color: {
+				r,
+				g,
+				b,
+				a
+			},
+			size: {
+				width: w,
+				height: h
+			},
+			position: {
+				x,
+				y
+			}
+		} = this.players[0]
 		fill(r, g, b, a)
 		ellipse(x, y, w, h)
 	}
 	//combine moveplayer and jump
-	movePlayer(distance) {
+	
+	movePlayer(distance, jumpspeed) {
 		const position = this.players[0].position
-		const vector = Matter.Vector.create(position.x - distance, position.y)
-		console.log(vector, typeof vector)
-		game.physicsHandler.movePlayer(this.players[0], vector)
-	}
-
-	jump(jumpSpeed) {
-		const position = this.players[0].position
-		const vector = Matter.Vector.create(position.x, position.y - jumpSpeed)
+		const vector = Matter.Vector.create(position.x - distance, position.y - jumpspeed)
 		game.physicsHandler.movePlayer(this.players[0], vector)
 	}
 
@@ -39,7 +48,7 @@ class PlayerHandler {
 	}
 
 	losesLife(player = this.players[0], numberOfLives) {
-		for (let index = 0; index < numberOfLives; index++) {
+		for (let index = 0; index < numberOfLives; dindex++) {
 			if (this.lives == 0) {
 				this.die(player)
 				break

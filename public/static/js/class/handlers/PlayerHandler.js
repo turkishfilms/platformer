@@ -24,7 +24,7 @@ class PlayerHandler {
 	movePlayer(distance) {
 		const position = this.players[0].position
 		const vector = Matter.Vector.create(position.x - distance, position.y)
-		console.log(vector, typeof vector)
+		console.log(vector, typeof vectovector, typeof vectorr)
 		game.physicsHandler.movePlayer(this.players[0], vector)
 	}
 

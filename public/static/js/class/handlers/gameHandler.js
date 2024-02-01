@@ -16,10 +16,11 @@ class GameHandler {
 		this.physicsHandler = physicsHandler
 		this.renderHandler = renderHandler
 		this.gamePaused = true
+		this.gameInit()
 	}
 
 	gameInit() {
-		this.physicsHandler.addItems(this.playerHandler.players[0], 0) //adding player to physics handler
+		this.physicsHandler.addItems([this.playerHandler.players[0]], 0) //adding player to physics handler
 		this.physicsHandler.addItems(this.levelHandler.levels[this.getCurrentLevel()], 1) //adding current level obtacles to physics handler
 	}
 

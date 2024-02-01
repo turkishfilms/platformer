@@ -42,6 +42,23 @@ class PlayerHandler {
 		const vector = Matter.Vector.create(position.x - distance, position.y - jumpspeed)
 		game.physicsHandler.movePlayer(this.players[0], vector)
 	}
+	getPlayerAsOptions(){
+		//return the options for the player class  in matter.body.create
+		// ingredients:
+		//the player class
+		//
+		//
+	let plaerPosition = this.players[0].position
+	let playerSize = this.players[0].size
+	return {
+		x :plaerPosition.x,
+		y: plaerPosition.y, 
+		width: playerSize.width, 
+		height: playerSize.height,	
+	}
+	Matter.Bodies.rectangle(plaerPosition.x, plaerPosition.y, playerSize.width, playerSize.height, [options]) 
+
+	}
 
 	addPlayer(player) {
 		this.players.push(player)

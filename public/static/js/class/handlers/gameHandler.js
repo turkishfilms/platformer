@@ -1,5 +1,6 @@
 class GameHandler {
 	constructor({
+		
 		levels = [],
 		worldStructure = {},
 		physics = new Physics(),
@@ -16,6 +17,9 @@ class GameHandler {
 		this.physicsHandler = physicsHandler
 		this.renderHandler = renderHandler
 		this.gamePaused = true
+		this.gameInit
+		this.gameinit
+
 	}
 
 	gameInit() {

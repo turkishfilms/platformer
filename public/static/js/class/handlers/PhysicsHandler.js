@@ -26,10 +26,11 @@ class PhysicsHandler {
 		const compositeIds = []
 		composites.forEach(composite => compositeIds.push(composite.id))
 		compositeIds.push(this.engine.world.id)
-		if (compositeIds.indexOf(typeID) != -1) {
 
+		if (compositeIds.indexOf(typeID) != -1) {
 			const selectedComposite = composites[compositeIds.indexOf(typeID)]
-			items.forEach(item => {console.log("checking error",item,selectedComposite)
+			items.forEach(item => {
+				console.log("checking error", item, selectedComposite)
 				Matter.Composite.add(selectedComposite, Matter.Body.create(item))
 			})
 		}
@@ -71,17 +72,17 @@ class PhysicsHandler {
 		 */
 	}
 
-	getEnemyPosition() {}
+	getEnemyPosition() { }
 
-	getPlatformPosition() {}
+	getPlatformPosition() { }
 
-	updatePlayerProperties() {}
+	updatePlayerProperties() { }
 
-	updateObstacleProperties() {}
+	updateObstacleProperties() { }
 
-	updateEnemyProperties() {}
+	updateEnemyProperties() { }
 
-	updatePlatformProperties() {}
+	updatePlatformProperties() { }
 	clearComposite() {
 
 		Matter.Composite.clear(allComposites, keepStatic, [deep = false])

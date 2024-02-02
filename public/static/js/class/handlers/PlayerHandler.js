@@ -36,40 +36,28 @@ class PlayerHandler {
 		ellipse(x, y, w, h)
 	}
 	//combine moveplayer and jump
-	
+
 	movePlayer(distance, jumpspeed) {
 		const position = this.players[0].position
-<<<<<<< HEAD
-		const vector = Matter.Vector.create(position.x - distance, position.y)
-		console.log(vector, typeof vectovector, typeof vectorr)
+		const vector = Matter.Vector.create(position.x - distance, position.y - jumpspeed)
 		game.physicsHandler.movePlayer(this.players[0], vector)
 	}
 
-	jump(jumpSpeed) {
-		const position = this.players[0].position
-		const vector = Matter.Vector.create(position.x, position.y - jumpSpeed)
-=======
-		const vector = Matter.Vector.create(position.x - distance, position.y - jumpspeed)
->>>>>>> 918c6246a5c22d372ff56b4bdea20624f7084d77
-		game.physicsHandler.movePlayer(this.players[0], vector)
-	}
-	getPlayerAsOptions(){
+	getPlayerAsOptions() {
 		//return the options for the player class  in matter.body.create
 		// ingredients:
 		//the player class
 		//
 		//
-	let plaerPosition = this.players[0].position
-	let playerSize = this.players[0].bounds
-	console.log(plaerPosition, playerSize)
-	return {
-		x :plaerPosition.x,
-		y: plaerPosition.y, 
-		width: playerSize.width,
-		height: playerSize.height,	
-	}
-	
-
+		let plaerPosition = this.players[0].position
+		let playerSize = this.players[0].bounds
+		console.log(plaerPosition, playerSize)
+		return {
+			x: plaerPosition.x,
+			y: plaerPosition.y,
+			width: playerSize.width,
+			height: playerSize.height,
+		}
 	}
 
 	addPlayer(player) {
@@ -77,7 +65,7 @@ class PlayerHandler {
 	}
 
 	losesLife(player = this.players[0], numberOfLives) {
-		for (let index = 0; index < numberOfLives; dindex++) {
+		for (let index = 0; index < numberOfLives; index++) {
 			if (this.lives == 0) {
 				this.die(player)
 				break

@@ -66,15 +66,15 @@ class GameHandler {
 	}
 
 	movePlayerRight() {
-		this.playerHandler.movePlayer(1)
+		this.playerHandler.movePlayer(1,0)
 	}
 
 	movePlayerLeft() {
-		this.playerHandler.movePlayer(-1)
+		this.playerHandler.movePlayer(-1,0)
 	}
 
 	movePlayerUp(jumpSpeed) {
-		this.playerHandler.jump(jumpSpeed)
+		this.playerHandler.movePlayer(0,jumpSpeed)
 	}
 
 

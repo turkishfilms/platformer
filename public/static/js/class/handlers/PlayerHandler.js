@@ -56,7 +56,7 @@ class PlayerHandler {
 		width: playerSize.width, 
 		height: playerSize.height,	
 	}
-	Matter.Bodies.rectangle(plaerPosition.x, plaerPosition.y, playerSize.width, playerSize.height, [options]) 
+	
 
 	}
 

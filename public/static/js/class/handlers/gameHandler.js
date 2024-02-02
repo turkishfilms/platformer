@@ -17,13 +17,13 @@ class GameHandler {
 		this.physicsHandler = physicsHandler
 		this.renderHandler = renderHandler
 		this.gamePaused = true
-		this.gameInit
-		this.gameinit
+		this.gameinit()
 
 	}
 
-	gameInit() {
-		this.physicsHandler.addItems([this.playerHandler.players[0]], 0) //adding player to physics handler
+	gameInit() {// start the game 
+		const {x,y,width,height}= this.playerHandler.getPlayerAsOptions()
+		this.physicsHandler.addItems([Matter.Bodies.rectangle(x, y, width, height)], 0) //adding player to physics handler
 		this.physicsHandler.addItems(this.levelHandler.levels[this.getCurrentLevel()], 1) //adding current level obtacles to physics handler
 	}
 

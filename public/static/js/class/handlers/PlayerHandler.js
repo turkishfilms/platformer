@@ -49,11 +49,12 @@ class PlayerHandler {
 		//
 		//
 	let plaerPosition = this.players[0].position
-	let playerSize = this.players[0].size
+	let playerSize = this.players[0].bounds
+	console.log(plaerPosition, playerSize)
 	return {
 		x :plaerPosition.x,
 		y: plaerPosition.y, 
-		width: playerSize.width, 
+		width: playerSize.width,
 		height: playerSize.height,	
 	}
 	

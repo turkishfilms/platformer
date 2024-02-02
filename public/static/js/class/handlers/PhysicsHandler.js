@@ -29,7 +29,7 @@ class PhysicsHandler {
 		if (compositeIds.indexOf(typeID) != -1) {
 
 			const selectedComposite = composites[compositeIds.indexOf(typeID)]
-			items.forEach(item => {
+			items.forEach(item => {console.log("checking error",item,selectedComposite)
 				Matter.Composite.add(selectedComposite, Matter.Body.create(item))
 			})
 		}

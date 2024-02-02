@@ -53,6 +53,24 @@ class PlayerHandler {
 >>>>>>> 918c6246a5c22d372ff56b4bdea20624f7084d77
 		game.physicsHandler.movePlayer(this.players[0], vector)
 	}
+	getPlayerAsOptions(){
+		//return the options for the player class  in matter.body.create
+		// ingredients:
+		//the player class
+		//
+		//
+	let plaerPosition = this.players[0].position
+	let playerSize = this.players[0].bounds
+	console.log(plaerPosition, playerSize)
+	return {
+		x :plaerPosition.x,
+		y: plaerPosition.y, 
+		width: playerSize.width,
+		height: playerSize.height,	
+	}
+	
+
+	}
 
 	addPlayer(player) {
 		this.players.push(player)

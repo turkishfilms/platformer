@@ -23,6 +23,7 @@ class Player {
     this.position = position
     this.speed = speed
     this.lives = lives
+    
 
     this.jumpSpeed = jumpSpeed
   }

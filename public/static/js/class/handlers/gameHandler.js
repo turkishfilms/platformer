@@ -23,12 +23,8 @@ class GameHandler {
 
 	gameInit() {// start the game 
 		const { x, y, width, height } = this.playerHandler.getPlayerAsOptions()
-		console.log(x, y, width, height, 'gh gameinit => x y w h')
-		// const rect = Matter.Bodies.rectangle(x, y, width, height)
-		const playerRect = Matter.Bodies.rectangle(x, y, width, height)
-		console.log(playerRect)
-		this.physicsHandler.addItems([playerRect], 0) //adding player to physics handler
-		// this.physicsHandler.addItems(this.levelHandler.levels[this.getCurrentLevel()], 1) //adding current level obtacles to physics handler
+		this.physicsHandler.addPlayer(Matter.Bodies.rectangle(x, y, width, height)) //adding player to physics handler
+		this.physicsHandler.addItems(this.levelHandler.levels[this.getCurrentLevel()], 1) //adding current level obtacles to physics handler
 	}
 
 	gameStart() {
@@ -43,7 +39,9 @@ class GameHandler {
 		 * sometimes it will be on a death screen
 		 *
 		* **/
+		this.physicsHandler.simulateWorldByOneFrame()
 		this.show()
+		this.playerHandler.updatePlayer()
 		// this.physicsHandler.simulateWorldByOneFrame()
 	}
 
@@ -73,12 +71,12 @@ class GameHandler {
 		// this.renderHandler.show(this.physicsHandler.getObstaclePosition())
 	}
 
-	movePlayerRight() {
-		this.playerHandler.movePlayer(1, 0)
+	movePlayerRight(speed) {
+		this.playerHandler.movePlayer(-speed, 0)
 	}
 
-	movePlayerLeft() {
-		this.playerHandler.movePlayer(-1, 0)
+	movePlayerLeft(speed) {
+		this.playerHandler.movePlayer(speed, 0)
 	}
 
 	movePlayerUp(jumpSpeed) {

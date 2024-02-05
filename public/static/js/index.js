@@ -7,14 +7,10 @@ function setup() {
 
 function keyPressed() {
 	if (key == "d") {
-		console.log("move player right")
-		game.movePlayerRight();
+		game.movePlayerRight(PLAYER_MOVE_SPEED);
 	} else if (key == "a") {
-		//console.log("move player left")
-		game.physicsHandler.getPlayer()
-		game.movePlayerLeft();
+		game.movePlayerLeft(PLAYER_MOVE_SPEED);
 	} else if (key == "w") {
-		console.log("move player up")
 		game.movePlayerUp(PLAYER_JUMP_SPEED);
 	} else if (key == "3") {
 		game.setCurrentLevel(game.getPreviousLevel())

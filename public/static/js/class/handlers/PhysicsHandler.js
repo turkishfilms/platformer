@@ -9,16 +9,18 @@ class PhysicsHandler {
 		})
 	}
 
-	movePlayer(player, position) {
-		console.log(player, position, typeof position)
-		//THIS IS WHERE WE ARE
-		Matter.Body.setPosition(player, position, true)
-		//Matter.Body.setposition(body,pos,velocity)
-		// Matter.Body.setVelocity(body, velocity)
+	movePlayer(position) {
+		const player = this.getPlayerBody()
+		const vector = Matter.Vector.create(position.x, position.y)
+		Matter.Body.setPosition(player, vector, true)
 	}
 
 	simulateWorldByOneFrame() {
 		Matter.Engine.update(this.engine)
+	}
+
+	addPlayer(player) {
+		Matter.Composite.add(this.engine.world.composites[0], player)
 	}
 
 	addItems(items, typeID) {
@@ -30,7 +32,6 @@ class PhysicsHandler {
 		if (compositeIds.indexOf(typeID) != -1) {
 			const selectedComposite = composites[compositeIds.indexOf(typeID)]
 			items.forEach(item => {
-				console.log("checking error", item, selectedComposite)
 				Matter.Composite.add(selectedComposite, Matter.Body.create(item))
 			})
 		}
@@ -40,8 +41,14 @@ class PhysicsHandler {
 
 		Matter.Composite.add(playercomposite, player)
 
+	addItems2(items, typeID) {
+		const targetComposite = Matter.Composite.allComposites(this.engine.world).filter(composite => composite.id == typeID)
+		items.forEach(item => {
+			Matter.Composite.add(targetComposite, item)
+		});
 	}
-	getPlayer() {
+
+	getPlayerBody() {
 		//get the body of the player
 		//ingredients: players body
 		//returns player body
@@ -52,46 +59,12 @@ class PhysicsHandler {
 		}
 	}
 
-
-	/**
- * goal to return body
- * ingredients 
- * matter.js
- * player
- */
 	getObstaclePosition() {
-		//goal to make gravity and when the player jumps it will slowly fall down 
-		//ingredinets have a player have controls and have matter.js physics
-		//english
-		//translate code
-
-		/**
-		 * levelData = [[1stv level obstacle],[2nd level obstacel]]
-		 * -> Matter.js ->composite-> bodies 
-		 * matter.js simulate the world
-		 * 
-		 * let allBodies = this.world.allBodies()
-		 * let bodyPositions = []
-		 * allBodies.forEach(body=>bodyPosition.push(body.position)) 
-		 * return bodyPositions
-		 */
+		return this.engine.world.composites[1].bodies;
 	}
 
-	getEnemyPosition() { }
-
-	getPlatformPosition() { }
-
-	updatePlayerProperties() { }
-
-	updateObstacleProperties() { }
-
-	updateEnemyProperties() { }
-
-	updatePlatformProperties() { }
 	clearComposite() {
-
 		Matter.Composite.clear(allComposites, keepStatic, [deep = false])
-
 		// Removes composites from the given composite. 
 	}
 }

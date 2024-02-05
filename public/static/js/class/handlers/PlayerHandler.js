@@ -37,10 +37,15 @@ class PlayerHandler {
 	}
 	//combine moveplayer and jump
 
+	updatePlayer() {
+		const playerData = game.physicsHandler.getPlayerBody()
+		this.players[0].position = playerData.position
+	}
+
 	movePlayer(distance, jumpspeed) {
-		const position = this.players[0].position
-		const vector = Matter.Vector.create(position.x - distance, position.y - jumpspeed)
-		game.physicsHandler.movePlayer(this.players[0], vector)
+		const { x, y } = this.players[0].position
+		const vector = { x: x - distance, y: y - jumpspeed }
+		game.physicsHandler.movePlayer(vector)
 	}
 
 	getPlayerAsOptions() {
@@ -51,7 +56,6 @@ class PlayerHandler {
 		//
 		let plaerPosition = this.players[0].position
 		let playerSize = this.players[0].bounds
-		console.log(plaerPosition, playerSize)
 		return {
 			x: plaerPosition.x,
 			y: plaerPosition.y,

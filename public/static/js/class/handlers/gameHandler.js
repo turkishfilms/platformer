@@ -27,7 +27,7 @@ class GameHandler {
 		// const rect = Matter.Bodies.rectangle(x, y, width, height)
 		const playerRect = Matter.Bodies.rectangle(x, y, width, height)
 		console.log(playerRect)
-		this.physicsHandler.addItems([playerRect], 0) //adding player to physics handler
+		this.physicsHandler.addPlayers(playerRect) //adding player to physics handler
 		// this.physicsHandler.addItems(this.levelHandler.levels[this.getCurrentLevel()], 1) //adding current level obtacles to physics handler
 	}
 

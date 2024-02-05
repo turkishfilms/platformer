@@ -35,7 +35,12 @@ class PhysicsHandler {
 			})
 		}
 	}
+	addPlayers(player) {
+		let composites = this.engine.world.com
 
+		Matter.Composite.add(playercomposite, player)
+
+	}
 	getPlayer() {
 		//get the body of the player
 		//ingredients: players body

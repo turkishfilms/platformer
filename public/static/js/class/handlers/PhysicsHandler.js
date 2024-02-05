@@ -88,4 +88,7 @@ class PhysicsHandler {
 
 		// Removes composites from the given composite. 
 	}
+	addPlayer(player){
+Matter.composite.add()	
+	}
 }

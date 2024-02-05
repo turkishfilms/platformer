@@ -39,18 +39,7 @@ class PlayerHandler {
 	
 	movePlayer(distance, jumpspeed) {
 		const position = this.players[0].position
-<<<<<<< HEAD
-		const vector = Matter.Vector.create(position.x - distance, position.y)
-		console.log(vector, typeof vectovector, typeof vectorr)
-		game.physicsHandler.movePlayer(this.players[0], vector)
-	}
-
-	jump(jumpSpeed) {
-		const position = this.players[0].position
-		const vector = Matter.Vector.create(position.x, position.y - jumpSpeed)
-=======
 		const vector = Matter.Vector.create(position.x - distance, position.y - jumpspeed)
->>>>>>> 918c6246a5c22d372ff56b4bdea20624f7084d77
 		game.physicsHandler.movePlayer(this.players[0], vector)
 	}
 	getPlayerAsOptions(){

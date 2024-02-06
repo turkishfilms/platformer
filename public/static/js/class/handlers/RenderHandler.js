@@ -6,9 +6,16 @@ class RenderHandler {
 	show() {
 		let { x, y, width, height } = game.playerHandler.getPlayerAsOptions()
 		this.showRect({ color: game.playerHandler.players[0].color, size: { w: width, h: height }, position: { x: x, y: y } })
-
-		let obstacles = game.levelHandler.getObstacles(game.getCurrentLevel())
-		obstacles.forEach(obstacle => this.showRect(obstacle))
+		//this doesnt belong in renderhandler. have small show function in which the data is sent in
+		// let obstacles = game.levelHandler.getObstacles(game.getCurrentLevel())
+		let obstacles2 = game.physicsHandler.getObstaclePosition()
+		let obstacles3 = obstacles2.map(obs => {
+			let something = { position: { x: obs.position.x, y: obs.position.y } }
+			let size = { w: obs.bounds.max.y - obs.bounds.min.y, h: obs.bounds.max.x - obs.bounds.min.x }
+			something.size = size
+			return something
+		})
+		obstacles3.forEach(obstacle => this.showRect(obstacle))
 	}
 
 	showRect(data) {

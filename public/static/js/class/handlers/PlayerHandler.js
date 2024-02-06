@@ -15,28 +15,6 @@ class PlayerHandler {
 		this.currentLevelobstacles = currentLevelobstacles;
 	}
 
-	showPlayer() {
-		const {
-			color: {
-				r,
-				g,
-				b,
-				a
-			},
-			size: {
-				width: w,
-				height: h
-			},
-			position: {
-				x,
-				y
-			}
-		} = this.players[0]
-		fill(r, g, b, a)
-		ellipse(x, y, w, h)
-	}
-	//combine moveplayer and jump
-
 	updatePlayer() {
 		const playerData = game.physicsHandler.getPlayerBody()
 		this.players[0].position = playerData.position
@@ -52,8 +30,6 @@ class PlayerHandler {
 		//return the options for the player class  in matter.body.create
 		// ingredients:
 		//the player class
-		//
-		//
 		let playerPosition = this.players[0].position
 		let playerSize = this.players[0].bounds
 		return {
@@ -68,6 +44,7 @@ class PlayerHandler {
 		const { position: { x, y }, bounds: { width, height } } = this.players[0]
 		return { x, y, width, height }
 	}
+
 	addPlayer(player) {
 		this.players.push(player)
 	}

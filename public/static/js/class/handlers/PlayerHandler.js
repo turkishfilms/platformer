@@ -54,16 +54,20 @@ class PlayerHandler {
 		//the player class
 		//
 		//
-		let plaerPosition = this.players[0].position
+		let playerPosition = this.players[0].position
 		let playerSize = this.players[0].bounds
 		return {
-			x: plaerPosition.x,
-			y: plaerPosition.y,
+			x: playerPosition.x,
+			y: playerPosition.y,
 			width: playerSize.width,
 			height: playerSize.height,
 		}
 	}
 
+	getPlayerAsOptions2() {
+		const { position: { x, y }, bounds: { width, height } } = this.players[0]
+		return { x, y, width, height }
+	}
 	addPlayer(player) {
 		this.players.push(player)
 	}

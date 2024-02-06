@@ -22,33 +22,17 @@ class GameHandler {
 	}
 
 	gameInit() {// start the game 
-		const { x, y, width, height } = this.playerHandler.getPlayerAsOptions()
-		this.physicsHandler.addPlayer(Matter.Bodies.rectangle(x, y, width, height)) //adding player to physics handler
+		this.physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions()) //adding player to physics handler
 	let LevelObstacles = this.levelHandler.levels[this.getCurrentLevel()]
 	console.log (LevelObstacles)
 		this.physicsHandler.addItems(LevelObstacles, 1) //adding current level obtacles to physics handler
 	
 	}
 
-	
-
 	nextFrame() {
-		/**
-		 * each frame this gets called
-		 * sometimes game will be in a level
-		 * sometimes it will be on a death screen
-		 *
-		* **/
 		this.physicsHandler.simulateWorldByOneFrame()
-		this.show()
 		this.playerHandler.updatePlayer()
-		// this.physicsHandler.simulateWorldByOneFrame()
-	}
-
-	levelShow(level) {
-		level.forEach(obstacle => {
-			rect(obstacle.x, obstacle.y, obstacle.w, obstacle.h)
-		})
+		this.show()
 	}
 
 	playerShow(player) {
@@ -65,10 +49,7 @@ class GameHandler {
 	}
 
 	show() {
-		//this.levelShow(this.levelHandler.getLevelObstacles())
-		 this.levelHandler.show(1)
-		this.playerShow2(this.playerHandler.players[0])
-		// this.renderHandler.show(this.physicsHandler.getObstaclePosition())
+		this.renderHandler.show()
 	}
 
 	movePlayerRight(speed) {
@@ -82,7 +63,6 @@ class GameHandler {
 	movePlayerUp(jumpSpeed) {
 		this.playerHandler.movePlayer(0, jumpSpeed)
 	}
-
 
 	getCurrentLevel() {
 		return this.levelHandler.currentLevel

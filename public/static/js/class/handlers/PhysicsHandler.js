@@ -19,8 +19,11 @@ class PhysicsHandler {
 		Matter.Engine.update(this.engine)
 	}
 
-	addPlayer(player) {
-		Matter.Composite.add(this.engine.world.composites[0], player)
+	addPlayer(playerOptions) {
+		const { x, y, width, height } = playerOptions
+		const playerRect = Matter.Bodies.rectangle(x, y, width, height)
+		// const playerRect = Matter.Bodies.rectangle(playerOptions)
+		Matter.Composite.add(this.engine.world.composites[0], playerRect)
 	}
 
 	addItems(items, typeID) {
@@ -36,11 +39,7 @@ class PhysicsHandler {
 			})
 		}
 	}
-	addPlayers(player) {
-		let composites = this.engine.world.com
-		Matter.Composite.add(playercomposite, player)
-	}
-	
+
 	addItems2(items, typeID) {
 		const targetComposite = Matter.Composite.allComposites(this.engine.world).filter(composite => composite.id == typeID)
 		items.forEach(item => {

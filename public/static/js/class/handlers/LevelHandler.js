@@ -14,6 +14,7 @@ class LevelHandler {
 	getObstacles(levelNumber) {
 		return this.levels[levelNumber - 1]
 	}
+	
 
 
 }

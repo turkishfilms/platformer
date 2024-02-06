@@ -47,15 +47,7 @@ Made a get player function that get player from matter
 We a matter.js rectangle to game init function
 Error matter.min.js call stack error
 
-TODO:
-add level obstacles to Screen
-Ingredients
-matter.js
-obstacles
-show function
- 
+TODO:make the obstacles show
+ingredients: level obstacles, show function, 
 
- Problem 
- Not returing the things  that hsing made 
- 
 

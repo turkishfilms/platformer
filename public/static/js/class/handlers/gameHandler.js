@@ -1,6 +1,5 @@
 class GameHandler {
 	constructor({
-
 		levels = [],
 		worldStructure = {},
 		physics = new Physics(),
@@ -18,18 +17,17 @@ class GameHandler {
 		this.renderHandler = renderHandler
 		this.gamePaused = true
 		this.gameInit()
-
 	}
 
 	gameInit() {// start the game 
 		this.physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions()) //adding player to physics handler
-	let LevelObstacles = this.levelHandler.levels[this.getCurrentLevel()]
-	console.log (LevelObstacles)
-		this.physicsHandler.addItems(LevelObstacles, 1) //adding current level obtacles to physics handler
-	
+		const obs1 = this.levelHandler.getObstacles(this.getCurrentLevel())
+		const obs = obs1.map(ob => { return { isStatic: true, ...ob } })
+		this.physicsHandler.addItems(obs, 1) //adding current level obtacles to physics handler
 	}
 
 	nextFrame() {
+		if (this.gamePaused) return
 		this.physicsHandler.simulateWorldByOneFrame()
 		this.playerHandler.updatePlayer()
 		this.show()
@@ -79,4 +77,9 @@ class GameHandler {
 	getNextLevel() {
 		return this.levelHandler.currentLevel + 1
 	}
+
+	togglePaused() {
+		this.gamePaused = this.gamePaused ? false : true
+	}
+
 }

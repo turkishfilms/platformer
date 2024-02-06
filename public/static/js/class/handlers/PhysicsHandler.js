@@ -40,7 +40,7 @@ class PhysicsHandler {
 		let composites = this.engine.world.com
 
 		Matter.Composite.add(playercomposite, player)
-
+	}
 	addItems2(items, typeID) {
 		const targetComposite = Matter.Composite.allComposites(this.engine.world).filter(composite => composite.id == typeID)
 		items.forEach(item => {

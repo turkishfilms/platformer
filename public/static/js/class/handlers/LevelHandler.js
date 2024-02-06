@@ -23,5 +23,6 @@ class LevelHandler {
 			rect(x, y, w, h);
 		});
 	}
+	
 
 }

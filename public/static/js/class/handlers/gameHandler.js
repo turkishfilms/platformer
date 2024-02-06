@@ -43,6 +43,7 @@ class GameHandler {
 		this.show()
 		this.playerHandler.updatePlayer()
 		// this.physicsHandler.simulateWorldByOneFrame()
+		
 	}
 
 	levelShow(level) {

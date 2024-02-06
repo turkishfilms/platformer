@@ -11,17 +11,9 @@ class LevelHandler {
 		//move the level
 	}
 
-	show(levelNumber) {
-		const level = this.levels[levelNumber - 1]
-		level.forEach((obstacle) => {
-			const {
-				color: { r, g, b, a },
-				size: { w, h },
-				position: { x, y },
-			} = obstacle;
-			fill(r, g, b, a);
-			rect(x, y, w, h);
-		});
+	getObstacles(levelNumber) {
+		return this.levels[levelNumber - 1]
 	}
+
 
 }

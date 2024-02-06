@@ -22,27 +22,14 @@ class GameHandler {
 	}
 
 	gameInit() {// start the game 
-		const { x, y, width, height } = this.playerHandler.getPlayerAsOptions()
-		this.physicsHandler.addPlayer(Matter.Bodies.rectangle(x, y, width, height)) //adding player to physics handler
+		this.physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions()) //adding player to physics handler
 		this.physicsHandler.addItems(this.levelHandler.levels[this.getCurrentLevel()], 1) //adding current level obtacles to physics handler
 	}
 
-	gameStart() {
-		this.physicsHandler.clear()//clears obstacles
-		this.physicsHandler.addItems(this.levelHandler.levels[this.getCurrentLevel()], 1)
-	}
-
 	nextFrame() {
-		/**
-		 * each frame this gets called
-		 * sometimes game will be in a level
-		 * sometimes it will be on a death screen
-		 *
-		* **/
 		this.physicsHandler.simulateWorldByOneFrame()
-		this.show()
 		this.playerHandler.updatePlayer()
-		// this.physicsHandler.simulateWorldByOneFrame()
+		this.show()
 	}
 
 	levelShow(level) {
@@ -65,10 +52,7 @@ class GameHandler {
 	}
 
 	show() {
-		//this.levelShow(this.levelHandler.getLevelObstacles())
-		// this.levelShow(this.levelHandler.getLevelObstacles())
-		this.playerShow2(this.playerHandler.players[0])
-		// this.renderHandler.show(this.physicsHandler.getObstaclePosition())
+		this.renderHandler.show()
 	}
 
 	movePlayerRight(speed) {

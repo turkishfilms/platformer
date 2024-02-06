@@ -24,13 +24,13 @@ class GameHandler {
 	gameInit() {// start the game 
 		const { x, y, width, height } = this.playerHandler.getPlayerAsOptions()
 		this.physicsHandler.addPlayer(Matter.Bodies.rectangle(x, y, width, height)) //adding player to physics handler
-		this.physicsHandler.addItems(this.levelHandler.levels[this.getCurrentLevel()], 1) //adding current level obtacles to physics handler
+	let LevelObstacles = this.levelHandler.levels[this.getCurrentLevel()]
+	console.log (LevelObstacles)
+		this.physicsHandler.addItems(LevelObstacles, 1) //adding current level obtacles to physics handler
+	
 	}
 
-	gameStart() {
-		this.physicsHandler.clear()//clears obstacles
-		this.physicsHandler.addItems(this.levelHandler.levels[this.getCurrentLevel()], 1)
-	}
+	
 
 	nextFrame() {
 		/**
@@ -66,7 +66,7 @@ class GameHandler {
 
 	show() {
 		//this.levelShow(this.levelHandler.getLevelObstacles())
-		// this.levelShow(this.levelHandler.getLevelObstacles())
+		 this.levelHandler.show(1)
 		this.playerShow2(this.playerHandler.players[0])
 		// this.renderHandler.show(this.physicsHandler.getObstaclePosition())
 	}

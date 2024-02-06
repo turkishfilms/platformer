@@ -4,7 +4,6 @@ class RenderHandler {
 	}
 
 	show() {
-		// show player 
 		let { x, y, width, height } = game.playerHandler.getPlayerAsOptions()
 		this.showRect({ color: game.playerHandler.players[0].color, size: { w: width, h: height }, position: { x: x, y: y } })
 

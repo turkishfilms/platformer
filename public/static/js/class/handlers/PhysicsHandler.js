@@ -20,7 +20,10 @@ class PhysicsHandler {
 	}
 
 	addPlayer(playerOptions) {
-		Matter.Composite.add(this.engine.world.composites[0], Matter.Bodies.rectangle(playerOptions))
+		const { x, y, width, height } = playerOptions
+		const playerRect = Matter.Bodies.rectangle(x, y, width, height)
+		// const playerRect = Matter.Bodies.rectangle(playerOptions)
+		Matter.Composite.add(this.engine.world.composites[0], playerRect)
 	}
 
 	addItems(items, typeID) {

@@ -32,12 +32,6 @@ class GameHandler {
 		this.show()
 	}
 
-	levelShow(level) {
-		level.forEach(obstacle => {
-			rect(obstacle.x, obstacle.y, obstacle.w, obstacle.h)
-		})
-	}
-
 	playerShow(player) {
 		let x = player.position.x
 		let y = player.position.y
@@ -66,7 +60,6 @@ class GameHandler {
 	movePlayerUp(jumpSpeed) {
 		this.playerHandler.movePlayer(0, jumpSpeed)
 	}
-
 
 	getCurrentLevel() {
 		return this.levelHandler.currentLevel

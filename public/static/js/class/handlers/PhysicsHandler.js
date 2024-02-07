@@ -35,7 +35,8 @@ class PhysicsHandler {
 		if (compositeIds.indexOf(typeID) != -1) {
 			const selectedComposite = composites[compositeIds.indexOf(typeID)]
 			items.forEach(item => {
-				Matter.Composite.add(selectedComposite, Matter.Body.create(item))
+				let {position:{x, y}, size:{w:width, h:height}} = item
+				Matter.Composite.add(selectedComposite, Matter.Bodies.rectangle(x, y, width, height))
 			})
 		}
 	}

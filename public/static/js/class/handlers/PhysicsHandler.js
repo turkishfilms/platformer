@@ -27,6 +27,7 @@ class PhysicsHandler {
 	}
 
 	addItems(items, typeID) {
+		console.log(typeof items)
 		const composites = Matter.Composite.allComposites(this.engine.world)
 		const compositeIds = []
 		composites.forEach(composite => compositeIds.push(composite.id))
@@ -35,7 +36,10 @@ class PhysicsHandler {
 		if (compositeIds.indexOf(typeID) != -1) {
 			const selectedComposite = composites[compositeIds.indexOf(typeID)]
 			items.forEach(item => {
-				Matter.Composite.add(selectedComposite, Matter.Body.create(item))
+				let { x,y ,width,height } = item 
+				let obstacleRect = Matter.Bodies.rectangle(x,y,width,height)
+				Matter.Composite.add(selectedComposite,  obstacleRect)
+				
 			})
 		}
 	}

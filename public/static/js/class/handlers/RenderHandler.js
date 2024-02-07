@@ -1,7 +1,5 @@
 class RenderHandler {
-	constructor(
-		{ } = {}) {
-	}
+	constructor() { }
 
 	show() {
 		let { x, y, width, height } = game.playerHandler.getPlayerAsOptions()
@@ -10,10 +8,7 @@ class RenderHandler {
 		// let obstacles = game.levelHandler.getObstacles(game.getCurrentLevel())
 		let obstacles2 = game.physicsHandler.getObstaclePosition()
 		let obstacles3 = obstacles2.map(obs => {
-			let something = { position: { x: obs.position.x, y: obs.position.y } }
-			let size = { w: obs.bounds.max.y - obs.bounds.min.y, h: obs.bounds.max.x - obs.bounds.min.x }
-			something.size = size
-			return something
+			return { size: { w: obs.bounds.max.y - obs.bounds.min.y, h: obs.bounds.max.x - obs.bounds.min.x }, position: { x: obs.position.x, y: obs.position.y } }
 		})
 		obstacles3.forEach(obstacle => this.showRect(obstacle))
 	}

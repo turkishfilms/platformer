@@ -30,23 +30,6 @@ class GameHandler {
 		if (this.gamePaused) return
 		this.physicsHandler.simulateWorldByOneFrame()
 		this.playerHandler.updatePlayer()
-		this.show()
-	}
-
-	playerShow(player) {
-		let x = player.position.x
-		let y = player.position.y
-		let width = player.bounds.width
-		let height = player.bounds.height
-		rect(x, y, width, height)
-	}
-
-	playerShow2(player) {
-		const { position: { x, y }, bounds: { width, height } } = player
-		rect(x, y, width, height)
-	}
-
-	show() {
 		this.renderHandler.show()
 	}
 
@@ -67,7 +50,7 @@ class GameHandler {
 	}
 
 	setCurrentLevel(levelNumber) {
-		this.levelHandler.currentLevel = levelNumber
+		this.levelHandler.setCurrentLevel(levelNumber)
 	}
 
 	getPreviousLevel() {

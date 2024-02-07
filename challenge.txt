@@ -35,3 +35,18 @@ INGREDIENTS:
 2.Player (X) playerHandler players[], physicsHandler this.engine.world.composite ID 0 
 3.User controlled input (up down left right) TODO
 4.p5 (renderer) (X) player fw()
+
+the movement isn't working
+how to saet x position when we create a body
+turn player class into options for matter.createbody
+
+
+
+Made a get player function that get player from matter
+We a matter.js rectangle to game init function
+Error matter.min.js call stack error
+
+TODO:make the obstacles show
+ingredients: level obstacles, show function, 
+
+

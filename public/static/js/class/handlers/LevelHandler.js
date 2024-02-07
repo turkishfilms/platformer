@@ -8,6 +8,7 @@ class LevelHandler {
 	getObstacles(levelNumber) {
 		return this.levels[levelNumber - 1]
 	}
+	
 
 	setCurrentLevel(levelNumber) {
 		this.currentLevel = levelNumber

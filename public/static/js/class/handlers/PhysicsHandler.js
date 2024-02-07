@@ -1,3 +1,6 @@
+
+//todo: things
+
 class PhysicsHandler {
 	constructor({
 		world = Matter.Composite.create(),
@@ -35,6 +38,8 @@ class PhysicsHandler {
 		if (compositeIds.indexOf(typeID) != -1) {
 			const selectedComposite = composites[compositeIds.indexOf(typeID)]
 			items.forEach(item => {
+				// console.log(item, 'items')
+				const itemRect = Matter.Bodies.rectangle()
 				Matter.Composite.add(selectedComposite, Matter.Body.create(item))
 			})
 		}
@@ -66,4 +71,5 @@ class PhysicsHandler {
 		Matter.Composite.clear(allComposites, keepStatic, [deep = false])
 		// Removes composites from the given composite. 
 	}
+
 }

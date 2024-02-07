@@ -15,7 +15,7 @@ class GameHandler {
 		this.levelHandler = levelHandler;
 		this.physicsHandler = physicsHandler
 		this.renderHandler = renderHandler
-		this.gamePaused = true
+		this.gamePaused = false
 		this.gameInit()
 	}
 

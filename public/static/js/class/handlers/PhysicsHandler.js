@@ -22,15 +22,16 @@ class PhysicsHandler {
 	addPlayer(playerOptions) {
 		const { x, y, width, height } = playerOptions
 		const playerRect = Matter.Bodies.rectangle(x, y, width, height)
-		// const playerRect = Matter.Bodies.rectangle(playerOptions)
 		Matter.Composite.add(this.engine.world.composites[0], playerRect)
 	}
 
 	addItems(items, typeID) {
-		const targetComposite = Matter.Composite.allComposites(this.engine.world).filter(composite => composite.id == typeID)[0]
+		const targetComposite = Matter.Composite.allComposites(this.engine.world)
+			.filter(composite => composite.id == typeID)[0]
 		items.forEach(item => {
 			let { position: { x, y }, size: { w: width, h: height } } = item
-			Matter.Composite.add(targetComposite, Matter.Bodies.rectangle(x, y, height, width, { isStatic: true }))
+			let rect = Matter.Bodies.rectangle(x, y, height, width, { isStatic: true })
+			Matter.Composite.add(targetComposite, rect)
 		});
 	}
 

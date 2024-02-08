@@ -27,7 +27,7 @@ class PlayerHandler {
 	}
 
 	getPlayerAsOptions() {
-		//return the options for the player class  in matter.body.create
+		//return the options for the player class
 		// ingredients:
 		//the player class
 		let playerPosition = this.players[0].position

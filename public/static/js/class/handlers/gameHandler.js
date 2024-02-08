@@ -21,8 +21,7 @@ class GameHandler {
 
 	gameInit() {// start the game 
 		this.physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions()) //adding player to physics handler
-		const obs1 = this.levelHandler.getObstacles(this.getCurrentLevel())
-		const obs = obs1.map(ob => { return { isStatic: true, ...ob } })
+		const obs = this.levelHandler.getObstacles(this.getCurrentLevel())
 		this.physicsHandler.addItems(obs, 1) //adding current level obtacles to physics handler
 	}
 

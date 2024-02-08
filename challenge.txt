@@ -40,5 +40,5 @@ INGREDIENTS:
 
 TASKS 3:
 
--player phases through obstacles
--obstacles are the incorrect size
+-player phases through obstacles - heng 
+-obstacles are the incorrect size - hsing

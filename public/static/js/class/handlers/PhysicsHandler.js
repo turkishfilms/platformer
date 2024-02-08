@@ -27,24 +27,10 @@ class PhysicsHandler {
 	}
 
 	addItems(items, typeID) {
-		const composites = Matter.Composite.allComposites(this.engine.world)
-		const compositeIds = []
-		composites.forEach(composite => compositeIds.push(composite.id))
-		compositeIds.push(this.engine.world.id)
-
-		if (compositeIds.indexOf(typeID) != -1) {
-			const selectedComposite = composites[compositeIds.indexOf(typeID)]
-			items.forEach(item => {
-				let {position:{x, y}, size:{w:width, h:height}} = item
-				Matter.Composite.add(selectedComposite, Matter.Bodies.rectangle(x, y, width, height))
-			})
-		}
-	}
-
-	addItems2(items, typeID) {
-		const targetComposite = Matter.Composite.allComposites(this.engine.world).filter(composite => composite.id == typeID)
+		const targetComposite = Matter.Composite.allComposites(this.engine.world).filter(composite => composite.id == typeID)[0]
 		items.forEach(item => {
-			Matter.Composite.add(targetComposite, item)
+			let { position: { x, y }, size: { w: width, h: height } } = item
+			Matter.Composite.add(targetComposite, Matter.Bodies.rectangle(x, y, height, width, { isStatic: true }))
 		});
 	}
 

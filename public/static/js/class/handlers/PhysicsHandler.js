@@ -40,8 +40,9 @@ class PhysicsHandler {
 		console.log(targetComposite, 'tc')
 		items.forEach(item => {
 			let { position: { x, y }, size: { w: width, h: height } } = item
-			let rect = Matter.Bodies.rectangle(x, y, height, width, { isStatic: staticObj })
+			let rect = Matter.Bodies.rectangle(x, y, width, height, { isStatic: staticObj })
 			Matter.Composite.add(targetComposite, rect)
+
 		});
 	}
 
@@ -57,7 +58,15 @@ class PhysicsHandler {
 	}
 
 	getObstaclePosition() {
-		return this.engine.world.composites[1].bodies;
+		return this.engine.world.composites[1].bodies.map(obs => {
+			return {
+				size: {
+					h: obs.bounds.max.y - obs.bounds.min.y,
+					w: obs.bounds.max.x - obs.bounds.min.x
+				},
+				position: { x: obs.position.x, y: obs.position.y }
+			}
+		})
 	}
 
 	clearComposite() {

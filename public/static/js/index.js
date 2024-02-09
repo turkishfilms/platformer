@@ -4,7 +4,7 @@ let game;
 function setup() {
 	createCanvas(windowWidth, windowHeight);
 	background(0);
-	game = new GameHandler({ physicsHandler: new PhysicsHandler({ world: compositeStructure }), levels: levelData })
+	game = new GameHandler({ physicsHandler: new PhysicsHandler(), levels: levelData })
 }
 
 function keyPressed() {

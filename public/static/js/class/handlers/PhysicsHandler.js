@@ -1,14 +1,21 @@
 class PhysicsHandler {
 	constructor({
-		world = Matter.Composite.create(),
+		// world = Matter.Composite.create(),
 		physics = new Physics()
+		, sub = ['player', 'obstacles']
 	} = {}) {
+		console.log('yolo', sub)
 		this.engine = Matter.Engine.create({
-			world: world,
+			// world: world,
 			...physics
 		})
+		for (let i = 0; i < sub.length; i++) {
+			Matter.Composite.add(this.engine.world, Matter.Composite.create({ label: sub[i] }))
+			console.log(sub[i], 'label')
+		}
+		console.log(this.engine, 'e')
 	}
-	
+
 	movePlayer(position) {
 		const player = this.getPlayerBody()
 		const vector = Matter.Vector.create(position.x, position.y)
@@ -20,20 +27,21 @@ class PhysicsHandler {
 	}
 
 	addPlayer(playerOptions) {
-		const { x, y, width, height} = playerOptions
+		const { x, y, width, height } = playerOptions
 		const playerRect = Matter.Bodies.rectangle(x, y, width, height)
 		Matter.Composite.add(this.engine.world.composites[0], playerRect)
-		
+
 	}
 
-	addItems(items, typeID) {
+	addItems(items, typeID, staticObj = true) {
 		const targetComposite = Matter.Composite.allComposites(this.engine.world)
-			.filter(composite => composite.id == typeID)[0]
+			.filter(composite => composite.label == typeID)[0]
+		console.log(items, 'items')
+		console.log(targetComposite, 'tc')
 		items.forEach(item => {
 			let { position: { x, y }, size: { w: width, h: height } } = item
-			let rect = Matter.Bodies.rectangle(x, y, height, width, { isStatic: true })
+			let rect = Matter.Bodies.rectangle(x, y, height, width, { isStatic: staticObj })
 			Matter.Composite.add(targetComposite, rect)
-			
 		});
 	}
 

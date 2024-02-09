@@ -8,3 +8,4 @@ const compositeStructure = Matter.Composite.create({
 	Matter.Composite.create(),
 	Matter.Composite.create()]
 })
+const NUMBER_OF_SUBCOMPS = 3

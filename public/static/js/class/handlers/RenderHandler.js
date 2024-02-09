@@ -3,6 +3,7 @@ class RenderHandler {
 
 	show() {
 		rectMode(CENTER)
+		background(0)
 		const pHandler = game.playerHandler
 		let { x, y, width, height } = pHandler.getPlayerAsOptions()
 		this.showRect({

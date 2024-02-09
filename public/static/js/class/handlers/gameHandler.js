@@ -20,12 +20,10 @@ class GameHandler {
 	}
 
 	gameInit() {// start the game 
-		console.log('howdy', this.physicsHandler)
 		this.physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions()) //adding player to physics handler
-		const obs = this.levelHandler.getObstacles(this.getCurrentLevel())
-		console.log(obs, 'obs')
-		this.physicsHandler.addItems(obs, 'obstacles', true) //adding current level obtacles to physics handler
-		this.physicsHandler.addItems([new Obstacle(0, windowHeight - 10, windowWidth, 30)], 'obstacles')
+		const obstacle = this.levelHandler.getObstacles(this.getCurrentLevel())
+		this.physicsHandler.addItems(obstacle, 'obstacles') //adding current level obtacles to physics handler
+		this.physicsHandler.addItems([new Obstacle(windowWidth / 2, windowHeight - 10, windowWidth, 30)], 'obstacles')
 	}
 
 	nextFrame() {

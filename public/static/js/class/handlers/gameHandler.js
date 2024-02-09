@@ -23,6 +23,7 @@ class GameHandler {
 		this.physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions()) //adding player to physics handler
 		const obs = this.levelHandler.getObstacles(this.getCurrentLevel())
 		this.physicsHandler.addItems(obs, 1) //adding current level obtacles to physics handler
+		this.physicsHandler.addItems([new Obstacle(0, windowHeight-10, windowWidth, 30)], 1)
 	}
 
 	nextFrame() {

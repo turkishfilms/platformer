@@ -7,13 +7,14 @@ class PhysicsHandler {
 		this.engine = Matter.Engine.create({
 			...physics
 		})
+
 		Object.keys(compositeStructure).forEach(comp => {
 			Matter.Composite.add(this.engine.world, Matter.Composite.create({ label: compositeStructure[comp] }))
 		})
+		this.compositeStructure = compositeStructure
 		// for (let i = 0; i < Object.keys(compositeStructure).length; i++) {
 		// 	Matter.Composite.add(this.engine.world, Matter.Composite.create({ label: compositeStructure[i] }))
 		// }
-
 	}
 
 	movePlayer(position) {

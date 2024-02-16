@@ -1,3 +1,3 @@
-export const FLOOR_OFFSET = 10
-export const FLOOR_DEPTH = 50
-export const NUMBER_OF_SPIKES = 36
+const PLAYER_JUMP_SPEED = 4
+const PLAYER_MOVE_SPEED = 4
+const NUMBER_OF_SPIKES = 36

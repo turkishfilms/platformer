@@ -1,0 +1,38 @@
+The challenge is to define the constructor for the GameHandler.
+I want to pass into the GH the 
+1. world Structure (3composites found in constants file.)
+2. the player
+3. the levels
+4. physics
+
+1. world structure goes to physicshandelr
+2. player goes to playerhandler
+3. level goes to levelhandler
+4. physics goes PhyscisHandler
+
+
+REVIEW::
+1.Constructors = a function that creates objects and runs once
+2.Encapsulation = sending lots of parameters wrapped as one object
+
+
+Challenge for today:
+1.Show Player On the Screen X 
+2.Apply forces to the player
+
+TASK 1:
+GOAL- pLayer to show ( player is a rectangle with a position)
+Ingredients: 
+1.Rectangle (X) rect() in p5
+2.Player (X) playerHandler has it
+3.obstacles  (X) levelData
+4.positon (X) playerHandler.players
+5.p5.js (X) index.html
+
+TASK 2:
+GOAL: Apply forces to the player (the player moves when we control and gravity)
+INGREDIENTS:
+1.Matter (gravity) () TODO learn how to apply forces
+2.Player (X) playerHandler players[], physicsHandler this.engine.world.composite ID 0 
+3.User controlled input (up down left right) TODO
+4.p5 (renderer) (X) player fw()

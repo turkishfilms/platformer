@@ -26,6 +26,7 @@ class GameHandler {
 	}
 
 	nextFrame() {
+
 		if (this.gamePaused) return
 		this.physicsHandler.simulateWorldByOneFrame()
 		this.playerHandler.updatePlayer()
@@ -42,6 +43,10 @@ class GameHandler {
 
 	movePlayerUp(jumpSpeed) {
 		this.playerHandler.movePlayer({ x: 0, y: -jumpSpeed })
+	}
+
+	movePlayerDown(jumpSpeed) {
+		this.playerHandler.movePlayer({ x: 0, y: jumpSpeed })
 	}
 
 	getCurrentLevel() {

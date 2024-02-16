@@ -18,11 +18,9 @@ class PhysicsHandler {
 	movePlayer(velocity) {
 		const { x, y } = velocity
 		const player = this.getPlayerBody()
-		const currentVector = player.velocity
-		const vector = Matter.Vector.create(x, y)
-		const newVector = Matter.Vector.add(vector, currentVector)
-		// Matter.Body.setPosition(player, vector, true)
-		Matter.Body.setVelocity(player, newVector) //try velocity
+		const playerVelocity = player.velocity
+		const movementVelocity = Matter.Vector.create(x, y)
+		Matter.Body.setVelocity(player, Matter.Vector.add(movementVelocity, playerVelocity))
 	}
 
 	simulateWorldByOneFrame() {

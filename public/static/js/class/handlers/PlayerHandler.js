@@ -16,8 +16,11 @@ class PlayerHandler {
 	}
 
 	updatePlayer() {
-		const playerData = game.physicsHandler.getPlayerBody()
-		this.players[0].position = playerData.position
+		const player = game.physicsHandler.getPlayerBody()
+		this.players[0].position = player.position
+		if (Matter.Query.collides(player, game.physicsHandler.getObstacles())) {
+			this.players[0].hasJump = true
+		}
 	}
 
 	movePlayer(velocity) {

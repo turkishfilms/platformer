@@ -35,15 +35,3 @@
 3. 1 feature branch per person
 4. 5 branches max, 5 branches minimum
 
-#######FIRST LEVEL PLAYABLE:
-X hitbox
-X player work on this
-X contorls
-gravity
-X obstcales 
-
-Physics Matter js stuff
-physicshandler has a world prop which is a composite.
-in the world compositie will be three composites,
-id=1 is player, id=2 is obstacles, id=3 is enemies
-

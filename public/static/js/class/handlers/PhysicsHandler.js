@@ -1,18 +1,18 @@
 class PhysicsHandler {
 	constructor({
-		// world = Matter.Composite.create(),
-		physics = new Physics()
-		, sub = ['player', 'obstacles']
+		physics = new Physics(),
+		compositeStructure = { player: 'player', obstacle: 'obstacle' }
 	} = {}) {
 
 		this.engine = Matter.Engine.create({
-			// world: world,
 			...physics
 		})
-		for (let i = 0; i < sub.length; i++) {
-			Matter.Composite.add(this.engine.world, Matter.Composite.create({ label: sub[i] }))
-
-		}
+		Object.keys(compositeStructure).forEach(comp => {
+			Matter.Composite.add(this.engine.world, Matter.Composite.create({ label: compositeStructure[comp] }))
+		})
+		// for (let i = 0; i < Object.keys(compositeStructure).length; i++) {
+		// 	Matter.Composite.add(this.engine.world, Matter.Composite.create({ label: compositeStructure[i] }))
+		// }
 
 	}
 
@@ -30,16 +30,18 @@ class PhysicsHandler {
 	addPlayer(playerOptions) {
 		const { x, y, width, height } = playerOptions
 		const playerRect = Matter.Bodies.rectangle(x, y, width, height)
+		const playerComposite = Matter.Composite.allComposites(this.engine.world)
+			.filter(composite => composite.label == this.compositeStructure.player)[0]
 		//this is prone to failure, paramaterize the output
-		Matter.Composite.add(this.engine.world.composites[0], playerRect)
+		Matter.Composite.add(playerComposite, playerRect)
 	}
 
-	addItems(items, typeID, staticObj = true) {
+	addObstacles(obstacles, options = { staticObj: true, restitution: 0 }) {
 		const targetComposite = Matter.Composite.allComposites(this.engine.world)
-			.filter(composite => composite.label == typeID)[0]
-		items.forEach(item => {
-			let { position: { x, y }, size: { w: width, h: height } } = item
-			let rect = Matter.Bodies.rectangle(x, y, width, height, { isStatic: staticObj, restitution: 0 })
+			.filter(composite => composite.label == this.compositeStructure.obstacle)[0]
+		obstacles.forEach(obstacle => {
+			let { position: { x, y }, size: { w: width, h: height } } = obstacle
+			let rect = Matter.Bodies.rectangle(x, y, width, height, { isStatic: options.staticObj, resitiution: options.restitution })
 			Matter.Composite.add(targetComposite, rect)
 		});
 	}

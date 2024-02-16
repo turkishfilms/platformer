@@ -7,7 +7,7 @@ class GameHandler {
 		scoreHandler = new ScoreHandler(),
 		playerHandler = new PlayerHandler({ player: player }),
 		levelHandler = new LevelHandler({ levels: levels }),
-		physicsHandler = new PhysicsHandler({ world: worldStructure, physics: physics }),
+		physicsHandler = new PhysicsHandler({ sub: { p }, physics: physics }),
 		renderHandler = new RenderHandler()
 	} = {}) {
 		this.scoreHandler = scoreHandler;

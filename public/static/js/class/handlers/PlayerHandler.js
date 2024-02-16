@@ -20,10 +20,15 @@ class PlayerHandler {
 		this.players[0].position = playerData.position
 	}
 
-	movePlayer(distance, jumpspeed) {
-		const { x, y } = this.players[0].position
-		const vector = { x: x - distance, y: y - jumpspeed }
-		game.physicsHandler.movePlayer(vector)
+	movePlayer(velocity) {
+		if (velocity.x != 0 || velocity.y > 0 || this.canJump(this.players[0])) {
+			//if horizontal or downwards go for it. if upwards, check if jump available.
+			game.physicsHandler.movePlayer({ x: velocity.x, y: velocity.y })
+		}
+	}
+
+	canJump(player) {
+		return player.hasJump
 	}
 
 	getPlayerAsOptions() {

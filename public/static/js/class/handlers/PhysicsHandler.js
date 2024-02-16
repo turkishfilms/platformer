@@ -3,11 +3,9 @@ class PhysicsHandler {
 		physics = new Physics(),
 		compositeStructure = { player: 'player', obstacle: 'obstacle' }
 	} = {}) {
-
 		this.engine = Matter.Engine.create({
 			...physics
 		})
-
 		Object.keys(compositeStructure).forEach(comp => {
 			Matter.Composite.add(this.engine.world, Matter.Composite.create({ label: compositeStructure[comp] }))
 		})
@@ -17,11 +15,14 @@ class PhysicsHandler {
 		// }
 	}
 
-	movePlayer(position) {
+	movePlayer(velocity) {
+		const { x, y } = velocity
 		const player = this.getPlayerBody()
-		const vector = Matter.Vector.create(position.x, position.y)
-		Matter.Body.setPosition(player, vector, true)
-		// Matter.Body.setPosition(player, vector, true) try velocity
+		const currentVector = player.velocity
+		const vector = Matter.Vector.create(x, y)
+		const newVector = Matter.Vector.add(vector, currentVector)
+		// Matter.Body.setPosition(player, vector, true)
+		Matter.Body.setVelocity(player, newVector) //try velocity
 	}
 
 	simulateWorldByOneFrame() {
@@ -30,32 +31,34 @@ class PhysicsHandler {
 
 	addPlayer(playerOptions) {
 		const { x, y, width, height } = playerOptions
-		const playerRect = Matter.Bodies.rectangle(x, y, width, height)
-		const playerComposite = Matter.Composite.allComposites(this.engine.world)
-			.filter(composite => composite.label == this.compositeStructure.player)[0]
+		const playerRect = Matter.Bodies.rectangle(x, y, width, height, { restitution: 1 })
 		//this is prone to failure, paramaterize the output
-		Matter.Composite.add(playerComposite, playerRect)
+		Matter.Composite.add(this.getPlayerComposite(), playerRect)
 	}
 
-	addObstacles(obstacles, options = { staticObj: true, restitution: 0 }) {
-		const targetComposite = Matter.Composite.allComposites(this.engine.world)
-			.filter(composite => composite.label == this.compositeStructure.obstacle)[0]
+	addObstacles(obstacles, options = { isStatic: false, restitution: 1 }) {
 		obstacles.forEach(obstacle => {
 			let { position: { x, y }, size: { w: width, h: height } } = obstacle
-			let rect = Matter.Bodies.rectangle(x, y, width, height, { isStatic: options.staticObj, resitiution: options.restitution })
-			Matter.Composite.add(targetComposite, rect)
+			let rect = Matter.Bodies.rectangle(x, y, width, height, { isStatic: options.isStatic, restitution: options.restitution })
+			Matter.Composite.add(this.getObstacleComposite(), rect)
 		});
+	}
+
+	getPlayerComposite() {
+		return Matter.Composite.allComposites(this.engine.world).filter(composite => composite.label == this.compositeStructure.player)[0]
+	}
+
+	getObstacleComposite() {
+		return Matter.Composite.allComposites(this.engine.world).filter(composite => composite.label == this.compositeStructure.obstacle)[0]
 	}
 
 	getPlayerBody() {
 		//get the body of the player
 		//ingredients: players body
 		//returns player body
-		const playercomposite = Matter.Composite.allComposites(this.engine.world)[0]
-		if (playercomposite.bodies.length >= 1) {
-			const player = playercomposite.bodies[0]
-			return player
-		}
+		const playercomposite = this.getPlayerComposite()
+		if (playercomposite.bodies.length >= 1) return playercomposite.bodies[0]
+
 	}
 
 	getObstaclePosition() {
@@ -71,7 +74,7 @@ class PhysicsHandler {
 	}
 
 	clearComposite() {
-		Matter.Composite.clear(allComposites, keepStatic, [deep = false])
-		// Removes composites from the given composite. 
+		Matter.Composite.clear(this.engine.world)
+		// Reoves composites from the given composite. 
 	}
 }

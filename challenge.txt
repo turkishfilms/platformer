@@ -36,9 +36,3 @@ INGREDIENTS:
 2.Player (X) playerHandler players[], physicsHandler this.engine.world.composite ID 0 
 3.User controlled input (up down left right) TODO
 4.p5 (renderer) (X) player fw()
-
-
-TASKS 3:
-
--player phases through obstacles - heng 
--obstacles are the incorrect size - hsing

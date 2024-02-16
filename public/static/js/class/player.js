@@ -24,8 +24,8 @@ class Player {
 		this.speed = speed
 		this.lives = lives
 
-
 		this.jumpSpeed = jumpSpeed
+		this.hasJump = true
 	}
 	/**
     

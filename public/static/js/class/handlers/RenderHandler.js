@@ -2,17 +2,21 @@ class RenderHandler {
 	constructor() { }
 
 	show() {
+		const physics = game.physicsHandler
+		const pHandler = game.playerHandler
+
 		rectMode(CENTER)
 		background(0)
-		const pHandler = game.playerHandler
 		let { x, y, width, height } = pHandler.getPlayerAsOptions()
+		let playerAngle = physics.getPlayerBody().angle
+
 		this.showRect({
 			color: pHandler.players[0].color,
-			size: { w: width, h: height }, position: { x: x, y: y }
+			size: { w: width, h: height },
+			position: { x: x, y: y },
+			angle: playerAngle,
 		})
 		//this doesnt belong in renderhandler. have small show function in which the data is sent in
-		// let obstacles = game.levelHandler.getObstacles(game.getCurrentLevel())
-		const physics = game.physicsHandler
 		physics.getObstaclePosition().map(obstacle => this.showRect(obstacle))
 	}
 
@@ -21,9 +25,14 @@ class RenderHandler {
 			color: { r, g, b, a } = { r: 255, g: 255, b: 255, a: 255 },
 			size: { w, h },
 			position: { x, y },
+			angle = 0,
 		} = data;
+
+		translate(x, y)
+		rotate(angle)
 		fill(r, g, b, a);
-		rect(x, y, w, h);
+		rect(0, 0, w, h);
+		resetMatrix()
 	}
 
 }

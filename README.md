@@ -13,11 +13,12 @@ Before running the game, make sure you have Node.js installed on your machine. T
 
 ```bash
 npm install
+```
 
-Usage
+##Usage
 To run the game, open the index.html file in a web browser.
 
-Controls:
+##Controls:
 
 Use the 'd' key to move the player right.
 Use the 'a' key to move the player left.
@@ -27,7 +28,7 @@ Press '4' to go to the next level.
 Press '5' to clear all obstacles from the current level.
 Press 'q' to pause/unpause the game.
 
-Files Structure
+##Files Structure
 index.html: HTML file containing the game structure and script references.
 static/js: Directory containing JavaScript files for game logic.
 static/js/class: Directory containing JavaScript files for various game classes.
@@ -36,14 +37,14 @@ static/js/constants.js: File containing constant values used in the game.
 static/js/index.js: Main JavaScript file initializing the game.
 package.json: File containing metadata and dependencies information.
 README.md: This file, containing information about the game and how to run it.
-Dependencies
+
+##Dependencies
 This project uses the following dependencies:
 
 p5.js: JavaScript library for creative coding and visualization.
 Matter.js: JavaScript physics engine for simulating rigid bodies.
 Express: Fast, unopinionated, minimalist web framework for Node.js.
 
-Credits
+##Credits
 This game was created by CodingGang.
 
-You can copy this entire block and paste it into your README.md file. Let me know if you need further assistance!

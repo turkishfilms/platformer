@@ -20,13 +20,13 @@ To run the game, open the index.html file in a web browser.
 
 ## Controls
 
-Use the 'd' key to move the player right.
-Use the 'a' key to move the player left.
-Use the 'w' key to make the player jump.
-Press '3' to go to the previous level.
-Press '4' to go to the next level.
-Press '5' to clear all obstacles from the current level.
-Press 'q' to pause/unpause the game.
+Use the 'd' key to move the player right.  
+Use the 'a' key to move the player left.  
+Use the 'w' key to make the player jump.  
+Press '3' to go to the previous level.  
+Press '4' to go to the next level.  
+Press '5' to clear all obstacles from the current level.  
+Press 'q' to pause/unpause the game.  
 
 ## Files Structure
 

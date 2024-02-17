@@ -59,7 +59,7 @@ class PhysicsHandler {
 
 	}
 
-	getObstaclePosition() {
+	getObstaclePosition() { //fix this to use labels
 		return this.engine.world.composites[1].bodies.map(obs => {
 			return {
 				size: {

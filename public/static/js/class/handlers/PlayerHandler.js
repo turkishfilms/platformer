@@ -18,7 +18,7 @@ class PlayerHandler {
 	updatePlayer() {
 		const player = game.physicsHandler.getPlayerBody()
 		this.players[0].position = player.position
-		if (Matter.Query.collides(player, game.physicsHandler.getObstacles())) {
+		if (Matter.Query.collides(player, game.physicsHandler.getObstacleComposite().bodies).length > 0) {
 			this.players[0].hasJump = true
 		}
 	}
@@ -26,6 +26,7 @@ class PlayerHandler {
 	movePlayer(velocity) {
 		if (velocity.x != 0 || velocity.y > 0 || this.canJump(this.players[0])) {
 			//if horizontal or downwards go for it. if upwards, check if jump available.
+			if (velocity.y < 0) this.players[0].hasJump = false
 			game.physicsHandler.movePlayer({ x: velocity.x, y: velocity.y })
 		}
 	}

@@ -22,11 +22,10 @@ class GameHandler {
 		this.physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions()) //adding player to physics handler
 		const obstacles = this.levelHandler.getObstacles(this.getCurrentLevel())
 		this.physicsHandler.addObstacles(obstacles, { isStatic: true }) //adding current level obtacles to physics handler
-		this.physicsHandler.addObstacles([new Obstacle(windowWidth / 2, windowHeight - 10, windowWidth, 30)], { isStatic: true })
+		// this.physicsHandler.addObstacles([new Obstacle(windowWidth / 2, windowHeight - 10, windowWidth, 30)], { isStatic: true })
 	}
 
 	nextFrame() {
-
 		if (this.gamePaused) return
 		this.physicsHandler.simulateWorldByOneFrame()
 		this.playerHandler.updatePlayer()

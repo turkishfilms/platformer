@@ -9,9 +9,9 @@ class RenderHandler {
 		background(0)
 		let { x, y, width, height } = pHandler.getPlayerAsOptions()
 		let playerAngle = physics.getPlayerBody().angle
-
 		this.showRect({
-			color: pHandler.players[0].color,
+			// color: pHandler.canJump(pHandler.players[0]) ? pHandler.players[0].color : { r: 255, g: 0, b: 0 },
+			color: pHandler.canJump(pHandler.players[0]) ? { r: 0, g: 0, b: 255 } : { r: 255, g: 0, b: 0 },
 			size: { w: width, h: height },
 			position: { x: x, y: y },
 			angle: playerAngle,

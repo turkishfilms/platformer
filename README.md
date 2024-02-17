@@ -16,7 +16,7 @@ npm install
 
 ## Usage
 
-To run the game, open the index.html file in a web browser.
+To run the game, open localhost port 3011 (127.0.0.1:3011) in a web browser.
 
 ## Controls
 
@@ -30,22 +30,22 @@ Press 'q' to pause/unpause the game.
 
 ## Files Structure
 
-index.html: HTML file containing the game structure and script references.
-static/js: Directory containing JavaScript files for game logic.
-static/js/class: Directory containing JavaScript files for various game classes.
-static/js/level: Directory containing JavaScript files defining level data and obstacles.
-static/js/constants.js: File containing constant values used in the game.
-static/js/index.js: Main JavaScript file initializing the game.
-package.json: File containing metadata and dependencies information.
-README.md: This file, containing information about the game and how to run it.
+index.html: HTML file containing the game structure and script references.  
+static/js: Directory containing JavaScript files for game logic.  
+static/js/class: Directory containing JavaScript files for various game classes.  
+static/js/level: Directory containing JavaScript files defining level data and obstacles.  
+static/js/constants.js: File containing constant values used in the game.  
+static/js/index.js: Main JavaScript file initializing the game.  
+package.json: File containing metadata and dependencies information.  
+README.md: This file, containing information about the game and how to run it.  
 
 ## Dependencies
 
 This project uses the following dependencies:
 
-p5.js: JavaScript library for creative coding and visualization.
-Matter.js: JavaScript physics engine for simulating rigid bodies.
-Express: Fast, unopinionated, minimalist web framework for Node.js.
+p5.js: JavaScript library for creative coding and visualization.  
+Matter.js: JavaScript physics engine for simulating rigid bodies.  
+Express: Fast, unopinionated, minimalist web framework for Node.js.  
 
 ## Credits
 

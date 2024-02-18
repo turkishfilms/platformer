@@ -19,8 +19,10 @@ class GameHandler {
 	}
 
 	gameInit() {// start the game 
+		const { obstacles, player, physics } = this.levelHandler.getLevelData(this.getCurrentLevel())
+		this.playerHandler.fillPlayer(player)
+		this.physicsHandler = new PhysicsHandler({ physics: physics })
 		this.physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions()) //adding player to physics handler
-		const obstacles = this.levelHandler.getLevelData(this.getCurrentLevel())
 		this.physicsHandler.addObstacles(obstacles, { isStatic: true }) //adding current level obtacles to physics handler
 	}
 

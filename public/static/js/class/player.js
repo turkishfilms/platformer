@@ -17,7 +17,9 @@ class Player {
 	}, speed = {
 		xSpeed: 50,
 		ySpeed: 50
-	}, lives = 3 } = {}) {
+	}, lives = 3,
+		startingJumpCount = 1,
+		maxJumpCount = 3 } = {}) {
 		this.color = color
 		this.bounds = size
 		this.position = position
@@ -25,7 +27,8 @@ class Player {
 		this.lives = lives
 
 		this.jumpSpeed = jumpSpeed
-		this.hasJump = true
+		this.jumpCount = startingJumpCount
+		this.maxJumpCount = maxJumpCount
 	}
 	/**
     

@@ -20,9 +20,8 @@ class GameHandler {
 
 	gameInit() {// start the game 
 		this.physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions()) //adding player to physics handler
-		const obstacles = this.levelHandler.getObstacles(this.getCurrentLevel())
+		const obstacles = this.levelHandler.getLevelData(this.getCurrentLevel())
 		this.physicsHandler.addObstacles(obstacles, { isStatic: true }) //adding current level obtacles to physics handler
-		// this.physicsHandler.addObstacles([new Obstacle(windowWidth / 2, windowHeight - 10, windowWidth, 30)], { isStatic: true })
 	}
 
 	nextFrame() {
@@ -52,16 +51,23 @@ class GameHandler {
 		return this.levelHandler.currentLevel
 	}
 
+	resetLevel() {
+		this.physicsHandler.clearWorld()
+		this.physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions()) //adding player to physics handler
+		const obstacles = this.levelHandler.getLevelData(this.getCurrentLevel())
+		this.physicsHandler.addObstacles(obstacles, { isStatic: true }) //adding current level obtacles to physics handler
+	}
+
 	setCurrentLevel(levelNumber) {
 		this.levelHandler.setCurrentLevel(levelNumber)
 	}
 
 	getPreviousLevel() {
-		return Math.max(this.levelHandler.currentLevel - 1, 1) //Ensure previous level always picks a positive levelNumber
+		return Math.max(this.getCurrentLevel - 1, 1) //Ensure previous level always picks a positive levelNumber
 	}
 
 	getNextLevel() {
-		return this.levelHandler.currentLevel + 1
+		return this.getCurrentLevel + 1
 	}
 
 	togglePaused() {

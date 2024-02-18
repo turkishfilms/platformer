@@ -5,10 +5,9 @@ class LevelHandler {
 		this.currentLevel = 1;
 	}
 
-	getObstacles(levelNumber) {
+	getLevelData(levelNumber) {
 		return this.levels[levelNumber - 1]
 	}
-	
 
 	setCurrentLevel(levelNumber) {
 		this.currentLevel = levelNumber

@@ -29,12 +29,12 @@ class PhysicsHandler {
 
 	addPlayer(playerOptions) {
 		const { x, y, width, height } = playerOptions
-		const playerRect = Matter.Bodies.rectangle(x, y, width, height, { restitution: 1 })
+		const playerRect = Matter.Bodies.rectangle(x, y, width, height, { restitution: 0 })
 		//this is prone to failure, paramaterize the output
 		Matter.Composite.add(this.getPlayerComposite(), playerRect)
 	}
 
-	addObstacles(obstacles, options = { isStatic: false, restitution: 1 }) {
+	addObstacles(obstacles, options = { isStatic: false, restitution: 0 }) {
 		obstacles.forEach(obstacle => {
 			let { position: { x, y }, size: { w: width, h: height } } = obstacle
 			let rect = Matter.Bodies.rectangle(x, y, width, height, { isStatic: options.isStatic, restitution: options.restitution })

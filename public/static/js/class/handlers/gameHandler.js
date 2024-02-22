@@ -33,6 +33,8 @@ class GameHandler {
 		this.renderHandler.show()
 	}
 
+
+
 	movePlayerRight(speed) {
 		this.playerHandler.movePlayer({ x: speed, y: 0 })
 	}

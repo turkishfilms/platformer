@@ -1,3 +1,5 @@
 /node_modules
 vimbook.vim
+test.txt
 vimbook.vim!
+vimbook.vim! !

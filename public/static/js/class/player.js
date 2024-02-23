@@ -33,27 +33,4 @@ class Player {
 		this.maxJumpCount = maxJumpCount
 		this.options = options
 	}
-	/**
-    
-    
-	  Player can jump and move left and right 
-	  Have a any color that the player could choose
-	  Have a speeed!
-	  Have sizePlayer50,
-		  b: 0,
-		  a: 250
-		}
-		else if (this.lives == 2) this.color = {//yellow
-		  r: 250,
-		  g: 250,
-		  b: 0,
-		  a: 250
-		}
-		else if (this.lives == 1) this.color = {//red
-		  r: 250,
-		  g: 0,
-		  b: 0,
-		  a: 250
-		}
-	  }**/
 }

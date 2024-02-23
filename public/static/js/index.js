@@ -8,20 +8,20 @@ function setup() {
 }
 
 function keyPressed() {
-	if (key == "d") {
-		game.movePlayerRight(PLAYER_MOVE_SPEED);
-	} else if (key == "a") {
-		game.movePlayerLeft(PLAYER_MOVE_SPEED);
-	} else if (key == "w") {
-		game.movePlayerUp(PLAYER_JUMP_SPEED);
-	} else if (key == "3") {
-		game.setCurrentLevel(game.getPreviousLevel())
-	} else if (key == "4") {
-		game.setCurrentLevel(game.getNextLevel())
-	} else if (key == "5") {
-		game.physicsHandler.clearComposite()
-	} else if (key == "q") {
+	if (key == "d" || key == "D") {
+		game.movePlayerRight();
+	} else if (key == "a" || key == "A") {
+		game.movePlayerLeft();
+	} else if (key == "w" || key == "W") {
+		game.movePlayerUp();
+	} else if (key == "q" || key == "Q") {
 		game.togglePaused()
+	} else if (key == "e" || key == "E") {
+		game.resetLevel()
+	} else if (key == "p" || key == "P") {
+		game.nextLevel()
+	} else if (key == "o" || key == "O") {
+		game.previousLevel()
 	}
 }
 

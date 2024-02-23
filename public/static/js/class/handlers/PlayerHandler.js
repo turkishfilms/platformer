@@ -9,25 +9,23 @@
 class PlayerHandler {
 	constructor({
 		player = new Player(),
-		currentLevelobstacles = []
 	} = {}) {
-		this.players = [player];
-		this.currentLevelobstacles = currentLevelobstacles;
+		this.player = player
 	}
 
 	updatePlayer() {
 		const player = game.physicsHandler.getPlayerBody()
-		this.players[0].position = player.position
+		this.player.position = player.position
 		if (Matter.Query.collides(player, game.physicsHandler.getObstacleComposite().bodies).length > 0) {
-			this.players[0].jumpCount = Math.min(this.players[0].jumpCount + 1, this.players[0].maxJumpCount)
+			this.player.jumpCount = Math.min(this.player.jumpCount + 1, this.player.maxJumpCount)
 		}
 	}
 
 	movePlayer(velocity) {
-		if (velocity.x != 0 || velocity.y > 0 || this.canJump(this.players[0])) {
+		if (velocity.x != 0 || velocity.y > 0 || this.canJump(this.player)) {
 			//if horizontal or downwards go for it. if upwards, check if jump available.
-			if (velocity.y < 0) this.players[0].jumpCount--
-			game.physicsHandler.movePlayer({ x: velocity.x, y: velocity.y })
+			if (velocity.y < 0) this.player.jumpCount--
+			game.physicsHandler.movePlayer({ x: velocity.x * this.player.moveSpeed, y: velocity.y * this.player.jumpSpeed })
 		}
 	}
 
@@ -36,29 +34,15 @@ class PlayerHandler {
 	}
 
 	getPlayerAsOptions() {
-		//return the options for the player class
-		// ingredients:
-		//the player class
-		let playerPosition = this.players[0].position
-		let playerSize = this.players[0].bounds
-		return {
-			x: playerPosition.x,
-			y: playerPosition.y,
-			width: playerSize.width,
-			height: playerSize.height,
-		}
-	}
-
-	getPlayerAsOptions2() {
-		const { position: { x, y }, bounds: { width, height } } = this.players[0]
-		return { x, y, width, height }
+		const { position: { x, y }, bounds: { width, height }, options: { restitution } } = this.player
+		return { x, y, width, height, restitution }
 	}
 
 	addPlayer(player) {
-		this.players.push(player)
+		this.player = JSON.parse(JSON.stringify(player)) //ensuring no coupling occurs
 	}
 
-	losesLife(player = this.players[0], numberOfLives) {
+	losesLife(player = this.player, numberOfLives) {
 		for (let index = 0; index < numberOfLives; index++) {
 			if (this.lives == 0) {
 				this.die(player)

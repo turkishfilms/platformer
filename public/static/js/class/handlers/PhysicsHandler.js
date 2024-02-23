@@ -28,8 +28,8 @@ class PhysicsHandler {
 	}
 
 	addPlayer(playerOptions) {
-		const { x, y, width, height } = playerOptions //add restitution as an option then rest:rest
-		const playerRect = Matter.Bodies.rectangle(x, y, width, height, { restitution: 0 })
+		const { x, y, width, height, restitution } = playerOptions
+		const playerRect = Matter.Bodies.rectangle(x, y, width, height, { restitution: restitution })
 		//this is prone to failure, paramaterize the output
 		Matter.Composite.add(this.getPlayerComposite(), playerRect)
 	}

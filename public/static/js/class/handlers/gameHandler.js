@@ -15,7 +15,8 @@ class GameHandler {
 		this.physicsHandler = physicsHandler
 		this.renderHandler = renderHandler
 		this.gamePaused = false
-		this.gameInit()
+		// this.gameInit()
+		this.levelInit()
 	}
 
 	gameInit() {// start the game 
@@ -33,7 +34,14 @@ class GameHandler {
 		this.renderHandler.show()
 	}
 
-
+	levelInit() {
+		const currentLevelNumber = this.getCurrentLevel()
+		const currrentLevel = this.levelHandler.getLevelData(currentLevelNumber)
+		this.physicsHandler = new PhysicsHandler({ physics: currrentLevel.physics }) //physics is beng added in a wierd way fix it
+		this.playerHandler.addPlayer(currrentLevel.player[0])
+		this.physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions())
+		this.physicsHandler.addObstacles(currrentLevel.obstacles, { isStatic: true })
+	}
 
 	movePlayerRight(speed) {
 		this.playerHandler.movePlayer({ x: speed, y: 0 })
@@ -67,11 +75,11 @@ class GameHandler {
 	}
 
 	getPreviousLevel() {
-		return Math.max(this.getCurrentLevel - 1, 1) //Ensure previous level always picks a positive levelNumber
+		return Math.max(this.getCurrentLevel() - 1, 1) //Ensure previous level always picks a positive levelNumber
 	}
 
 	getNextLevel() {
-		return this.getCurrentLevel + 1
+		return this.getCurrentLevel() + 1
 	}
 
 	togglePaused() {

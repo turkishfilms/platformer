@@ -3,25 +3,17 @@ class GameHandler {
 		levels = [],
 		physics = new Physics(),
 		player = new Player(),
-		scoreHandler = new ScoreHandler(),
 		playerHandler = new PlayerHandler({ player: player }),
 		levelHandler = new LevelHandler({ levels: levels }),
 		physicsHandler = new PhysicsHandler({ physics: physics }),
 		renderHandler = new RenderHandler()
 	} = {}) {
-		this.scoreHandler = scoreHandler;
 		this.playerHandler = playerHandler;
 		this.levelHandler = levelHandler;
 		this.physicsHandler = physicsHandler
 		this.renderHandler = renderHandler
 		this.gamePaused = false
-		this.gameInit()
-	}
-
-	gameInit() {// start the game 
-		this.physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions()) //adding player to physics handler
-		const obstacles = this.levelHandler.getLevelData(this.getCurrentLevel())
-		this.physicsHandler.addObstacles(obstacles, { isStatic: true }) //adding current level obtacles to physics handler
+		this.levelInit()
 	}
 
 	nextFrame() {
@@ -29,6 +21,16 @@ class GameHandler {
 		this.physicsHandler.simulateWorldByOneFrame()
 		this.playerHandler.updatePlayer()
 		this.renderHandler.show()
+	}
+
+	levelInit() {
+		const currentLevelNumber = this.getCurrentLevel()
+		const currrentLevel = this.levelHandler.getLevelData(currentLevelNumber)
+		const physicsHandler = new PhysicsHandler({ physics: currrentLevel.physics }) //physics is beng added in a wierd way fix it
+		this.playerHandler.addPlayer(currrentLevel.player[0])
+		physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions())
+		physicsHandler.addObstacles(currrentLevel.obstacles, { isStatic: true })
+		this.physicsHandler = physicsHandler
 	}
 
 	movePlayerRight(speed) {
@@ -52,10 +54,7 @@ class GameHandler {
 	}
 
 	resetLevel() {
-		this.physicsHandler.clearWorld()
-		this.physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions()) //adding player to physics handler
-		const obstacles = this.levelHandler.getLevelData(this.getCurrentLevel())
-		this.physicsHandler.addObstacles(obstacles, { isStatic: true }) //adding current level obtacles to physics handler
+		this.levelInit()
 	}
 
 	setCurrentLevel(levelNumber) {
@@ -63,11 +62,11 @@ class GameHandler {
 	}
 
 	getPreviousLevel() {
-		return Math.max(this.getCurrentLevel - 1, 1) //Ensure previous level always picks a positive levelNumber
+		return Math.max(this.getCurrentLevel() - 1, 1) //Ensure previous level always picks a positive levelNumber
 	}
 
 	getNextLevel() {
-		return this.getCurrentLevel + 1
+		return this.getCurrentLevel() + 1
 	}
 
 	togglePaused() {

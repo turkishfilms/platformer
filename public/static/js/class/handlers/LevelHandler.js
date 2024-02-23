@@ -2,7 +2,7 @@
 class LevelHandler {
 	constructor({ levels } = {}) {
 		this.levels = levels;
-		this.currentLevel = 1;
+		this.currentLevel = 2;
 	}
 
 	getLevelData(levelNumber) {

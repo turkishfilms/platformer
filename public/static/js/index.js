@@ -18,6 +18,10 @@ function keyPressed() {
 		game.togglePaused()
 	} else if (key == "e" || key == "E") {
 		game.resetLevel()
+	} else if (key == "p" || key == "P") {
+		game.nextLevel()
+	} else if (key == "o" || key == "O") {
+		game.previousLevel()
 	}
 }
 

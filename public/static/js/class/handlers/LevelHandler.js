@@ -9,14 +9,16 @@ class LevelHandler {
 		return this.levels[levelNumber - 1]
 	}
 
-	/**
-		@param {number} levelNumber - number of level  
-	**/
 	setCurrentLevel(levelNumber) {
 		if (typeof levelNumber != 'number' || isNaN(levelNumber)) return
-		const minVal = 1
-		const maxVal = this.levels.length - 1
-		this.currentLevel = Math.floor(Math.max(minVal, Math.min(maxVal, levelNumber)))
+		this.currentLevel = Math.floor(Math.max(1, Math.min(this.levels.length, levelNumber)))
 	}
 
+	getNextLevel() {
+		return Math.min(this.levels.length, this.currentLevel + 1)
+	}
+
+	getPreviousLevel() {
+		return Math.max(1, this.currentLevel - 1)
+	}
 }

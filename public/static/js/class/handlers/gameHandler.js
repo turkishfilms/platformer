@@ -3,13 +3,11 @@ class GameHandler {
 		levels = [],
 		physics = new Physics(),
 		player = new Player(),
-		scoreHandler = new ScoreHandler(),
 		playerHandler = new PlayerHandler({ player: player }),
 		levelHandler = new LevelHandler({ levels: levels }),
 		physicsHandler = new PhysicsHandler({ physics: physics }),
 		renderHandler = new RenderHandler()
 	} = {}) {
-		this.scoreHandler = scoreHandler;
 		this.playerHandler = playerHandler;
 		this.levelHandler = levelHandler;
 		this.physicsHandler = physicsHandler

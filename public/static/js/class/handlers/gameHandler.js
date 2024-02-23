@@ -33,20 +33,20 @@ class GameHandler {
 		this.physicsHandler = physicsHandler
 	}
 
-	movePlayerRight(speed) {
-		this.playerHandler.movePlayer({ x: speed, y: 0 })
+	movePlayerRight() {
+		this.playerHandler.movePlayer({ x: 1, y: 0 })
 	}
 
-	movePlayerLeft(speed) {
-		this.playerHandler.movePlayer({ x: -speed, y: 0 })
+	movePlayerLeft() {
+		this.playerHandler.movePlayer({ x: -1, y: 0 })
 	}
 
-	movePlayerUp(jumpSpeed) {
-		this.playerHandler.movePlayer({ x: 0, y: -jumpSpeed })
+	movePlayerUp() {
+		this.playerHandler.movePlayer({ x: 0, y: -1 })
 	}
 
 	movePlayerDown(jumpSpeed) {
-		this.playerHandler.movePlayer({ x: 0, y: jumpSpeed })
+		this.playerHandler.movePlayer({ x: 0, y: 1 })
 	}
 
 	getCurrentLevel() {

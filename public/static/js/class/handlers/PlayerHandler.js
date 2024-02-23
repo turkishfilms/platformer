@@ -25,7 +25,7 @@ class PlayerHandler {
 		if (velocity.x != 0 || velocity.y > 0 || this.canJump(this.player)) {
 			//if horizontal or downwards go for it. if upwards, check if jump available.
 			if (velocity.y < 0) this.player.jumpCount--
-			game.physicsHandler.movePlayer({ x: velocity.x, y: velocity.y })
+			game.physicsHandler.movePlayer({ x: velocity.x * this.player.moveSpeed, y: velocity.y * this.player.jumpSpeed })
 		}
 	}
 

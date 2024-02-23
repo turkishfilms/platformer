@@ -9,11 +9,11 @@ function setup() {
 
 function keyPressed() {
 	if (key == "d" || key == "D") {
-		game.movePlayerRight(PLAYER_MOVE_SPEED);
+		game.movePlayerRight();
 	} else if (key == "a" || key == "A") {
-		game.movePlayerLeft(PLAYER_MOVE_SPEED);
+		game.movePlayerLeft();
 	} else if (key == "w" || key == "W") {
-		game.movePlayerUp(PLAYER_JUMP_SPEED);
+		game.movePlayerUp();
 	} else if (key == "q" || key == "Q") {
 		game.togglePaused()
 	} else if (key == "e" || key == "E") {

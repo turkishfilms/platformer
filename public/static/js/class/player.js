@@ -19,17 +19,19 @@ class Player {
 		startingJumpCount = 1,
 		maxMoveSpeed = 4,
 		maxJumpSpeed = 4,
-		maxJumpCount = 1 } = {}) {
+		maxJumpCount = 1,
+		options = { restitution: 0 }
+	} = {}) {
 		this.color = color
 		this.bounds = size
 		this.position = position
 		this.speed = speed
 		this.lives = lives
-
 		this.jumpSpeed = maxJumpSpeed
 		this.moveSpeed = maxMoveSpeed
 		this.jumpCount = startingJumpCount
 		this.maxJumpCount = maxJumpCount
+		this.options = options
 	}
 	/**
     

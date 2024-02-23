@@ -39,7 +39,7 @@ class PlayerHandler {
 	}
 
 	addPlayer(player) {
-		this.player = player
+		this.player = JSON.parse(JSON.stringify(player)) //ensuring no coupling occurs
 	}
 
 	losesLife(player = this.player, numberOfLives) {

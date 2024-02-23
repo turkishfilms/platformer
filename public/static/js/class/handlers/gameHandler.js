@@ -13,16 +13,7 @@ class GameHandler {
 		this.physicsHandler = physicsHandler
 		this.renderHandler = renderHandler
 		this.gamePaused = false
-		// this.gameInit()
 		this.levelInit()
-	}
-
-	gameInit() {// start the game 
-		const { obstacles, player, physics } = this.levelHandler.getLevelData(this.getCurrentLevel())
-		this.playerHandler.fillPlayer(player)
-		this.physicsHandler = new PhysicsHandler({ physics: physics })
-		this.physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions()) //adding player to physics handler
-		this.physicsHandler.addObstacles(obstacles, { isStatic: true }) //adding current level obtacles to physics handler
 	}
 
 	nextFrame() {
@@ -35,10 +26,11 @@ class GameHandler {
 	levelInit() {
 		const currentLevelNumber = this.getCurrentLevel()
 		const currrentLevel = this.levelHandler.getLevelData(currentLevelNumber)
-		this.physicsHandler = new PhysicsHandler({ physics: currrentLevel.physics }) //physics is beng added in a wierd way fix it
+		const physicsHandler = new PhysicsHandler({ physics: currrentLevel.physics }) //physics is beng added in a wierd way fix it
 		this.playerHandler.addPlayer(currrentLevel.player[0])
-		this.physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions())
-		this.physicsHandler.addObstacles(currrentLevel.obstacles, { isStatic: true })
+		physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions())
+		physicsHandler.addObstacles(currrentLevel.obstacles, { isStatic: true })
+		this.physicsHandler = physicsHandler
 	}
 
 	movePlayerRight(speed) {
@@ -62,10 +54,7 @@ class GameHandler {
 	}
 
 	resetLevel() {
-		this.physicsHandler.clearWorld()
-		this.physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions()) //adding player to physics handler
-		const obstacles = this.levelHandler.getLevelData(this.getCurrentLevel())
-		this.physicsHandler.addObstacles(obstacles, { isStatic: true }) //adding current level obtacles to physics handler
+		this.levelInit()
 	}
 
 	setCurrentLevel(levelNumber) {

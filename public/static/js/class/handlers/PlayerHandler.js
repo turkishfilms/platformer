@@ -9,10 +9,8 @@
 class PlayerHandler {
 	constructor({
 		player = new Player(),
-		currentLevelobstacles = []
 	} = {}) {
 		this.player = player
-		this.currentLevelobstacles = currentLevelobstacles;
 	}
 
 	updatePlayer() {
@@ -36,8 +34,8 @@ class PlayerHandler {
 	}
 
 	getPlayerAsOptions() {
-		const { position: { x, y }, bounds: { width, height } } = this.player
-		return { x, y, width, height }
+		const { position: { x, y }, bounds: { width, height }, options: { restitution } } = this.player
+		return { x, y, width, height, restitution }
 	}
 
 	addPlayer(player) {

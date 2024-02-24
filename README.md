@@ -22,17 +22,36 @@ npm install
 
 ## Usage
 
-1. To run the game, run `npm start` in your terminal.
-2. To play the game, open localhost port 3011 (127.0.0.1:3011) in a web browser.
+
+To start the game execute the command:
+
+```bash
+npm start
+```
+
+Then open localhost port 3011 (127.0.0.1:3011) in a web browser.
+
 
 ## Controls
 
 Use the 'd' key to move the player right.  
 Use the 'a' key to move the player left.  
 Use the 'w' key to make the player jump.  
-Press '3' to go to the previous level.  
-Press '4' to go to the next level.  
-Press '5' to clear all obstacles from the current level.  
+Press '3' to go to the previous level.  //doesn't work
+Press '4' to go to the next level.  //doesn't work
+Press '5' to clear all obstacles from the current level.  //freezes game with error
+
+PhysicsHandler.js:58 Uncaught TypeError: Cannot read properties of undefined (reading 'bodies')
+    at PhysicsHandler.getPlayerBody (PhysicsHandler.js:58:23)
+    at PlayerHandler.updatePlayer (PlayerHandler.js:19:38)
+    at GameHandler.nextFrame (gameHandler.js:31:22)
+    at draw (index.js:29:7)
+    at e.default.redraw (p5.min.js:2:542441)
+    at _draw (p5.min.js:2:462354)
+
+Assuming because no objects on first level
+
+
 Press 'q' to pause/unpause the game.  
 
 ## Files Structure

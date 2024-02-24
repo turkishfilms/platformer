@@ -3,26 +3,17 @@ class GameHandler {
 		levels = [],
 		physics = new Physics(),
 		player = new Player(),
-		scoreHandler = new ScoreHandler(),
 		playerHandler = new PlayerHandler({ player: player }),
 		levelHandler = new LevelHandler({ levels: levels }),
 		physicsHandler = new PhysicsHandler({ physics: physics }),
 		renderHandler = new RenderHandler()
 	} = {}) {
-		this.scoreHandler = scoreHandler;
 		this.playerHandler = playerHandler;
 		this.levelHandler = levelHandler;
 		this.physicsHandler = physicsHandler
 		this.renderHandler = renderHandler
 		this.gamePaused = false
-		this.gameInit()
-	}
-
-	gameInit() {// start the game 
-		this.physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions()) //adding player to physics handler
-		const obstacles = this.levelHandler.getObstacles(this.getCurrentLevel())
-		this.physicsHandler.addObstacles(obstacles, { isStatic: true }) //adding current level obtacles to physics handler
-		// this.physicsHandler.addObstacles([new Obstacle(windowWidth / 2, windowHeight - 10, windowWidth, 30)], { isStatic: true })
+		this.levelInit()
 	}
 
 	nextFrame() {
@@ -32,24 +23,38 @@ class GameHandler {
 		this.renderHandler.show()
 	}
 
-	movePlayerRight(speed) {
-		this.playerHandler.movePlayer({ x: speed, y: 0 })
+	levelInit() {
+		const currentLevelNumber = this.getCurrentLevel()
+		const currrentLevel = this.levelHandler.getLevelData(currentLevelNumber)
+		const physicsHandler = new PhysicsHandler({ physics: currrentLevel.physics }) //FIXME physics is beng added in a wierd way fix it
+		this.playerHandler.addPlayer(currrentLevel.player[0])
+		physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions())
+		physicsHandler.addObstacles(currrentLevel.obstacles, { isStatic: true })
+		this.physicsHandler = physicsHandler
 	}
 
-	movePlayerLeft(speed) {
-		this.playerHandler.movePlayer({ x: -speed, y: 0 })
+	movePlayerRight() {
+		this.playerHandler.movePlayer({ x: 1, y: 0 })
 	}
 
-	movePlayerUp(jumpSpeed) {
-		this.playerHandler.movePlayer({ x: 0, y: -jumpSpeed })
+	movePlayerLeft() {
+		this.playerHandler.movePlayer({ x: -1, y: 0 })
+	}
+
+	movePlayerUp() {
+		this.playerHandler.movePlayer({ x: 0, y: -1 })
 	}
 
 	movePlayerDown(jumpSpeed) {
-		this.playerHandler.movePlayer({ x: 0, y: jumpSpeed })
+		this.playerHandler.movePlayer({ x: 0, y: 1 })
 	}
 
 	getCurrentLevel() {
 		return this.levelHandler.currentLevel
+	}
+
+	resetLevel() {
+		this.levelInit()
 	}
 
 	setCurrentLevel(levelNumber) {
@@ -57,11 +62,23 @@ class GameHandler {
 	}
 
 	getPreviousLevel() {
-		return Math.max(this.levelHandler.currentLevel - 1, 1) //Ensure previous level always picks a positive levelNumber
+		return this.levelHandler.getPreviousLevel()
 	}
 
 	getNextLevel() {
-		return this.levelHandler.currentLevel + 1
+		const nextLevel = this.levelHandler.getNextLevel()
+		console.log(nextLevel)
+		return nextLevel
+	}
+
+	nextLevel() {
+		this.setCurrentLevel(this.getNextLevel())
+		this.levelInit()
+	}
+
+	previousLevel() {
+		this.setCurrentLevel(this.getPreviousLevel())
+		this.levelInit()
 	}
 
 	togglePaused() {

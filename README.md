@@ -7,7 +7,13 @@ This is a platformer game built using p5.js and Matter.js.
 Before running the game, make sure you have Node.js installed on your machine. Then, follow these steps:
 
 1. Clone this repository to your local machine.
+
+>   `git clone https://github.com/turkishfilms/platformer.git`
+
 2. Navigate to the project directory in your terminal.
+
+>   `cd platformer`
+
 3. Run the following command to install the necessary dependencies:
 
 ```bash
@@ -16,6 +22,7 @@ npm install
 
 ## Usage
 
+
 To start the game execute the command:
 
 ```bash
@@ -23,6 +30,7 @@ npm start
 ```
 
 Then open localhost port 3011 (127.0.0.1:3011) in a web browser.
+
 
 ## Controls
 

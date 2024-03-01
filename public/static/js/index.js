@@ -1,6 +1,6 @@
 
 let game;
-let spriteSheet
+
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);

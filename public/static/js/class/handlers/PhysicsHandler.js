@@ -89,4 +89,9 @@ class PhysicsHandler {
 		Matter.Composite.clear(this.engine.world)
 		// Reoves composites from the given composite. 
 	}
+	playerStill(){
+	 Matter.Body.setAngularSpeed(this.getPlayerBody(), 0)
+	Matter.Body.setAngle(this.getPlayerBody(), 0)
+	Matter.Body.setVelocity(this.getPlayerBody(), Matter.Vector.create(0, 0))
+}
 }

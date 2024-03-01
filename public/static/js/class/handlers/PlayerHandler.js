@@ -40,9 +40,7 @@ class PlayerHandler {
 	resetPlayer() {
 		this.decrementLives()
 		const position = game.levelHandler.levels[game.getCurrentLevel()].player[0].position
-		Matter.Body.setAngularSpeed(game.physicsHandler.getPlayerBody(), 0)
-		Matter.Body.setAngle(game.physicsHandler.getPlayerBody(), 0)
-		Matter.Body.setVelocity(game.physicsHandler.getPlayerBody(), Matter.Vector.create(0, 0))
+		game.physicsHandler.playerStill()
 		game.physicsHandler.translatePlayer(position)
 	}
 

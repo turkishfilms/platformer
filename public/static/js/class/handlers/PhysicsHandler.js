@@ -10,9 +10,21 @@ class PhysicsHandler {
 			Matter.Composite.add(this.engine.world, Matter.Composite.create({ label: compositeStructure[comp] }))
 		})
 		this.compositeStructure = compositeStructure
-		// for (let i = 0; i < Object.keys(compositeStructure).length; i++) {
-		// 	Matter.Composite.add(this.engine.world, Matter.Composite.create({ label: compositeStructure[i] }))
-		// }
+		this.bounds = Matter.Bounds.create(this.initVertices())
+	}
+
+	initVertices() {
+		const corners = [{ x: 0, y: 0 }, { x: windowWidth, y: 0 }, { x: windowWidth, y: windowHeight }, { x: windowWidth, y: windowHeight },]
+		const points = corners.map(corner => Matter.Vector.create(corner.x, corner.y))
+		return Matter.Vertices.create(points, Matter.Body.create())
+	}
+
+	isPlayerOffScreen() {
+		return Matter.Query.region([this.getPlayerBody()], this.bounds, { outside: true }).length >= 1
+	}
+
+	isPlayerOffScreen2() {
+		return this.getPlayerBody().position.y >= windowHeight
 	}
 
 	movePlayer(velocity) {
@@ -21,6 +33,11 @@ class PhysicsHandler {
 		const playerVelocity = player.velocity
 		const movementVelocity = Matter.Vector.create(x, y)
 		Matter.Body.setVelocity(player, Matter.Vector.add(movementVelocity, playerVelocity))
+	}
+
+	translatePlayer(position) {
+		const { x, y } = position
+		Matter.Body.setPosition(this.getPlayerBody(), Matter.Vector.create(x, y))
 	}
 
 	simulateWorldByOneFrame() {

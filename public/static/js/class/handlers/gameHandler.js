@@ -19,8 +19,9 @@ class GameHandler {
 	nextFrame() {
 		if (this.gamePaused) return
 		this.physicsHandler.simulateWorldByOneFrame()
+		if (this.physicsHandler.isPlayerOffScreen()) this.playerHandler.resetPlayer()
 		this.playerHandler.updatePlayer()
-		this.renderHandler.show()
+		this.renderHandler.renderFrame()
 	}
 
 	levelInit() {
@@ -45,7 +46,7 @@ class GameHandler {
 		this.playerHandler.movePlayer({ x: 0, y: -1 })
 	}
 
-	movePlayerDown(jumpSpeed) {
+	movePlayerDown() {
 		this.playerHandler.movePlayer({ x: 0, y: 1 })
 	}
 
@@ -67,7 +68,6 @@ class GameHandler {
 
 	getNextLevel() {
 		const nextLevel = this.levelHandler.getNextLevel()
-		console.log(nextLevel)
 		return nextLevel
 	}
 

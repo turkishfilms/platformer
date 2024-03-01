@@ -23,9 +23,6 @@ class PhysicsHandler {
 		return Matter.Query.region([this.getPlayerBody()], this.bounds, { outside: true }).length >= 1
 	}
 
-	isPlayerOffScreen2() {
-		return this.getPlayerBody().position.y >= windowHeight
-	}
 
 	movePlayer(velocity) {
 		const { x, y } = velocity

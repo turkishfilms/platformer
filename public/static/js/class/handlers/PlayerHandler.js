@@ -37,11 +37,14 @@ class PlayerHandler {
 		this.player.lives--
 	}
 
+	incrementLives() {
+		this.player.lives++
+	}
+
 	resetPlayer() {
 		this.decrementLives()
-		const position = game.levelHandler.getPlayerStartingPosition()
-		//game.physicsHandler.playerStill()
-		game.physicsHandler.translatePlayer(position)
+		game.physicsHandler.playerStill()
+		game.physicsHandler.translatePlayer(game.levelHandler.getPlayerStartingPosition())
 	}
 
 	getPlayerAsOptions() {
@@ -51,16 +54,6 @@ class PlayerHandler {
 
 	addPlayer(player) {
 		this.player = JSON.parse(JSON.stringify(player)) //ensuring no coupling occurs
-	}
-
-	losesLife(player = this.player, numberOfLives) {
-		for (let index = 0; index < numberOfLives; index++) {
-			if (this.lives == 0) {
-				this.die(player)
-				break
-			}
-			player.livesminus()
-		}
 	}
 
 }

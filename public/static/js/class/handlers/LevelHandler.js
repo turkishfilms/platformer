@@ -9,7 +9,7 @@ class LevelHandler {
 	getLevelData(levelNumber) {
 		return this.levels[levelNumber - 1]
 	}
-	getPlayerStartingPosition() {
+	getPlayerStartingPosition(level) {
 		return this.levels[this.currentLevel].player[0].position
 
 

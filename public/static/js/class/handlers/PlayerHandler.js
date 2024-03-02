@@ -39,7 +39,7 @@ class PlayerHandler {
 
 	resetPlayer() {
 		this.decrementLives()
-		const position = game.levelHandler.getPlayerStartingPosition(game.getCurrentLevel())
+		const position = game.levelHandler.getPlayerStartingPosition()
 		//game.physicsHandler.playerStill()
 		game.physicsHandler.translatePlayer(position)
 	}

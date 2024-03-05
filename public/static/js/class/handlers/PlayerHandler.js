@@ -89,7 +89,10 @@ livesDeath(){
 // goal when player lives = 0 change color. 
 //ingriedents player, color, lives
 if  (this.isPlayerDead()){
-this.player.color ={ r: 0,g: 0,b: 0,a: 250}
+this.colorPicker({ r: 0,g: 0,b: 0,a: 250})
 }
+}
+colorPicker(color){
+this.player.color = color
 }
 }

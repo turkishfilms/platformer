@@ -12,15 +12,16 @@ class GameHandler {
 		this.levelHandler = levelHandler;
 		this.physicsHandler = physicsHandler
 		this.renderHandler = renderHandler
-		this.gamePaused = false
+		this.isPaused = false
 		this.levelInit()
 	}
 
 	nextFrame() {
-		if (this.gamePaused) return
+		if (this.isPaused) return
 		this.physicsHandler.simulateWorldByOneFrame()
+		if (this.physicsHandler.isPlayerOffScreen()) this.playerHandler.resetPlayer()
 		this.playerHandler.updatePlayer()
-		this.renderHandler.show()
+		this.renderHandler.renderFrame()
 	}
 
 	levelInit() {
@@ -45,7 +46,7 @@ class GameHandler {
 		this.playerHandler.movePlayer({ x: 0, y: -1 })
 	}
 
-	movePlayerDown(jumpSpeed) {
+	movePlayerDown() {
 		this.playerHandler.movePlayer({ x: 0, y: 1 })
 	}
 
@@ -67,7 +68,6 @@ class GameHandler {
 
 	getNextLevel() {
 		const nextLevel = this.levelHandler.getNextLevel()
-		console.log(nextLevel)
 		return nextLevel
 	}
 
@@ -82,7 +82,7 @@ class GameHandler {
 	}
 
 	togglePaused() {
-		this.gamePaused = this.gamePaused ? false : true
+		this.isPaused = this.isPaused ? false : true
 	}
 
 }

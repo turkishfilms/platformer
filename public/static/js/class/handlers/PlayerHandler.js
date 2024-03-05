@@ -29,6 +29,9 @@ class PlayerHandler {
 		}
 	}
 
+
+	handleOffScreen() { if (this.physicsHandler.isPlayerOffScreen()) this.playerHandler.resetPlayer() }
+
 	canJump(player) {
 		return player.jumpCount > 0
 	}
@@ -41,8 +44,13 @@ class PlayerHandler {
 		this.player.lives++
 	}
 
+	isPlayerDead() {
+		return this.player.lives <= 0
+	}
+
 	resetPlayer() {
-		this.decrementLives()
+		if (!this.isPlayerDead()) this.decrementLives()
+		else console.log("out of lives")
 		game.physicsHandler.playerStill()
 		game.physicsHandler.translatePlayer(game.levelHandler.getPlayerStartingPosition())
 	}

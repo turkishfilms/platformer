@@ -29,6 +29,9 @@ class PlayerHandler {
 		}
 	}
 
+
+	handleOffScreen() { if (this.physicsHandler.isPlayerOffScreen()) this.playerHandler.resetPlayer() }
+
 	canJump(player) {
 		return player.jumpCount > 0
 	}
@@ -37,11 +40,19 @@ class PlayerHandler {
 		this.player.lives--
 	}
 
+	incrementLives() {
+		this.player.lives++
+	}
+
+	isPlayerDead() {
+		return this.player.lives <= 0
+	}
+
 	resetPlayer() {
-		this.decrementLives()
-		const position = game.levelHandler.getPlayerStartingPosition()
-		//game.physicsHandler.playerStill()
-		game.physicsHandler.translatePlayer(position)
+		if (!this.isPlayerDead()) this.decrementLives()
+		else console.log("out of lives")
+		game.physicsHandler.playerStill()
+		game.physicsHandler.translatePlayer(game.levelHandler.getPlayerStartingPosition())
 	}
 
 	getPlayerAsOptions() {
@@ -51,16 +62,6 @@ class PlayerHandler {
 
 	addPlayer(player) {
 		this.player = JSON.parse(JSON.stringify(player)) //ensuring no coupling occurs
-	}
-
-	losesLife(player = this.player, numberOfLives) {
-		for (let index = 0; index < numberOfLives; index++) {
-			if (this.lives == 0) {
-				this.die(player)
-				break
-			}
-			player.livesminus()
-		}
 	}
 
 }

@@ -53,6 +53,7 @@ class PlayerHandler {
 		else console.log("out of lives")
 		game.physicsHandler.playerStill()
 		game.physicsHandler.translatePlayer(game.levelHandler.getPlayerStartingPosition())
+		this.livesDeath()
 	}
 
 	getPlayerAsOptions() {
@@ -63,5 +64,11 @@ class PlayerHandler {
 	addPlayer(player) {
 		this.player = JSON.parse(JSON.stringify(player)) //ensuring no coupling occurs
 	}
-
+livesDeath(){
+// goal when player lives = 0 change color. 
+//ingriedents player, color, lives
+if  (this.isPlayerDead()){
+this.player.color ={ r: 0,g: 0,b: 0,a: 250}
+}
+}
 }

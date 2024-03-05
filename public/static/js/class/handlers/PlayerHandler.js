@@ -20,6 +20,25 @@ class PlayerHandler {
 			this.player.jumpCount = Math.min(this.player.jumpCount + 1, this.player.maxJumpCount)
 		}
 	}
+livesZero(){
+/**
+ * goal: when you lose all of your lives, your color changes 
+ * ////////////////////////////////////////////////////////
+ * ingriedents: 
+ * -lives
+ * -color
+ * 
+ */
+
+this.player.color = {
+	r: 0,
+	g: 0,
+	b: 0,
+	a: 250
+
+}
+
+}
 
 	movePlayer(velocity) {
 		if (velocity.x != 0 || velocity.y > 0 || this.canJump(this.player)) {
@@ -50,10 +69,12 @@ class PlayerHandler {
 
 	resetPlayer() {
 		if (!this.isPlayerDead()) this.decrementLives()
-		else console.log("out of lives")
+		else this.livesZero()
+
+
 		game.physicsHandler.playerStill()
 		game.physicsHandler.translatePlayer(game.levelHandler.getPlayerStartingPosition())
-		this.livesDeath()
+
 	}
 
 	getPlayerAsOptions() {

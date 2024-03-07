@@ -4,9 +4,9 @@ class RenderHandler {
 	renderFrame() {
 		const physics = game.physicsHandler
 		const pHandler = game.playerHandler
-
+		background(0);
 		rectMode(CENTER)
-		background(0)
+	
 		let { x, y, width, height } = pHandler.getPlayerAsOptions()
 		let playerAngle = physics.getPlayerBody().angle
 		this.showRect({

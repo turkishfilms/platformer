@@ -9,10 +9,9 @@ class LevelHandler {
 	getLevelData(levelNumber) {
 		return this.levels[levelNumber - 1]
 	}
-	getPlayerStartingPosition(level) {
+	getPlayerStartingPosition() {
+		console.log("LH,gPSP-levels,current,player",this.levels, this.currentLevel, this.levels[this.currentLevel],)
 		return this.levels[this.currentLevel].player[0].position
-
-
 	}
 
 	setCurrentLevel(levelNumber) {

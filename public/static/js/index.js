@@ -1,11 +1,19 @@
 
 let game;
+let img;
+let getImg;
 
+function preload(){
+img = loadImage('static/assets/burgercube.jpg');
+
+
+}
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
 	background(0);
 	textSize(25)
+	imageMode(CENTER)
 	game = new GameHandler({ physicsHandler: new PhysicsHandler({ sub: ['player', 'obstacles'] }), levels: levelData })
 }
 
@@ -28,5 +36,9 @@ function keyPressed() {
 }
 
 function draw() {
+	//let x=windowWidth
+	//let y=windowHeight
+	//	image(img, x/2, y/2, x,y)
 	game.nextFrame()
+
 }

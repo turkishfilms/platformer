@@ -46,6 +46,15 @@ class Player {
 		this.jumpCount = startingJumpCount
 		this.maxJumpCount = maxJumpCount
 		this.options = options
-		this.alternateColors = altColors
+		this.alternateColors = alternateColors
 	}
 }
+
+
+
+
+
+
+
+
+

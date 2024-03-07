@@ -1,12 +1,16 @@
 
 let game;
-
-
+let bob
+let deathScreen
+function preload(){
+	bob = loadImage("static/assets/ememy.jpg")
+	deathScreen = loadImage("static/assets/burger cube player.jpg")
+}
 function setup() {
 	createCanvas(windowWidth, windowHeight);
 	background(0);
 	textSize(25)
-	game = new GameHandler({ physicsHandler: new PhysicsHandler({ sub: ['player', 'obstacles'] }), levels: levelData })
+	game = new GameHandler({ dimensions:{width:windowWidth,height:windowHeight}, physicsHandler: new PhysicsHandler({ sub: ['player', 'obstacles'] }), levels: levelData })
 }
 
 function keyPressed() {
@@ -29,4 +33,5 @@ function keyPressed() {
 
 function draw() {
 	game.nextFrame()
+// image(bob, game.playerHandler.player.position.x, game.playerHandler.player.position.y, 50, 50)
 }

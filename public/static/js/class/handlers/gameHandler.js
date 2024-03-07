@@ -6,12 +6,14 @@ class GameHandler {
 		playerHandler = new PlayerHandler({ player: player }),
 		levelHandler = new LevelHandler({ levels: levels }),
 		physicsHandler = new PhysicsHandler({ physics: physics }),
-		renderHandler = new RenderHandler()
+		renderHandler = new RenderHandler(),
+		dimensions = {width:100,height:100}
 	} = {}) {
 		this.playerHandler = playerHandler;
 		this.levelHandler = levelHandler;
 		this.physicsHandler = physicsHandler
 		this.renderHandler = renderHandler
+		this.dimensions = dimensions
 		this.isPaused = false
 		this.levelInit()
 	}

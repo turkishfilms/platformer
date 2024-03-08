@@ -20,28 +20,18 @@ class PlayerHandler {
 			this.player.jumpCount = Math.min(this.player.jumpCount + 1, this.player.maxJumpCount)
 		}
 	}
-livesZero(){
-/**
- * goal: when you lose all of your lives, your color changes 
- * ////////////////////////////////////////////////////////
- * ingriedents: 
- * -lives
- * -color
- * 
- */
 
-this.player.color = {
-	r: 0,
-	g: 0,
-	b: 0,
-	a: 250
-
-}
-
-}
+	livesZero() {
+		/** goal: when you lose all of your lives, your color changes 
+		 * ingriedents: 
+		 * -lives
+		 * -color */
+		const color = { r: 0, g: 0, b: 0, a: 250 } //black
+		this.colorPicker(color)
+	}
 
 	movePlayer(velocity) {
-		if ((velocity.x != 0 || velocity.y > 0 || this.canJump(this.player))&&!game.isPaused) {
+		if ((velocity.x != 0 || velocity.y > 0 || this.canJump(this.player)) && !game.isPaused) {
 			//if horizontal or downwards go for it. if upwards, check if jump available.
 			if (velocity.y < 0) this.player.jumpCount--
 			game.physicsHandler.movePlayer({ x: velocity.x * this.player.moveSpeed, y: velocity.y * this.player.jumpSpeed })
@@ -85,14 +75,14 @@ this.player.color = {
 	addPlayer(player) {
 		this.player = JSON.parse(JSON.stringify(player)) //ensuring no coupling occurs
 	}
-livesDeath(){
-// goal when player lives = 0 change color. 
-//ingriedents player, color, lives
-if  (this.isPlayerDead()){
-this.colorPicker({ r: 0,g: 0,b: 0,a: 250})
-}
-}
-colorPicker(color){
-this.player.color = color
-}
+	livesDeath() {
+		// goal when player lives = 0 change color. 
+		//ingriedents player, color, lives
+		if (this.isPlayerDead()) {
+			this.colorPicker({ r: 0, g: 0, b: 0, a: 250 })
+		}
+	}
+	colorPicker(color) {
+		this.player.color = color
+	}
 }

@@ -10,22 +10,15 @@ class RenderHandler {
 	
 		let { x, y, width, height } = pHandler.getPlayerAsOptions()
 		let playerAngle = physics.getPlayerBody().angle
-		this.showSprite({
-
+		const data = {
 			color: pHandler.canJump(pHandler.player) ? pHandler.player.color : { r: 255, g: 0, b: 0 },
 			size: { w: width, h: height },
 			position: { x: x, y: y },
 			angle: playerAngle,
+	}
 
-	},blackGuy)
-		this.showSprite({
-
-			color: pHandler.canJump(pHandler.player) ? pHandler.player.color : { r: 255, g: 0, b: 0 },
-			size: { w: width, h: height },
-			position: { x: x, y: y },
-			angle: playerAngle,
-
-	},yellowGuy)
+		if(frameCount%2==0){this.showSprite(data,blackGuy)}
+	else{this.showSprite(data,yellowGuy)}
 		//this doesnt belong in renderhandler. have small show function in which the data is sent in
 		physics.getObstaclePosition().map(obstacle => this.showRect(obstacle))
 		this.showText(pHandler.player.lives, 80, 80)

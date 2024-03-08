@@ -4,6 +4,7 @@ class RenderHandler {
 	renderFrame() {
 		const physics = game.physicsHandler
 		const pHandler = game.playerHandler
+		
 
 		rectMode(CENTER)
 		background(0)
@@ -16,6 +17,12 @@ class RenderHandler {
 			position: { x: x, y: y },
 			angle: playerAngle,
 		},bob)
+		this.showSprite({
+			color: pHandler.canJump(pHandler.player) ? pHandler.player.color : { r: 255, g: 0, b: 0 },
+			size: { w: width, h: height },
+			position: { x: x, y: y },
+			angle: playerAngle,
+		},blackSteve)
 		//this doesnt belong in renderhandler. have small show function in which the data is sent in
 		physics.getObstaclePosition().map(obstacle => this.showRect(obstacle))
 		this.showText(pHandler.player.lives, 80, 80)
@@ -57,6 +64,7 @@ class RenderHandler {
 backgroundChanger(userImage){
 	const {width:w, height:h} = game.dimensions
 	image(userImage,w/2,h/2,w,h)
+	
 }
 deathScreen(){
 	this.backgroundChanger(deathScreen)

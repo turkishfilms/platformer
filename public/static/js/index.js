@@ -1,9 +1,11 @@
 
 let game;
 let bob
+let blackSteve
 let deathScreen
 function preload(){
 	bob = loadImage("static/assets/ememy.jpg")
+	blackSteve =  loadImage("static/assets/steveBlack.png")
 	deathScreen = loadImage("static/assets/burger cube player.jpg")
 }
 function setup() {

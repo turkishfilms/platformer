@@ -42,7 +42,7 @@ let levelData = [{
 
 	physics: [
 		new Physics({ restitution: 0.01 })],
-	player: [new Player({ color: { r: 0, g: 255, b: 0, a: 255 }, lives: 9999999999999, position: { x: 100, y: 300 }, options: { restitution: 0, inertia: Infinity } })],
+	player: [new Player({ color: { r: 0, g: 255, b: 0, a: 255 }, lives: 1, position: { x: 100, y: 300 }, options: { restitution: 0, inertia: Infinity } })],
 	obstacles: [
 		new Obstacle(100, 400, 125, 50),
 		new Obstacle(325, 575, 10, 10),

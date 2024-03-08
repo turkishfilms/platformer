@@ -1,12 +1,14 @@
 
 let game;
 let img;
+let yellowGuy;
+let blackGuy;
 let getImg;
 
 function preload(){
 img = loadImage('static/assets/burgercube.jpg');
-
-
+yellowGuy = loadImage('static/assets/ememy.jpg');
+blackGuy = loadImage('static/assets/steveBlack.png')
 }
 
 function setup() {
@@ -39,6 +41,8 @@ function draw() {
 	//let x=windowWidth
 	//let y=windowHeight
 	//	image(img, x/2, y/2, x,y)
+	
+
 	game.nextFrame()
 
 }

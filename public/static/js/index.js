@@ -4,11 +4,16 @@ let img;
 let yellowGuy;
 let blackGuy;
 let getImg;
+let skull;
+let cryskull;
+let redskull;
 
 function preload(){
 img = loadImage('static/assets/burgercube.jpg');
 yellowGuy = loadImage('static/assets/ememy.jpg');
 blackGuy = loadImage('static/assets/steveBlack.png')
+skull = loadImage('static/assets/skull.png')
+cryskull = loadImage('static/assets/skull-orig.png')
 }
 
 function setup() {

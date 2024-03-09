@@ -15,7 +15,7 @@ class RenderHandler {
 		height
 	} = pHandler.getPlayerAsOptions()
 	let playerAngle = physics.getPlayerBody().angle
-	if (frameCount %2 == 0) {
+	if (frameCount %30 < 15) {
 		this.showSprite({
 			color: pHandler.canJump(pHandler.player) ? pHandler.player.color : {
 				r: 255,
@@ -31,7 +31,7 @@ class RenderHandler {
 				y: y
 			},
 			angle: playerAngle,
-		}, blackGuy)
+		}, skull)
 	} else {
 		this.showSprite({
 			color: pHandler.canJump(pHandler.player) ? pHandler.player.color : {
@@ -48,7 +48,7 @@ class RenderHandler {
 				y: y
 			},
 			angle: playerAngle,
-		}, yellowGuy)
+		}, cryskull)
 	}
 	//this doesnt belong in renderhandler. have small show function in which the data is sent in
 	physics.getObstaclePosition().map(obstacle => this.showRect(obstacle))

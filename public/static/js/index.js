@@ -1,19 +1,13 @@
 
-let game;
-let img;
-let yellowGuy;
-let blackGuy;
-let getImg;
-let skull;
-let cryskull;
-let redskull;
+let game,assets ={}
 
 function preload(){
-img = loadImage('static/assets/burgercube.jpg');
-yellowGuy = loadImage('static/assets/ememy.jpg');
-blackGuy = loadImage('static/assets/steveBlack.png')
-skull = loadImage('static/assets/skull.png')
-cryskull = loadImage('static/assets/skull-orig.png')
+assets.img = loadImage('static/assets/burgercube.jpg');
+assets.yellowGuy = loadImage('static/assets/ememy.jpg');
+assets.blackGuy = loadImage('static/assets/steveBlack.png')
+assets.skull = loadImage('static/assets/skull.png')
+assets.cryskull = loadImage('static/assets/skull-orig.png')
+assets.creeper = loadImage('static/assets/creeper.webp')
 }
 
 function setup() {

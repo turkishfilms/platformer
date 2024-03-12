@@ -16,12 +16,12 @@ class RenderHandler {
 		}
 		const frameCycle = 40
 		if (frameCount % frameCycle < frameCycle / 2) {
-			this.showSprite(data, skull)
+			this.showSprite(data, assets.skull)
 		} else {
-			this.showSprite(data, cryskull)
+			this.showSprite(data, assets.cryskull)
 		}
 		//this doesnt belong in renderhandler. have small show function in which the data is sent in
-		physics.getObstaclePosition().map(obstacle => this.showRect(obstacle))
+		physics.getObstaclePosition().map(obstacle => this.showSprite(obstacle, assets.creeper))
 		this.showText(pHandler.player.lives, 80, 80)
 	}
 	showRect(data) {

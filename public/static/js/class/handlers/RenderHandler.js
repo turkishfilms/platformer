@@ -85,4 +85,6 @@ class RenderHandler {
 		image(sprite, 0, 0, w, h)
 		resetMatrix()
 	}
+
+
 }

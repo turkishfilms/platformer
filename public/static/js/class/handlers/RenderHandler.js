@@ -86,5 +86,9 @@ class RenderHandler {
 		resetMatrix()
 	}
 
-
+	backgroundChanger(userImage){
+		const {width:w, height:h} = game.dimensions
+		image(userImage,w/2,h/2,w,h)
+		
+	}
 }

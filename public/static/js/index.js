@@ -15,7 +15,7 @@ function setup() {
 	background(0);
 	textSize(25)
 	imageMode(CENTER)
-	game = new GameHandler({ physicsHandler: new PhysicsHandler({ sub: ['player', 'obstacles'] }), levels: levelData })
+	game = new GameHandler({ physicsHandler: new PhysicsHandler({ sub: ['player', 'obstacles'] }), levels: levelData, dimensions:{height: windowHeight,width: windowWidth}})
 }
 
 function keyPressed() {

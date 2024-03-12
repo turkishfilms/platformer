@@ -4,7 +4,7 @@ class RenderHandler {
 	renderFrame() {
 		const physics = game.physicsHandler
 		const pHandler = game.playerHandler
-		background(0);
+		this.backgroundChanger(assets.creeper);
 		rectMode(CENTER)
 		let { x, y, width, height } = pHandler.getPlayerAsOptions()
 		let playerAngle = physics.getPlayerBody().angle

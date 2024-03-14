@@ -4,7 +4,7 @@ class RenderHandler {
 	renderFrame() {
 		const physics = game.physicsHandler
 		const pHandler = game.playerHandler
-		this.backgroundChanger(assets.creeper);
+		this.backgroundChanger(assets.spiderSheet);
 		rectMode(CENTER)
 		let { x, y, width, height } = pHandler.getPlayerAsOptions()
 		let playerAngle = physics.getPlayerBody().angle
@@ -21,7 +21,7 @@ class RenderHandler {
 			this.showSprite(data, assets.cryskull)
 		}
 		//this doesnt belong in renderhandler. have small show function in which the data is sent in
-		physics.getObstaclePosition().map(obstacle => this.showSprite(obstacle, assets.creeper))
+		physics.getObstaclePosition().map(obstacle => this.showSprite(obstacle, assets.blackGuy))
 		this.showText(pHandler.player.lives, 80, 80)
 	}
 	showRect(data) {

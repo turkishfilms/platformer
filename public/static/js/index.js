@@ -8,6 +8,7 @@ assets.blackGuy = loadImage('static/assets/steveBlack.png')
 assets.skull = loadImage('static/assets/skull.png')
 assets.cryskull = loadImage('static/assets/skull-orig.png')
 assets.creeper = loadImage('static/assets/creeper.webp')
+assets.spiderSheet = loadImage('static/assets/LPC_Spiders/LPC_Spiders/spider05.png')
 }
 
 function setup() {
@@ -15,6 +16,7 @@ function setup() {
 	background(0);
 	textSize(25)
 	imageMode(CENTER)
+	assets.new = assets.blackGuy.get(50,50,50,50)
 	game = new GameHandler({ physicsHandler: new PhysicsHandler({ sub: ['player', 'obstacles'] }), levels: levelData, dimensions:{height: windowHeight,width: windowWidth}})
 }
 
@@ -43,5 +45,5 @@ function draw() {
 	
 
 	game.nextFrame()
-
+image(assets.new,frameCount%windowWidth,80)
 }

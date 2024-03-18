@@ -4,7 +4,8 @@ class RenderHandler {
 	renderFrame() {
 		const physics = game.physicsHandler
 		const pHandler = game.playerHandler
-		this.backgroundChanger(assets.spiderSheet);
+		//this.backgroundChanger(assets.spiderSheet);
+		background(0)
 		rectMode(CENTER)
 		let { x, y, width, height } = pHandler.getPlayerAsOptions()
 		let playerAngle = physics.getPlayerBody().angle
@@ -14,11 +15,11 @@ class RenderHandler {
 			position: { x: x, y: y },
 			angle: playerAngle,
 		}
-		const frameCycle = 40
+		const frameCycle = 2
 		if (frameCount % frameCycle < frameCycle / 2) {
-			this.showSprite(data, assets.skull)
+			this.showSprite(data, assets.spiderSprite[frameCount%10])
 		} else {
-			this.showSprite(data, assets.cryskull)
+			this.showSprite(data, assets.spiderSprite[0])
 		}
 		//this doesnt belong in renderhandler. have small show function in which the data is sent in
 		physics.getObstaclePosition().map(obstacle => this.showSprite(obstacle, assets.blackGuy))

@@ -43,7 +43,7 @@ class PhysicsHandler {
 
 	addPlayer(playerOptions) {
 		const { x, y, width, height, restitution } = playerOptions
-		const playerRect = Matter.Bodies.rectangle(x, y, width, height, { restitution: restitution })
+		const playerRect = Matter.Bodies.rectangle(x, y, width, height, { inertia: Infinity, restitution: restitution })
 		//this is prone to failure, paramaterize the output
 		Matter.Composite.add(this.getPlayerComposite(), playerRect)
 	}

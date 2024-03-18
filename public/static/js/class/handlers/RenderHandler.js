@@ -18,10 +18,8 @@ class RenderHandler {
 		const frameCycle = 2
 		if (frameCount % frameCycle < frameCycle / 2) {
 			this.showSprite(data, assets.spiderSprite[frameCount%10])
-			this.showSprite(data, assets.spiderSprite[frameCount%10])
 		} else {
 			this.showSprite(data, assets.spiderSprite[frameCount%10])
-			this.showSprite(data, assets.spiderSprite[0])
 		}
 		//this doesnt belong in renderhandler. have small show function in which the data is sent in
 		physics.getObstaclePosition().map(obstacle => this.showSprite(obstacle, assets.cryskull))

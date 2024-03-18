@@ -13,32 +13,27 @@ function preload() {
 function setup() {
 	createCanvas(windowWidth, windowHeight);
 	assets.spiderSprite = getSpriteFromSheet(assets.spiderSheet)
+	
+	assets.spiderSprite = getSpriteFromSheet(assets.spiderSheet)
 	background(0);
 	textSize(25)
 	imageMode(CENTER)
-	assets.new = assets.blackGuy.get(50, 50, 50, 50)
-	game = new GameHandler({
-		physicsHandler: new PhysicsHandler({
-			sub: ['player', 'obstacles']
-		}),
-		levels: levelData,
-		dimensions: {
-			height: windowHeight,
-			width: windowWidth
-		}
-	})
+	assets.new = assets.blackGuy.get(50,50,50,50)
+	game = new GameHandler({ physicsHandler: new PhysicsHandler({ sub: ['player', 'obstacles'] }), levels: levelData, dimensions:{height: windowHeight,width: windowWidth}})
 }
 
-function getSpriteFromSheet(sheet) {
-	let spriteList = []
-	let size = 64
-	for (let index = 0; index <10; index++) {
-		spriteList.push(sheet.get(index * size,128,size,size))
-	
-	}
-	return spriteList
+function getSpriteFromSheet(sheet){
+const spriteList = []
+let size = 64
+for (let index = 0; index < 10; index++) {
+	spriteList.push(sheet.get(index*size, 64, size, size))
 }
 
+
+
+return spriteList
+
+}
 function keyPressed() {
 	if (key == "d" || key == "D") {
 		game.movePlayerRight();

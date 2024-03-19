@@ -33,6 +33,35 @@ class PhysicsHandler {
 		//this is prone to failure, paramaterize the output
 		Matter.Composite.add(this.getPlayerComposite(), playerRect)
 	}
+	hitblock(){
+let Matter.Query = 
+if (Matter.Query.collides(player, game.physicsHandler.getObstacleComposite().bodies).length > 0) {
+			this.player.jumpCount = Math.min(this.player.jumpCount + 1, this.player.maxJumpCount)
+		}
+		Matter.Query.collides(body, bodies) 
+
+	}
+	
+	disapearBlock(){
+
+
+
+
+	}
+	
+	disapear(block, player){
+		/**a block
+		 * -disapears on impact of the player::::::
+		 * -disapears automatically (quickly)
+		 * -comes back when disapeared
+		 * ::::matter.js collison mask::::
+		 */
+		
+if (this.hitblock(block, player)){
+this.disapearBlock(block, player)
+
+}
+
 
 	addObstacles(obstacles, options = { isStatic: false, restitution: 0 }) {
 		obstacles.forEach(obstacle => {

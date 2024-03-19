@@ -97,4 +97,13 @@ class RenderHandler {
 		image(userImage,w/2,h/2,w,h)
 		
 	}
+	deathScreen(){
+		const {width:w, height:h} = game.dimensions
+		this.backgroundChanger(assets.deathScreen1,w/2,h/2)
+this.showText("You Died Loser💀!",w/2,h/2)
+/*
+ Goal To make a Death Screen When you run out of lives you get to restart the game after
+ It will have a Text that says YOU DIED LOSER! skull emoji
+ Ingredients Image, the pause function,text */
+	}
 }

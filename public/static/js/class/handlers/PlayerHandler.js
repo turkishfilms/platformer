@@ -28,6 +28,8 @@ class PlayerHandler {
 		 * -color */
 		const color = { r: 0, g: 0, b: 0, a: 250 } //black
 		this.colorPicker(color)
+		game.pauseDeath()
+		game.renderHandler.deathScreen()
 	}
 
 	movePlayer(velocity) {

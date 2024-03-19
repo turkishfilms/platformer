@@ -85,6 +85,11 @@ class GameHandler {
 
 	togglePaused() {
 		this.isPaused = this.isPaused ? false : true
-	}
 
+	}
+pauseDeath(){
+
+	this.isPaused = true
+	this.renderHandler.deathScreen()
+}
 }

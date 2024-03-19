@@ -8,6 +8,7 @@ function preload() {
 	assets.cryskull = loadImage('static/assets/skull-orig.png')
 	assets.creeper = loadImage('static/assets/creeper.webp')
 	assets.spiderSheet = loadImage('static/assets/LPC_Spiders/LPC_Spiders/spider05.png')
+	assets.deathScreen1 = loadImage('static/assets/black-screen-of-death.webp') 
 }
 
 function setup() {

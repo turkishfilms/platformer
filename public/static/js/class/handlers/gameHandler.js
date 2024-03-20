@@ -21,6 +21,7 @@ class GameHandler {
 		this.physicsHandler.simulateWorldByOneFrame()
 		this.playerHandler.updatePlayer()
 		this.renderHandler.show()
+		console.log(this.physicsHandler.getCollisions())
 	}
 
 	levelInit() {

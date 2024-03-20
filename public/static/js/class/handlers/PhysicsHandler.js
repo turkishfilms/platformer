@@ -49,9 +49,11 @@ class PhysicsHandler {
 		//this is prone to failure, paramaterize the output
 		Matter.Composite.add(this.getPlayerComposite(), playerRect)
 	}
-	
+
 	getCollisions() {
-		return Matter.Query.collides(player, game.physicsHandler.getObstacleComposite().bodies)
+		//it returns the player and what it colllides with
+		//in an array
+		return Matter.Query.collides(this.getPlayerBody(), game.physicsHandler.getObstacleComposite().bodies)
 	}
 
 	disapearCollisionCheck() {
@@ -91,65 +93,65 @@ class PhysicsHandler {
 			this.disapearBlock(block, player)
 
 		}
-
-
-		addObstacles(obstacles, options = {
-			isStatic: false,
-			restitution: 0
-		}) {
-			obstacles.forEach(obstacle => {
-				let {
-					position: {
-						x,
-						y
-					},
-					size: {
-						w: width,
-						h: height
-					}
-				} = obstacle
-				let rect = Matter.Bodies.rectangle(x, y, width, height, {
-					isStatic: options.isStatic,
-					restitution: options.restitution
-				})
-				Matter.Composite.add(this.getObstacleComposite(), rect)
-			});
-		}
-
-		getPlayerComposite() {
-			return Matter.Composite.allComposites(this.engine.world).filter(composite => composite.label == this.compositeStructure.player)[0]
-		}
-
-		getObstacleComposite() {
-			return Matter.Composite.allComposites(this.engine.world).filter(composite => composite.label == this.compositeStructure.obstacle)[0]
-		}
-
-		getPlayerBody() {
-			//get the body of the player
-			//ingredients: players body
-			//returns player body
-			const playercomposite = this.getPlayerComposite()
-			if (playercomposite.bodies.length >= 1) return playercomposite.bodies[0]
-
-		}
-
-		getObstaclePosition() { //fix this to use labels
-			return this.engine.world.composites[1].bodies.map(obs => {
-				return {
-					size: {
-						h: obs.bounds.max.y - obs.bounds.min.y,
-						w: obs.bounds.max.x - obs.bounds.min.x
-					},
-					position: {
-						x: obs.position.x,
-						y: obs.position.y
-					}
-				}
-			})
-		}
-
-		clearComposite() {
-			Matter.Composite.clear(this.engine.world)
-			// Reoves composites from the given composite. 
-		}
 	}
+
+	addObstacles(obstacles, options = {
+		isStatic: false,
+		restitution: 0
+	}) {
+		obstacles.forEach(obstacle => {
+			let {
+				position: {
+					x,
+					y
+				},
+				size: {
+					w: width,
+					h: height
+				}
+			} = obstacle
+			let rect = Matter.Bodies.rectangle(x, y, width, height, {
+				isStatic: options.isStatic,
+				restitution: options.restitution
+			})
+			Matter.Composite.add(this.getObstacleComposite(), rect)
+		});
+	}
+
+	getPlayerComposite() {
+		return Matter.Composite.allComposites(this.engine.world).filter(composite => composite.label == this.compositeStructure.player)[0]
+	}
+
+	getObstacleComposite() {
+		return Matter.Composite.allComposites(this.engine.world).filter(composite => composite.label == this.compositeStructure.obstacle)[0]
+	}
+
+	getPlayerBody() {
+		//get the body of the player
+		//ingredients: players body
+		//returns player body
+		const playercomposite = this.getPlayerComposite()
+		if (playercomposite.bodies.length >= 1) return playercomposite.bodies[0]
+
+	}
+
+	getObstaclePosition() { //fix this to use labels
+		return this.engine.world.composites[1].bodies.map(obs => {
+			return {
+				size: {
+					h: obs.bounds.max.y - obs.bounds.min.y,
+					w: obs.bounds.max.x - obs.bounds.min.x
+				},
+				position: {
+					x: obs.position.x,
+					y: obs.position.y
+				}
+			}
+		})
+	}
+
+	clearComposite() {
+		Matter.Composite.clear(this.engine.world)
+		// Reoves composites from the given composite. 
+	}
+}

@@ -19,11 +19,11 @@ class GameHandler {
 	}
 
 	nextFrame() {
-		if (this.isPaused) return
+		if (!this.isPaused){
 		this.physicsHandler.simulateWorldByOneFrame()
-		if (this.physicsHandler.isPlayerOffScreen()) this.playerHandler.resetPlayer()
-		this.playerHandler.updatePlayer()
 		this.renderHandler.renderFrame()
+	if (this.physicsHandler.isPlayerOffScreen()) this.playerHandler.resetPlayer()
+		this.playerHandler.updatePlayer()}
 	}
 
 	levelInit() {

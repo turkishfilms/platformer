@@ -40,6 +40,7 @@ class RenderHandler {
 		physics.getObstaclePosition().map(obstacle => this.showSprite(obstacle, assets.cryskull))
 		this.showText(pHandler.player.lives, 80, 80)
 	}
+
 	backgroundChanger(userImage) {
 		const {
 			width: w,
@@ -48,6 +49,7 @@ class RenderHandler {
 		image(userImage, w / 2, h / 2, w, h)
 
 	}
+
 	showRect(data) {
 		const {
 			color: {
@@ -77,9 +79,11 @@ class RenderHandler {
 		rect(0, 0, w, h);
 		resetMatrix()
 	}
+
 	showText(userText, x, y) {
 		text(userText, x, y)
 	}
+
 	showSprite(data, sprite) {
 		const {
 			color: {
@@ -118,6 +122,7 @@ class RenderHandler {
 		image(userImage, w / 2, h / 2, w, h)
 
 	}
+
 	deathScreen() {
 		const {
 			width: w,

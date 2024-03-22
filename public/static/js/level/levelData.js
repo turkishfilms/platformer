@@ -5,7 +5,7 @@ let levelData = [{
 },
 {
 	physics: [new Physics({ restitution: 0.01 })],
-	player: [new Player({ lives:1,color: { r: 0, g: 255, b: 0, a: 255 }, options: { restitution: 0, inertia: Infinity } })],
+	player: [new Player({ lives:3,color: { r: 0, g: 255, b: 0, a: 255 }, options: { restitution: 0, inertia: Infinity } })],
 	obstacles: [
 		new Obstacle(0, 100, 100, 100),
 		new Obstacle(200, 200, 150, 50),

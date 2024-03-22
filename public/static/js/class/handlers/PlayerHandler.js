@@ -52,6 +52,7 @@ class PlayerHandler {
 	}
 
 	incrementLives() {
+		
 		this.player.lives++
 	}
 

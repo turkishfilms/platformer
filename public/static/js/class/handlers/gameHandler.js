@@ -3,11 +3,20 @@ class GameHandler {
 		levels = [],
 		physics = new Physics(),
 		player = new Player(),
-		playerHandler = new PlayerHandler({ player: player }),
-		levelHandler = new LevelHandler({ levels: levels }),
-		physicsHandler = new PhysicsHandler({ physics: physics }),
+		playerHandler = new PlayerHandler({
+			player: player
+		}),
+		levelHandler = new LevelHandler({
+			levels: levels
+		}),
+		physicsHandler = new PhysicsHandler({
+			physics: physics
+		}),
 		renderHandler = new RenderHandler(),
-		dimensions = {width:100,height:100}
+		dimensions = {
+			width: 100,
+			height: 100
+		}
 	} = {}) {
 		this.playerHandler = playerHandler;
 		this.levelHandler = levelHandler;
@@ -19,37 +28,53 @@ class GameHandler {
 	}
 
 	nextFrame() {
-		if (!this.isPaused){
+		if (this.isPaused) return
 		this.physicsHandler.simulateWorldByOneFrame()
 		this.renderHandler.renderFrame()
-	if (this.physicsHandler.isPlayerOffScreen()) this.playerHandler.resetPlayer()
-		this.playerHandler.updatePlayer()}
+		if (this.physicsHandler.isPlayerOffScreen()) this.playerHandler.resetPlayer()
+		this.playerHandler.updatePlayer()
 	}
 
 	levelInit() {
 		const currentLevelNumber = this.getCurrentLevel()
 		const currrentLevel = this.levelHandler.getLevelData(currentLevelNumber)
-		const physicsHandler = new PhysicsHandler({ physics: currrentLevel.physics }) //FIXME physics is beng added in a wierd way fix it
+		const physicsHandler = new PhysicsHandler({
+			physics: currrentLevel.physics
+		}) //FIXME physics is beng added in a wierd way fix it
 		this.playerHandler.addPlayer(currrentLevel.player[0])
 		physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions())
-		physicsHandler.addObstacles(currrentLevel.obstacles, { isStatic: true })
+		physicsHandler.addObstacles(currrentLevel.obstacles, {
+			isStatic: true
+		})
 		this.physicsHandler = physicsHandler
 	}
 
 	movePlayerRight() {
-		this.playerHandler.movePlayer({ x: 1, y: 0 })
+		this.playerHandler.movePlayer({
+			x: 1,
+			y: 0
+		})
 	}
 
 	movePlayerLeft() {
-		this.playerHandler.movePlayer({ x: -1, y: 0 })
+		this.playerHandler.movePlayer({
+			x: -1,
+			y: 0
+		})
 	}
 
 	movePlayerUp() {
-		this.playerHandler.movePlayer({ x: 0, y: -1 })
+		this.playerHandler.movePlayer({
+			x: 0,
+			y: -1
+		})
 	}
 
 	movePlayerDown() {
-		this.playerHandler.movePlayer({ x: 0, y: 1 })
+		this.playerHandler.movePlayer({
+			x: 0,
+			y: 1
+		})
 	}
 
 	getCurrentLevel() {
@@ -85,11 +110,24 @@ class GameHandler {
 
 	togglePaused() {
 		this.isPaused = this.isPaused ? false : true
-
 	}
-pauseDeath(){
 
-	this.isPaused = true
-	this.renderHandler.deathScreen()
-}
+	pauseDeath() {
+		this.isPaused = true
+		this.renderHandler.deathScreen()
+	}
+
+	addLives() {
+		game.playerHandler.player.lives++
+	}
+
+	startOver(){
+		game.setCurrentLevel(1)
+		game.togglePaused()
+	}
+	startButton() {
+		let button = createButton('click me');
+		button.position(windowWidth-100, windowHeight/2);
+		button.mousePressed(this.startOver)
+	}
 }

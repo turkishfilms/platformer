@@ -111,8 +111,28 @@ class GameHandler {
   togglePaused() {
     this.isPaused = this.isPaused ? false : true;
   }
+
   pauseDeath() {
     this.isPaused = true;
     this.renderHandler.deathScreen();
+  }
+
+  addLives() {
+    game.playerHandler.player.lives++;
+  }
+
+  startOver() {
+    game.setCurrentLevel(1);
+    game.resetLevel();
+    game.togglePaused();
+    console.log("GH:startOver->startoverbutton", this.startOverButton);
+    game.startOverButton.hide();
+  }
+
+  startButton() {
+    const button = createButton("Try Again?");
+    this.startOverButton = button;
+    this.startOverButton.position(windowWidth - 100, windowHeight / 2);
+    this.startOverButton.mousePressed(this.startOver);
   }
 }

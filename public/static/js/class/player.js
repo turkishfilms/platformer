@@ -1,26 +1,40 @@
-
 class Player {
 	constructor({
+		alternateColors = {
+			noJumpColor: {
+				r: 222,
+				g: 150,
+				b: 35,
+				a: 250
+			}
+		 },
 		color = {
 			r: 222,
 			g: 150,
 			b: 35,
 			a: 250
-		}, size = {
+		},
+		sprites,	
+		size = {
 			width: 50,
 			height: 50
-		}, position = {
+		},
+		position = {
 			x: 56,
 			y: 215
-		}, speed = {
+		},
+		speed = {
 			xSpeed: 50,
 			ySpeed: 50
-		}, lives = 3,
+		},
+		lives = 3,
 		startingJumpCount = 1,
 		maxMoveSpeed = 4,
 		maxJumpSpeed = 4,
 		maxJumpCount = 1,
-		options = { restitution: 0 }
+		options = {
+			restitution: 0
+		}
 	} = {}) {
 		this.color = color
 		this.bounds = size
@@ -32,5 +46,16 @@ class Player {
 		this.jumpCount = startingJumpCount
 		this.maxJumpCount = maxJumpCount
 		this.options = options
+		this.alternateColors = alternateColors
+		this.sprites = sprites
 	}
 }
+
+
+
+
+
+
+
+
+

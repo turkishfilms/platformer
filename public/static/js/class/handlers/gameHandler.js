@@ -1,89 +1,118 @@
 class GameHandler {
-	constructor({
-		levels = [],
-		physics = new Physics(),
-		player = new Player(),
-		playerHandler = new PlayerHandler({ player: player }),
-		levelHandler = new LevelHandler({ levels: levels }),
-		physicsHandler = new PhysicsHandler({ physics: physics }),
-		renderHandler = new RenderHandler()
-	} = {}) {
-		this.playerHandler = playerHandler;
-		this.levelHandler = levelHandler;
-		this.physicsHandler = physicsHandler
-		this.renderHandler = renderHandler
-		this.gamePaused = false
-		this.levelInit()
-	}
+  constructor({
+    levels = [],
+    physics = new Physics(),
+    player = new Player(),
+    playerHandler = new PlayerHandler({ player: player }),
+    levelHandler = new LevelHandler({ levels: levels }),
+    physicsHandler = new PhysicsHandler({ physics: physics }),
+    dimensions = { width: 100, height: 100 },
+    renderHandler = new RenderHandler({ screenDimensions: dimensions }),
+  } = {}) {
+    this.playerHandler = playerHandler;
+    this.levelHandler = levelHandler;
+    this.physicsHandler = physicsHandler;
+    this.renderHandler = renderHandler;
+    this.dimensions = dimensions;
+    this.isPaused = false;
+    this.levelInit();
+  }
 
-	nextFrame() {
-		if (this.gamePaused) return
-		this.physicsHandler.simulateWorldByOneFrame()
-		this.playerHandler.updatePlayer()
-		this.renderHandler.show()
-		console.log(this.physicsHandler.getCollisions())
-	}
+  nextFrame() {
+    if (this.isPaused) return;
+    this.physicsHandler.simulateWorldByOneFrame();
+    if (this.physicsHandler.isPlayerOffScreen())
+      this.playerHandler.resetPlayer();
+    this.playerHandler.updatePlayer();
+    this.renderHandler.showFrame(this.getItemData(),{lives:'boom boy'},true,assets.spiderSheet);
+  }
 
-	levelInit() {
-		const currentLevelNumber = this.getCurrentLevel()
-		const currrentLevel = this.levelHandler.getLevelData(currentLevelNumber)
-		const physicsHandler = new PhysicsHandler({ physics: currrentLevel.physics }) //FIXME physics is beng added in a wierd way fix it
-		this.playerHandler.addPlayer(currrentLevel.player[0])
-		physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions())
-		physicsHandler.addObstacles(currrentLevel.obstacles, { isStatic: true })
-		this.physicsHandler = physicsHandler
-	}
+  getItemData() {
+    const data = [];
+    data.push(this.getPlayerData());
+    this.physicsHandler.getObstaclePosition().map((obstacle) => {
+      obstacle.sprite = assets.cryskull;
+      data.push(obstacle);
+    });
+    return data;
+  }
 
-	movePlayerRight() {
-		this.playerHandler.movePlayer({ x: 1, y: 0 })
-	}
+  getPlayerData() {
+    const { x, y, width, height } = this.playerHandler.getPlayerAsOptions();
+    return {
+      color: this.playerHandler.getColor(),
+      sprite: this.playerHandler.getSprite(),
+      size: { w: width, h: height },
+      position: { x: x, y: y },
+      angle: this.physicsHandler.getPlayerBody().angle,
+      type: "player",
+    };
+  }
 
-	movePlayerLeft() {
-		this.playerHandler.movePlayer({ x: -1, y: 0 })
-	}
+  levelInit() {
+    const currentLevelNumber = this.getCurrentLevel();
+    const currrentLevel = this.levelHandler.getLevelData(currentLevelNumber);
+    const physicsHandler = new PhysicsHandler({
+      physics: currrentLevel.physics,
+    }); //FIXME physics is beng added in a wierd way fix it
+    this.playerHandler.addPlayer(currrentLevel.player[0]);
+    physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions());
+    physicsHandler.addObstacles(currrentLevel.obstacles, { isStatic: true });
+    this.physicsHandler = physicsHandler;
+  }
 
-	movePlayerUp() {
-		this.playerHandler.movePlayer({ x: 0, y: -1 })
-	}
+  movePlayerRight() {
+    this.playerHandler.movePlayer({ x: 1, y: 0 });
+  }
 
-	movePlayerDown(jumpSpeed) {
-		this.playerHandler.movePlayer({ x: 0, y: 1 })
-	}
+  movePlayerLeft() {
+    this.playerHandler.movePlayer({ x: -1, y: 0 });
+  }
 
-	getCurrentLevel() {
-		return this.levelHandler.currentLevel
-	}
+  movePlayerUp() {
+    this.playerHandler.movePlayer({ x: 0, y: -1 });
+  }
 
-	resetLevel() {
-		this.levelInit()
-	}
+  movePlayerDown() {
+    this.playerHandler.movePlayer({ x: 0, y: 1 });
+  }
 
-	setCurrentLevel(levelNumber) {
-		this.levelHandler.setCurrentLevel(levelNumber)
-	}
+  getCurrentLevel() {
+    return this.levelHandler.currentLevel;
+  }
 
-	getPreviousLevel() {
-		return this.levelHandler.getPreviousLevel()
-	}
+  resetLevel() {
+    this.levelInit();
+  }
 
-	getNextLevel() {
-		const nextLevel = this.levelHandler.getNextLevel()
-		console.log(nextLevel)
-		return nextLevel
-	}
+  setCurrentLevel(levelNumber) {
+    this.levelHandler.setCurrentLevel(levelNumber);
+  }
 
-	nextLevel() {
-		this.setCurrentLevel(this.getNextLevel())
-		this.levelInit()
-	}
+  getPreviousLevel() {
+    return this.levelHandler.getPreviousLevel();
+  }
 
-	previousLevel() {
-		this.setCurrentLevel(this.getPreviousLevel())
-		this.levelInit()
-	}
+  getNextLevel() {
+    const nextLevel = this.levelHandler.getNextLevel();
+    return nextLevel;
+  }
 
-	togglePaused() {
-		this.gamePaused = this.gamePaused ? false : true
-	}
+  nextLevel() {
+    this.setCurrentLevel(this.getNextLevel());
+    this.levelInit();
+  }
 
+  previousLevel() {
+    this.setCurrentLevel(this.getPreviousLevel());
+    this.levelInit();
+  }
+
+  togglePaused() {
+    this.isPaused = this.isPaused ? false : true;
+  }
+  pauseDeath() {
+    this.isPaused = true;
+    this.renderHandler.deathScreen();
+  }
 }

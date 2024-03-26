@@ -15,10 +15,19 @@ class PhysicsHandler {
 			}))
 		})
 		this.compositeStructure = compositeStructure
-		// for (let i = 0; i < Object.keys(compositeStructure).length; i++) {
-		// 	Matter.Composite.add(this.engine.world, Matter.Composite.create({ label: compositeStructure[i] }))
-		// }
+		this.bounds = Matter.Bounds.create(this.initVertices())
 	}
+
+	initVertices() {
+		const corners = [{ x: 0, y: 0 }, { x: windowWidth, y: 0 }, { x: windowWidth, y: windowHeight }, { x: windowWidth, y: windowHeight },]
+		const points = corners.map(corner => Matter.Vector.create(corner.x, corner.y))
+		return Matter.Vertices.create(points, Matter.Body.create())
+	}
+
+	isPlayerOffScreen() {
+		return Matter.Query.region([this.getPlayerBody()], this.bounds, { outside: true }).length >= 1
+	}
+
 
 	movePlayer(velocity) {
 		const {
@@ -31,21 +40,18 @@ class PhysicsHandler {
 		Matter.Body.setVelocity(player, Matter.Vector.add(movementVelocity, playerVelocity))
 	}
 
+	translatePlayer(position) {
+		const { x, y } = position
+		Matter.Body.setPosition(this.getPlayerBody(), Matter.Vector.create(x, y))
+	}
+
 	simulateWorldByOneFrame() {
 		Matter.Engine.update(this.engine)
 	}
 
 	addPlayer(playerOptions) {
-		const {
-			x,
-			y,
-			width,
-			height,
-			restitution
-		} = playerOptions
-		const playerRect = Matter.Bodies.rectangle(x, y, width, height, {
-			restitution: restitution
-		})
+		const { x, y, width, height, restitution } = playerOptions
+		const playerRect = Matter.Bodies.rectangle(x, y, width, height, { inertia: Infinity, restitution: restitution })
 		//this is prone to failure, paramaterize the output
 		Matter.Composite.add(this.getPlayerComposite(), playerRect)
 	}
@@ -153,5 +159,11 @@ class PhysicsHandler {
 	clearComposite() {
 		Matter.Composite.clear(this.engine.world)
 		// Reoves composites from the given composite. 
+	}
+
+	playerStill() {
+		Matter.Body.setAngularSpeed(this.getPlayerBody(), 0)
+		Matter.Body.setAngle(this.getPlayerBody(), 0)
+		Matter.Body.setVelocity(this.getPlayerBody(), Matter.Vector.create(0, 0))
 	}
 }

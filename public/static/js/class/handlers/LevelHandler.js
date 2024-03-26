@@ -1,12 +1,16 @@
-
 class LevelHandler {
-	constructor({ levels } = {}) {
+	constructor({
+		levels
+	} = {}) {
 		this.levels = levels;
 		this.currentLevel = 1;
 	}
 
 	getLevelData(levelNumber) {
 		return this.levels[levelNumber - 1]
+	}
+	getPlayerStartingPosition() {
+		return this.levels[this.currentLevel - 1].player[0].position
 	}
 
 	setCurrentLevel(levelNumber) {

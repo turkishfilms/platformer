@@ -6,12 +6,11 @@ class RenderHandler {
   showFrame(items, data, redraw, backdrop) {
     if (redraw == true) {
       if (backdrop != 0) {
-		console.log('backdrop', backdrop) 
-		game.renderHandler.backgroundChanger(backdrop); 
-		console.log('after', 12) 
-	}
-      else {
-		background(0);}
+        background(0);
+        this.backgroundChanger(backdrop);
+      } else {
+        background(0);
+      }
     }
     items.forEach((item) => {
       if (item.type == "rect") this.showRect(item);
@@ -21,7 +20,6 @@ class RenderHandler {
   }
 
   backgroundChanger(userImage) {
-
     console.log("hello");
     // console.log("rh bc !", userImage);
     // const { width: w, height: h } = this.screenDimensions;

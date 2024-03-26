@@ -24,7 +24,7 @@ class GameHandler {
     if (this.physicsHandler.isPlayerOffScreen())
       this.playerHandler.resetPlayer();
     this.playerHandler.updatePlayer();
-    this.renderHandler.showFrame(this.getItemData(),{lives:'boom boy'},true,assets.spiderSheet);
+    this.renderHandler.showFrame(this.getItemData(),{lives:'boom boy'},true,assets.cryskull);
   }
 
   getItemData() {

@@ -20,8 +20,8 @@ class GameHandler {
 		if (this.gamePaused) return
 		this.physicsHandler.simulateWorldByOneFrame()
 		this.playerHandler.updatePlayer()
+		this.physicsHandler.handleDisappear()
 		this.renderHandler.show()
-		console.log(this.physicsHandler.getCollisions())
 	}
 
 	levelInit() {

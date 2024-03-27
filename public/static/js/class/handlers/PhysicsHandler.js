@@ -56,42 +56,28 @@ class PhysicsHandler {
 		return Matter.Query.collides(this.getPlayerBody(), game.physicsHandler.getObstacleComposite().bodies)
 	}
 
-	disapearCollisionCheck() {
+	disappearCollisionCheck() {
 		return this.getCollisions().length > 0
 	}
 
-
-	hitblock() {
-		// if player touch dissapear block 
-		// block dissapear
-		// blocks regenerate
-		if (disapearCollisionCheck()) {
-			// if the player collides with obstacle composite
-			//adds 1 to jumpcount
-			this.player.jumpCount = Math.min(this.player.jumpCount + 1, this.player.maxJumpCount)
-		}
-		Matter.Query.collides(body, bodies)
-
+	isDisappearBlock(block) {
+		return true
 	}
 
-	disapearBlock() {
+disappearBlock(block){
+	//make block desappear by making w and h 0
+	block.
+}
 
-
-
-
-	}
-
-	disapear(block, player) {
-		/**a block
-		 * -disapears on impact of the player::::::
-		 * -disapears automatically (quickly)
-		 * -comes back when disapeared
-		 * ::::matter.js collison mask::::
-		 */
-
-		if (this.hitblock(block, player)) {
-			this.disapearBlock(block, player)
-
+	handleDisappear() {
+		if (this.disappearCollisionCheck()) {
+			const collisions = this.getCollisions()
+			collisions.forEach(collision => {
+				const block = collision.bodyB
+				if (this.isDisappearBlock(block)) {
+					this.disappearBlock(block)
+				}
+			})
 		}
 	}
 

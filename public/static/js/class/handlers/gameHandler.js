@@ -23,10 +23,16 @@ class GameHandler {
 		this.physicsHandler = physicsHandler
 		this.renderHandler = renderHandler
 		this.dimensions = dimensions
-		this.isPaused = false
-		this.levelInit()
+		this.isPaused = true
+	this.gameStart()
+		
 	}
-
+gameStart(){
+	image(assets.creeper)
+	text("start here", 50 ,50 )
+	this.startGameButton("start LEVEL!!! >:)")
+	this.isPaused = true
+}
 	nextFrame() {
 		if (this.isPaused) return
 		this.physicsHandler.simulateWorldByOneFrame()
@@ -125,9 +131,20 @@ class GameHandler {
 		game.setCurrentLevel(1)
 		game.togglePaused()
 	}
-	startButton() {
-		let button = createButton('click me');
+	startButton(name) {
+		let button = createButton(name);
 		button.position(windowWidth-100, windowHeight/2);
 		button.mousePressed(this.startOver)
+	}
+	startGame(){
+		game.levelInit()
+		game.togglePaused()
+		this.startGameButton.hidden = true
+	}
+	startGameButton(name){
+		 this.startGameButton = createButton(name);
+		this.startGameButton.position(windowWidth-100, windowHeight/2);
+		this.startGameButton.mousePressed(this.startGame)
+	
 	}
 }

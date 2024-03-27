@@ -13,7 +13,9 @@ class RenderHandler {
 			width,
 			height
 		} = pHandler.getPlayerAsOptions()
-		let playerAngle = physics.getPlayerBody().angle
+		let player = physics.getPlayerBody()
+	
+		let playerAngle = player.angle
 		const data = {
 			color: pHandler.canJump(pHandler.player) ? pHandler.player.color : {
 				r: 255,

@@ -21,10 +21,16 @@ class GameHandler {
   nextFrame() {
     if (this.isPaused) return;
     this.physicsHandler.simulateWorldByOneFrame();
-    if (this.physicsHandler.isPlayerOffScreen())
+    if (this.physicsHandler.isPlayerOffScreen()) {
       this.playerHandler.resetPlayer();
+   }
     this.playerHandler.updatePlayer();
-    this.renderHandler.showFrame(this.getItemData(),{lives:'boom boy'},true,assets.cryskull);
+    this.renderHandler.showFrame(
+      this.getItemData(),
+      { lives: this.playerHandler.player.lives },
+      true,
+      assets.cryskull
+    );
   }
 
   getItemData() {
@@ -32,7 +38,7 @@ class GameHandler {
     data.push(this.getPlayerData());
     this.physicsHandler.getObstaclePosition().map((obstacle) => {
       obstacle.sprite = assets.cryskull;
-      data.push(obstacle);
+      data.push(obstacle)  
     });
     return data;
   }

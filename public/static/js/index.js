@@ -12,13 +12,13 @@ function setup() {
 	background(0);
 	textSize(25)
 	imageMode(CENTER)
-	assets.spiderSprite = getSpriteFromSheet(assets.spiderSheet, 5, 1, 64)
+	assets.spiderSprite = getSpriteFromSheet(assets.spiderSheet, 7, 3,3, 64)
 	game = new GameHandler({ physicsHandler: new PhysicsHandler({ sub: ['player', 'obstacles'] }), levels: levelData, dimensions: { height: windowHeight, width: windowWidth } })
 }
 
-function getSpriteFromSheet(sheet, numberOfImages, row, size) {
+function getSpriteFromSheet(sheet, numberOfImages, row, column, size) {
 	const spriteList = []
-	for (let index = 0; index < numberOfImages; index++) {
+	for (let index = column; index < column + numberOfImages; index++) {
 		spriteList.push(sheet.get(index * size, row * size, size, size))
 	}
 	return spriteList
@@ -51,11 +51,5 @@ function keyPressed() {
 }
 
 function draw() {
-	//let x=windowWidth
-	//let y=windowHeight
-	//	image(img, x/2, y/2, x,y)
-
-
 	game.nextFrame()
-	//image(assets.new, frameCount % windowWidth, 80)
 }

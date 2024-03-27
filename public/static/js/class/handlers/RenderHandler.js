@@ -5,11 +5,9 @@ class RenderHandler {
 
   showFrame(items, data, redraw, backdrop) {
     if (redraw == true) {
+      background(0);
       if (backdrop != 0) {
-        background(0);
         this.backgroundChanger(backdrop);
-      } else {
-        background(0);
       }
     }
     items.forEach((item) => {
@@ -20,13 +18,9 @@ class RenderHandler {
   }
 
   backgroundChanger(userImage) {
-    console.log("hello");
-    // console.log("rh bc !", userImage);
-    // const { width: w, height: h } = this.screenDimensions;
-    // console.log("rh bc !", userImage);
-    // console.log("hello");
-    // background(0);
-    // image(userImage, w / 2, h / 2, w, h);
+    const { width: w, height: h } = this.screenDimensions;
+    background(0);
+    image(userImage, w / 2, h / 2, w, h);
   }
 
   showRect(data) {

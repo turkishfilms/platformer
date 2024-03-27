@@ -1,0 +1,39 @@
+EVERY FRAME 
+check if player has collided,
+::physics handler::
+if(collisions > 0){
+    add to jumpcount ::playerhandler
+    handle dissapearing blocks
+}
+
+for block in blocks{
+    block.timeout--
+    handle reappears(block)
+}
+
+handlereappears(block){
+    if(block.timeout <0 ){
+        reappear block(block)
+    }
+}
+
+
+handledisapearing(collisonlist){
+    for block in collison list{
+        if block is dissapear{
+            dissaper(block)
+        }           
+    }
+}
+
+disspaer block(block){
+    block.w = 0
+    block.h = 0
+    block.timeout = block.timeouttime
+}
+
+reappearblcok(block){
+    block.w = block.init.size.w
+    block.h = block.init.size.h
+    block.timeout = 0
+}

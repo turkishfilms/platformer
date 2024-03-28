@@ -1,20 +1,21 @@
 class RenderHandler {
   constructor({ screenDimensions = game.dimensions } = {}) {
     this.screenDimensions = screenDimensions;
+    this.initRenderHandler();
+  }
+
+  initRenderHandler() {
+    textSize(25);
+    imageMode(CENTER);
   }
 
   showFrame(items, data, redraw, backdrop) {
-    if (redraw == true) {
+    if (redraw) {
       background(0);
-      if (backdrop != 0) {
-        this.backgroundChanger(backdrop);
-      }
+      if (backdrop) this.backgroundChanger(backdrop);
     }
-    items.forEach((item) => {
-      if (item.type == "rect") this.showRect(item);
-      else this.showSprite(item);
-    });
-    this.showText(data.lives, 80, 80);
+    items.forEach(item => this.showSprite(item));
+    data.forEach(info => this.showText(info.text, info.x, info.y));
   }
 
   backgroundChanger(userImage) {

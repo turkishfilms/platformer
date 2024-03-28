@@ -24,12 +24,19 @@ class GameHandler {
     if (this.physicsHandler.isPlayerOffScreen()) {
       this.playerHandler.resetPlayer();
     }
-    this.playerHandler.updatePlayer();
+    this.playerHandler.updatePlayer(
+      this.physicsHandler.getPlayerBody().position,
+      this.hasCollided()
+    );
     this.renderHandler.showFrame(
       this.getItemData(),
       [{ text: this.playerHandler.player.lives, x: 80, y: 80 }],
       this.getBackdrop()
     );
+  }
+
+  hasCollided() {
+    return this.physicsHandler.hasCollided();
   }
 
   getBackdrop() {
@@ -56,7 +63,7 @@ class GameHandler {
       color: this.playerHandler.getColor(),
       sprite: this.playerHandler.getSprite(),
       size: { w: width, h: height },
-      position: { x: x, y: y },
+      position: { x: x, y: y + 10 },
       angle: this.physicsHandler.getPlayerBody().angle,
       type: "player",
     };

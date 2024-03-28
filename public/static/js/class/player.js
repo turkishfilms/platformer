@@ -16,8 +16,8 @@ class Player {
 		},
 		sprites,	
 		size = {
-			width: 50,
-			height: 50
+			width: 64,
+			height: 64
 		},
 		position = {
 			x: 56,

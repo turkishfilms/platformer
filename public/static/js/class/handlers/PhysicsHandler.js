@@ -188,6 +188,15 @@ class PhysicsHandler {
     });
   }
 
+  hasCollided() {
+    return (
+      Matter.Query.collides(
+        this.getPlayerBody(),
+        this.getObstacleComposite().bodies
+      ).length > 0
+    );
+  }
+
   getObstaclePosition() {
     //fix this to use labels
     return this.engine.world.composites[1].bodies.map((obs) => {

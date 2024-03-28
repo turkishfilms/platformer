@@ -11,20 +11,16 @@ class PlayerHandler {
     this.player = player;
   }
 
-  updatePlayer() {
-    const player = game.physicsHandler.getPlayerBody();
-    this.player.position = player.position;
-    if (
-      Matter.Query.collides(
-        player,
-        game.physicsHandler.getObstacleComposite().bodies
-      ).length > 0
-    ) {
-      this.player.jumpCount = Math.min(
-        this.player.jumpCount + 1,
-        this.player.maxJumpCount
-      );
-    }
+  updatePlayer(position, hasCollided) {
+    this.player.position = position;
+    if (hasCollided) this.incrementJumpCount();
+  }
+
+  incrementJumpCount() {
+    this.player.jumpCount = Math.min(
+      this.player.jumpCount + 1,
+      this.player.maxJumpCount
+    );
   }
 
   livesZero() {
@@ -97,15 +93,15 @@ class PlayerHandler {
   }
 
   getSprite() {
-	const frameModulus = frameCount % this.player.sprites.length
+    const frameModulus = frameCount % this.player.sprites.length;
     const sprite = this.player.sprites[frameModulus];
-return sprite 
+    return sprite;
   }
 
   addPlayer(player) {
-	   const playera = JSON.parse(JSON.stringify(player)); //ensuring no coupling occurs
-     playera.sprites = assets.spiderSprite
-	 this.player = playera
+    const playera = JSON.parse(JSON.stringify(player)); //ensuring no coupling occurs
+    playera.sprites = assets.spiderSprite;
+    this.player = playera;
   }
   livesDeath() {
     // goal when player lives = 0 change color.

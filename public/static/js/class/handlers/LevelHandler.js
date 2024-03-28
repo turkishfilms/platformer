@@ -13,6 +13,12 @@ class LevelHandler {
 		return this.levels[this.currentLevel - 1].player[0].position
 	}
 
+getLevelBackdrop(){
+return {
+	redraw: this.levels[this.currentLevel].redraw,
+	backdrop: this.levels[this.currentLevel].backdrop,
+}
+}
 	setCurrentLevel(levelNumber) {
 		if (typeof levelNumber != 'number' || isNaN(levelNumber)) return
 		this.currentLevel = Math.floor(Math.max(1, Math.min(this.levels.length, levelNumber)))

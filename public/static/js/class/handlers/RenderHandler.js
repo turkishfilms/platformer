@@ -9,7 +9,7 @@ class RenderHandler {
     imageMode(CENTER);
   }
 
-  showFrame(items, data, redraw, backdrop) {
+  showFrame(items, data, {redraw, backdrop}) {
     if (redraw) {
       background(0);
       if (backdrop) this.backgroundChanger(backdrop);

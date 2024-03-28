@@ -1,4 +1,5 @@
-let levelData = [{
+let levelData = [
+	{
 	physics: [new Physics()],
 	player: [new Player({ lives:3,color: { r: 0, g: 255, b: 0, a: 255 }, position: { x: 50, y: 50 }, options: { restitution: 0, inertia: Infinity} })],
 	obstacles: [
@@ -11,7 +12,9 @@ let levelData = [{
 		new Obstacle({ x:650,y: 550,w: 25,h: 25,sprite:"cryskull" }), 
 		new Obstacle({ x:800,y: 500,w: 25,h: 25,sprite:"cryskull" }), 
 		new Obstacle({ x:950,y: 450,w: 25,h: 25,sprite:"cryskull" }), 
-		new Obstacle({ x:1100,y: 400,w: 25,h: 25,sprite:"cryskull" })]
+		new Obstacle({ x:1100,y: 400,w: 25,h: 25,sprite:"cryskull" })],
+	redraw:true,
+	backdrop: "cryskull"
 },
 {
 	physics: [new Physics({ restitution: 0.01 })],
@@ -22,6 +25,9 @@ let levelData = [{
 		new Obstacle({ x:400,y: 300,w: 100,h: 50,sprite:"cryskull" }),
 		new Obstacle({ x:600,y: 400,w: 200,h: 50,sprite:"cryskull" }),
 		new Obstacle({ x:800,y: 250,w: 50,h: 200,sprite:"cryskull" })]
+,
+	redraw:true,
+	backdrop: "cryskull"
 },
 {
 	physics: [
@@ -33,7 +39,10 @@ let levelData = [{
 		new Obstacle({ x:250,y: 300,w: 150,h: 50,sprite:"cryskull" }),
 		new Obstacle({ x:450,y: 150,w: 200,h: 200,sprite:"cryskull" }),
 		new Obstacle({ x:700,y: 400,w: 50,h: 50,sprite:"cryskull" }),
-		new Obstacle({ x:850,y: 500,w: 150,h: 50,sprite:"cryskull" })]
+		new Obstacle({ x:850,y: 500,w: 150,h: 50,sprite:"cryskull" })],
+
+	redraw:true,
+	backdrop: "cryskull"
 },
 {
 	physics: [
@@ -45,7 +54,10 @@ let levelData = [{
 		new Obstacle({ x:150,y: 200,w: 100,h: 50,sprite:"cryskull" }),
 		new Obstacle({ x:300,y: 300,w: 150,h: 50,sprite:"cryskull" }),
 		new Obstacle({ x:500,y: 250,w: 50,h: 200,sprite:"cryskull" }),
-		new Obstacle({ x:650,y: 400,w: 150,h: 50,sprite:"cryskull" })]
+		new Obstacle({ x:650,y: 400,w: 150,h: 50,sprite:"cryskull" })],
+
+	redraw:true,
+	backdrop: "cryskull"
 },
 {
 	physics: [
@@ -58,6 +70,8 @@ let levelData = [{
 		new Obstacle({ x:575,y: 575,w: 10,h: 10,sprite:"cryskull" }),
 		new Obstacle({ x:750,y: 475,w: 10,h: 10,sprite:"cryskull" }),
 		new Obstacle({ x:1150,y: 475,w: 10,h: 10,sprite:"cryskull" })]
-
+,
+	redraw:true,
+	backdrop: "cryskull"
 }
 ]

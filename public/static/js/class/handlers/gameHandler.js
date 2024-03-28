@@ -23,22 +23,29 @@ class GameHandler {
     this.physicsHandler.simulateWorldByOneFrame();
     if (this.physicsHandler.isPlayerOffScreen()) {
       this.playerHandler.resetPlayer();
-   }
+    }
     this.playerHandler.updatePlayer();
     this.renderHandler.showFrame(
       this.getItemData(),
-      { lives: this.playerHandler.player.lives },
-      true,
-      assets.cryskull
+      [{ text: this.playerHandler.player.lives, x: 80, y: 80 }],
+      this.getBackdrop()
     );
+  }
+
+  getBackdrop() {
+    const { redraw, backdrop } = this.levelHandler.getLevelBackdrop();
+    return {
+      redraw: redraw,
+      backdrop: assets[backdrop],
+    };
   }
 
   getItemData() {
     const data = [];
     data.push(this.getPlayerData());
-    this.physicsHandler.getObstaclePosition().map((obstacle) => {
-      obstacle.sprite = assets.cryskull;
-      data.push(obstacle)  
+    this.physicsHandler.getObstacleData().map((obstacle) => {
+      obstacle.sprite = assets[obstacle.sprite];
+      data.push(obstacle);
     });
     return data;
   }
@@ -63,7 +70,7 @@ class GameHandler {
     }); //FIXME physics is beng added in a wierd way fix it
     this.playerHandler.addPlayer(currrentLevel.player[0]);
     physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions());
-    physicsHandler.addObstacles(currrentLevel.obstacles, { isStatic: true });
+    physicsHandler.addObstacles2(currrentLevel.obstacles);
     this.physicsHandler = physicsHandler;
   }
 

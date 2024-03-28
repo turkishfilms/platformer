@@ -10,8 +10,6 @@ function preload() {
 function setup() {
 	createCanvas(windowWidth, windowHeight);
 	background(0);
-	textSize(25)
-	imageMode(CENTER)
 	assets.spiderSprite = getSpriteFromSheet(assets.spiderSheet, 7, 3,3, 64)
 	game = new GameHandler({ physicsHandler: new PhysicsHandler({ sub: ['player', 'obstacles'] }), levels: levelData, dimensions: { height: windowHeight, width: windowWidth } })
 }

@@ -1,17 +1,27 @@
 let levelData = [{
 	physics: [new Physics()],
 	player: [new Player({ lives:3,color: { r: 0, g: 255, b: 0, a: 255 }, position: { x: 50, y: 50 }, options: { restitution: 0, inertia: Infinity} })],
-	obstacles: [new Obstacle(10, 200, 150, 50), new Obstacle(250, 350, 200, 50), new Obstacle(475, 100, 50, 225), new Obstacle(75, 475, 50, 25), new Obstacle(250, 575, 50, 25), new Obstacle(450, 550, 100, 25), new Obstacle(650, 550, 25, 25), new Obstacle(800, 500, 25, 25), new Obstacle(950, 450, 25, 25), new Obstacle(1100, 400, 25, 25)]
+	obstacles: [
+		new Obstacle({ x:10,y: 200,w: 150,h: 50,sprite:"cryskull" }), 
+		new Obstacle({ x:250,y: 350,w: 200,h: 50,sprite:"cryskull" }), 
+		new Obstacle({ x:475,y: 100,w: 50,h: 225,sprite:"cryskull" }),
+		new Obstacle({ x:75,y: 475,w: 50,h: 25,sprite:"cryskull" }), 
+		new Obstacle({ x:250,y: 575,w: 50,h: 25,sprite:"cryskull" }), 
+		new Obstacle({ x:450,y: 550,w: 100,h: 25,sprite:"cryskull" }), 
+		new Obstacle({ x:650,y: 550,w: 25,h: 25,sprite:"cryskull" }), 
+		new Obstacle({ x:800,y: 500,w: 25,h: 25,sprite:"cryskull" }), 
+		new Obstacle({ x:950,y: 450,w: 25,h: 25,sprite:"cryskull" }), 
+		new Obstacle({ x:1100,y: 400,w: 25,h: 25,sprite:"cryskull" })]
 },
 {
 	physics: [new Physics({ restitution: 0.01 })],
 	player: [new Player({ lives:3,color: { r: 0, g: 255, b: 0, a: 255 }, options: { restitution: 0, inertia: Infinity } })],
 	obstacles: [
-		new Obstacle(0, 100, 100, 100),
-		new Obstacle(200, 200, 150, 50),
-		new Obstacle(400, 300, 100, 50),
-		new Obstacle(600, 400, 200, 50),
-		new Obstacle(800, 250, 50, 200)]
+		new Obstacle({ x:0,y: 100,w: 100,h: 100,sprite:"cryskull" }),
+		new Obstacle({ x:200,y: 200,w: 150,h: 50,sprite:"cryskull" }),
+		new Obstacle({ x:400,y: 300,w: 100,h: 50,sprite:"cryskull" }),
+		new Obstacle({ x:600,y: 400,w: 200,h: 50,sprite:"cryskull" }),
+		new Obstacle({ x:800,y: 250,w: 50,h: 200,sprite:"cryskull" })]
 },
 {
 	physics: [
@@ -19,11 +29,11 @@ let levelData = [{
 	player: [
 		new Player({ color: { r: 0, g: 255, b: 0, a: 255 }, options: { restitution: 0, inertia: Infinity } })],
 	obstacles: [
-		new Obstacle(50, 200, 100, 100),
-		new Obstacle(250, 300, 150, 50),
-		new Obstacle(450, 150, 200, 200),
-		new Obstacle(700, 400, 50, 50),
-		new Obstacle(850, 500, 150, 50)]
+		new Obstacle({ x:50,y: 200,w: 100,h: 100,sprite:"cryskull" }),
+		new Obstacle({ x:250,y: 300,w: 150,h: 50,sprite:"cryskull" }),
+		new Obstacle({ x:450,y: 150,w: 200,h: 200,sprite:"cryskull" }),
+		new Obstacle({ x:700,y: 400,w: 50,h: 50,sprite:"cryskull" }),
+		new Obstacle({ x:850,y: 500,w: 150,h: 50,sprite:"cryskull" })]
 },
 {
 	physics: [
@@ -31,33 +41,23 @@ let levelData = [{
 	player: [
 		new Player({ color: { r: 0, g: 255, b: 0, a: 255 }, options: { restitution: 0, inertia: Infinity } })],
 	obstacles: [
-		new Obstacle(0, 100, 100, 100),
-		new Obstacle(150, 200, 100, 50),
-		new Obstacle(300, 300, 150, 50),
-		new Obstacle(500, 250, 50, 200),
-		new Obstacle(650, 400, 150, 50)]
-
+		new Obstacle({ x:0,y: 100,w: 100,h: 100,sprite:"cryskull" }),
+		new Obstacle({ x:150,y: 200,w: 100,h: 50,sprite:"cryskull" }),
+		new Obstacle({ x:300,y: 300,w: 150,h: 50,sprite:"cryskull" }),
+		new Obstacle({ x:500,y: 250,w: 50,h: 200,sprite:"cryskull" }),
+		new Obstacle({ x:650,y: 400,w: 150,h: 50,sprite:"cryskull" })]
 },
 {
-
 	physics: [
 		new Physics({ restitution: 0.01 })],
 	player: [new Player({ color: { r: 0, g: 255, b: 0, a: 255 }, lives: 1, position: { x: 100, y: 300 }, options: { restitution: 0, inertia: Infinity } })],
 	obstacles: [
-		new Obstacle(100, 400, 125, 50),
-		new Obstacle(325, 575, 10, 10),
-		new Obstacle(450, 500, 10, 10),
-		new Obstacle(575, 575, 10, 10),
-		new Obstacle(750, 475, 10, 10),
-		new Obstacle(1150, 475, 10, 10)]
-
-
-
-
-
-
+		new Obstacle({ x:100,y: 400,w: 125,h: 50,sprite:"cryskull" }),
+		new Obstacle({ x:325,y: 575,w: 10,h: 10,sprite:"cryskull" }),
+		new Obstacle({ x:450,y: 500,w: 10,h: 10,sprite:"cryskull" }),
+		new Obstacle({ x:575,y: 575,w: 10,h: 10,sprite:"cryskull" }),
+		new Obstacle({ x:750,y: 475,w: 10,h: 10,sprite:"cryskull" }),
+		new Obstacle({ x:1150,y: 475,w: 10,h: 10,sprite:"cryskull" })]
 
 }
-
-
 ]

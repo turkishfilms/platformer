@@ -5,7 +5,20 @@ this is where the lore goes
 Heng
 
 Hsing
-
+the player is trying to escape the place. Trying to get to the exit
+Portals
+last level is the one i made
+-last level is hardest
+gravity change on specific levels
+start with 5 levels
+crypt world
+- skulls attack you
+ocean abyss world
+- player drowns if it dosn't go to a place that restores oxygen
+- a bit slower
+TV static world
+- disapear blocks in this level
+- some blocks instantly kill the player
 Reginald
 
 level ideas:

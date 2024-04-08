@@ -3,6 +3,22 @@ this is where the lore goes
 
 
 Heng
+Player is a burger
+The player is trapped and trying to escape the dimensions. And monsters are trying to attack him
+ and trying to get rid of him since the monsters want to eat the player. 
+ Level should be 8
+ monsters spawn on level 2 
+End screen it says the player will go back home 
+ Level difficulty can be medium or hard
+ Hard is more monsters and tiny blocks and the monsters will have more health so more jumps needed
+ Also hard mode you have 2 bars of health instead of 3 
+ and medium is regular monsters and blocks are normal size
+Powerup could be low gravity or speed or health
+Powerups spawn in when you are in low health or needed for levels 
+For the health powerup if u are low and kill a monsters a food item will 
+spawn in the place where you killed the monsters
+Health powerups will not spawn always 35 percent chance 
+Give all maxed health
 
 Hsing
 the player is trying to escape the place. Trying to get to the exit

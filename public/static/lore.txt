@@ -7,18 +7,36 @@ Heng
 Hsing
 the player is trying to escape the place. Trying to get to the exit
 Portals
+
 last level is the one i made
 -last level is hardest
 gravity change on specific levels
 start with 5 levels
+
 crypt world
-- skulls attack you
+- skulls attack you, also chase the player
+
+
 ocean abyss world
-- player drowns if it dosn't go to a place that restores oxygen
-- a bit slower
+- player drowns if it dosn't go to a place
+ that restores oxygen
+- a bit slower movespeed
+- player falls slower
+
 TV static world
-- disapear blocks in this level
 - some blocks instantly kill the player
+but the killBlocks look like the same as the obstacles
+- some blocks are invisible
+
+Final boss
+- boss could destroy obstacles permanatly, 
+making the player fall into the void
+- obstacles don't regenerate when broken by boss
+boss is skull emblem thing
+- launches skulls
+touch skulls to reflect skulls the damage back to the boss
+
+
 Reginald
 
 POTENTIAL STORY IDEAS:

@@ -18,6 +18,7 @@ Powerups spawn in when you are in low health or needed for levels
 For the health powerup if u are low and kill a monsters a food item will 
 spawn in the place where you killed the monsters
 Health powerups will not spawn always 35 percent chance 
+Give all maxed health
 
 Hsing
 

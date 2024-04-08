@@ -19,6 +19,7 @@ For the health powerup if u are low and kill a monsters a food item will
 spawn in the place where you killed the monsters
 Health powerups will not spawn always 35 percent chance 
 Give all maxed health
+BOSS IS A a giga burger
 
 Hsing
 the player is trying to escape the place. Trying to get to the exit

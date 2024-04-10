@@ -59,22 +59,24 @@ class PhysicsHandler {
 	disappearCollisionCheck() {
 		return this.getCollisions().length > 0
 	}
-
+	
 	isDisappearBlock(block) {
-		return true
+		return block.isDisappearing 
 	}
 
 disappearBlock(block){
 	//make block desappear by making w and h 0
-	block.
+	Matter.Body.scale(block, 0, 0)
 }
 
 	handleDisappear() {
 		if (this.disappearCollisionCheck()) {
+			
 			const collisions = this.getCollisions()
 			collisions.forEach(collision => {
 				const block = collision.bodyB
 				if (this.isDisappearBlock(block)) {
+					console.log("testing")
 					this.disappearBlock(block)
 				}
 			})
@@ -93,12 +95,15 @@ disappearBlock(block){
 				},
 				size: {
 					w: width,
-					h: height
-				}
+					h: height,
+
+				},
+				isDisappearing: isDisappearing
 			} = obstacle
 			let rect = Matter.Bodies.rectangle(x, y, width, height, {
 				isStatic: options.isStatic,
-				restitution: options.restitution
+				restitution: options.restitution,
+				isDisappearing: isDisappearing
 			})
 			Matter.Composite.add(this.getObstacleComposite(), rect)
 		});
@@ -113,9 +118,7 @@ disappearBlock(block){
 	}
 
 	getPlayerBody() {
-		//get the body of the player
-		//ingredients: players body
-		//returns player body
+
 		const playercomposite = this.getPlayerComposite()
 		if (playercomposite.bodies.length >= 1) return playercomposite.bodies[0]
 

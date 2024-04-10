@@ -22,6 +22,7 @@ class GameHandler {
 		this.playerHandler.updatePlayer()
 		this.physicsHandler.handleDisappear()
 		this.renderHandler.show()
+		
 	}
 
 	levelInit() {

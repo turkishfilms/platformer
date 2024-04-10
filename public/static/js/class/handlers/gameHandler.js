@@ -126,10 +126,17 @@ gameStart(){
 	addLives() {
 		game.playerHandler.player.lives++
 	}
+deathButton(name){
+  let button = createButton(name);
+  button.position(windowWidth-100, windowHeight/2);
+  button.mousePressed(this.startOver)
+  
+}
 
 	startOver(){
 		game.setCurrentLevel(1)
 		game.togglePaused()
+    game.startGameButton.hide() 
 	}
 	startButton(name) {
 		let button = createButton(name);
@@ -139,7 +146,7 @@ gameStart(){
 	startGame(){
 		game.levelInit()
 		game.togglePaused()
-		this.startGameButton.hidden = true
+		game.startGameButton.hide() 
 	}
 	startGameButton(name){
 		 this.startGameButton = createButton(name);

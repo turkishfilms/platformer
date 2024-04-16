@@ -28,6 +28,7 @@ class GameHandler {
       this.physicsHandler.getPlayerBody().position,
       this.hasCollided()
     );
+    this.physicsHandler.handleDisappear()
     this.renderHandler.showFrame(
       this.getItemData(),
       [{ text: this.playerHandler.player.lives, x: 80, y: 80 }],

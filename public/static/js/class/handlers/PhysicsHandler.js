@@ -1,60 +1,85 @@
 class PhysicsHandler {
-	constructor({
-		physics = new Physics(),
-		compositeStructure = {
-			player: 'player',
-			obstacle: 'obstacle'
-		}
-	} = {}) {
-		this.engine = Matter.Engine.create({
-			...physics
-		})
-		Object.keys(compositeStructure).forEach(comp => {
-			Matter.Composite.add(this.engine.world, Matter.Composite.create({
-				label: compositeStructure[comp]
-			}))
-		})
-		this.compositeStructure = compositeStructure
-		// for (let i = 0; i < Object.keys(compositeStructure).length; i++) {
-		// 	Matter.Composite.add(this.engine.world, Matter.Composite.create({ label: compositeStructure[i] }))
-		// }
-	}
+  constructor({
+    physics = new Physics(),
+    compositeStructure = {
+      player: "player",
+      obstacle: "obstacle",
+    },
+  } = {}) {
+    this.engine = Matter.Engine.create({
+      ...physics,
+    });
+    Object.keys(compositeStructure).forEach((comp) => {
+      Matter.Composite.add(
+        this.engine.world,
+        Matter.Composite.create({
+          label: compositeStructure[comp],
+        })
+      );
+    });
+    this.compositeStructure = compositeStructure;
+    this.bounds = Matter.Bounds.create(this.initVertices());
+  }
 
-	movePlayer(velocity) {
-		const {
-			x,
-			y
-		} = velocity
-		const player = this.getPlayerBody()
-		const playerVelocity = player.velocity
-		const movementVelocity = Matter.Vector.create(x, y)
-		Matter.Body.setVelocity(player, Matter.Vector.add(movementVelocity, playerVelocity))
-	}
+  initVertices() {
+    const corners = [
+      { x: 0, y: 0 },
+      { x: windowWidth, y: 0 },
+      { x: windowWidth, y: windowHeight },
+      { x: windowWidth, y: windowHeight },
+    ];
+    const points = corners.map((corner) =>
+      Matter.Vector.create(corner.x, corner.y)
+    );
+    return Matter.Vertices.create(points, Matter.Body.create());
+  }
 
-	simulateWorldByOneFrame() {
-		Matter.Engine.update(this.engine)
-	}
+  isPlayerOffScreen() {
+    return (
+      Matter.Query.region([this.getPlayerBody()], this.bounds, {
+        outside: true,
+      }).length >= 1
+    );
+  }
 
-	addPlayer(playerOptions) {
-		const {
-			x,
-			y,
-			width,
-			height,
-			restitution
-		} = playerOptions
-		const playerRect = Matter.Bodies.rectangle(x, y, width, height, {
-			restitution: restitution
-		})
-		//this is prone to failure, paramaterize the output
-		Matter.Composite.add(this.getPlayerComposite(), playerRect)
-	}
+  movePlayer(velocity) {
+    const { x, y } = velocity;
+    const player = this.getPlayerBody();
+    const playerVelocity = player.velocity;
+    const movementVelocity = Matter.Vector.create(x, y);
+    Matter.Body.setVelocity(
+      player,
+      Matter.Vector.add(movementVelocity, playerVelocity)
+    );
+  }
 
-	getCollisions() {
-		//it returns the player and what it colllides with
-		//in an array
-		return Matter.Query.collides(this.getPlayerBody(), game.physicsHandler.getObstacleComposite().bodies)
-	}
+  translatePlayer(position) {
+    const { x, y } = position;
+    Matter.Body.setPosition(this.getPlayerBody(), Matter.Vector.create(x, y));
+  }
+
+  simulateWorldByOneFrame() {
+    Matter.Engine.update(this.engine);
+  }
+
+  addPlayer(playerOptions) {
+    const { x, y, width, height, restitution } = playerOptions;
+    const playerRect = Matter.Bodies.rectangle(x, y, width, height, {
+      inertia: Infinity,
+      restitution: restitution,
+    });
+    //this is prone to failure, paramaterize the output
+    Matter.Composite.add(this.getPlayerComposite(), playerRect);
+  }
+
+  getCollisions() {
+    //it returns the player and what it colllides with
+    //in an array
+    return Matter.Query.collides(
+      this.getPlayerBody(),
+      game.physicsHandler.getObstacleComposite().bodies
+    );
+  }
 
 	disappearCollisionCheck() {
 		return this.getCollisions().length > 0
@@ -109,13 +134,17 @@ disappearBlock(block){
 		});
 	}
 
-	getPlayerComposite() {
-		return Matter.Composite.allComposites(this.engine.world).filter(composite => composite.label == this.compositeStructure.player)[0]
-	}
+  getPlayerComposite() {
+    return Matter.Composite.allComposites(this.engine.world).filter(
+      (composite) => composite.label == this.compositeStructure.player
+    )[0];
+  }
 
-	getObstacleComposite() {
-		return Matter.Composite.allComposites(this.engine.world).filter(composite => composite.label == this.compositeStructure.obstacle)[0]
-	}
+  getObstacleComposite() {
+    return Matter.Composite.allComposites(this.engine.world).filter(
+      (composite) => composite.label == this.compositeStructure.obstacle
+    )[0];
+  }
 
 	getPlayerBody() {
 
@@ -124,23 +153,56 @@ disappearBlock(block){
 
 	}
 
-	getObstaclePosition() { //fix this to use labels
-		return this.engine.world.composites[1].bodies.map(obs => {
-			return {
-				size: {
-					h: obs.bounds.max.y - obs.bounds.min.y,
-					w: obs.bounds.max.x - obs.bounds.min.x
-				},
-				position: {
-					x: obs.position.x,
-					y: obs.position.y
-				}
-			}
-		})
-	}
+  getObstacleData() {
+    //FIXME: fix this to use labels
+    return this.engine.world.composites[1].bodies.map((obs) => {
+      return {
+        size: {
+          h: obs.bounds.max.y - obs.bounds.min.y,
+          w: obs.bounds.max.x - obs.bounds.min.x,
+        },
+        position: {
+          x: obs.position.x,
+          y: obs.position.y,
+        },
+        sprite: obs.sprite,
+      };
+    });
+  }
 
-	clearComposite() {
-		Matter.Composite.clear(this.engine.world)
-		// Reoves composites from the given composite. 
-	}
+  hasCollided() {
+    return (
+      Matter.Query.collides(
+        this.getPlayerBody(),
+        this.getObstacleComposite().bodies
+      ).length > 0
+    );
+  }
+
+  getObstaclePosition() {
+    //fix this to use labels
+    return this.engine.world.composites[1].bodies.map((obs) => {
+      return {
+        size: {
+          h: obs.bounds.max.y - obs.bounds.min.y,
+          w: obs.bounds.max.x - obs.bounds.min.x,
+        },
+        position: {
+          x: obs.position.x,
+          y: obs.position.y,
+        },
+      };
+    });
+  }
+
+  clearComposite() {
+    Matter.Composite.clear(this.engine.world);
+    // Reoves composites from the given composite.
+  }
+
+  playerStill() {
+    Matter.Body.setAngularSpeed(this.getPlayerBody(), 0);
+    Matter.Body.setAngle(this.getPlayerBody(), 0);
+    Matter.Body.setVelocity(this.getPlayerBody(), Matter.Vector.create(0, 0));
+  }
 }

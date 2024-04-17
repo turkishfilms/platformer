@@ -24,14 +24,15 @@ class GameHandler {
 		this.renderHandler = renderHandler
 		this.dimensions = dimensions
 		this.isPaused = true
-	this.gameStart()
-		
+	this.createStartGameButton("START GAME!!! >:)")
+	    this.gameStart(this)
 	}
-gameStart(){
-	image(assets.creeper)
+gameStart(obj){
+	console.log(obj)
+	image(assets.img,windowWidth/2, windowHeight/2,windowWidth, windowHeight)
 	text("start here", 50 ,50 )
-	this.startGameButton("start LEVEL!!! >:)")
-	this.isPaused = true
+	
+	obj.isPaused = true
 }
 	nextFrame() {
 		if (this.isPaused) return
@@ -126,32 +127,36 @@ gameStart(){
 	addLives() {
 		game.playerHandler.player.lives++
 	}
+
 deathButton(name){
   let button = createButton(name);
   button.position(windowWidth-100, windowHeight/2);
-  button.mousePressed(this.startOver)
+  button.mousePressed(this.gameStart, game)
   
 }
 
 	startOver(){
 		game.setCurrentLevel(1)
 		game.togglePaused()
-    game.startGameButton.hide() 
+        game.startGameButton.hide() 
 	}
+
 	startButton(name) {
 		let button = createButton(name);
 		button.position(windowWidth-100, windowHeight/2);
 		button.mousePressed(this.startOver)
 	}
+
 	startGame(){
+		console.log('startgame', this)
 		game.levelInit()
 		game.togglePaused()
 		game.startGameButton.hide() 
 	}
-	startGameButton(name){
-		 this.startGameButton = createButton(name);
+	
+	createStartGameButton(name){
+		this.startGameButton = createButton(name);
 		this.startGameButton.position(windowWidth-100, windowHeight/2);
 		this.startGameButton.mousePressed(this.startGame)
-	
 	}
 }

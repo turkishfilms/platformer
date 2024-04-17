@@ -52,7 +52,7 @@ class PlayerHandler {
 	}
 
 	incrementLives() {
-		
+		w
 		this.player.lives++
 	}
 

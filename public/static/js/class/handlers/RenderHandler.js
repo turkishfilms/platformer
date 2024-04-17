@@ -125,7 +125,7 @@ class RenderHandler {
 			width: w,
 			height: h
 		} = game.dimensions
-		this.backgroundChanger(assets.deathScreen1, w / 2, h / 2)
+		w
 		this.showText("You Died Loser💀!", w / 2, h / 2)
 		game.deathButton()
 		

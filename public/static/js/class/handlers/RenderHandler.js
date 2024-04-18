@@ -1,5 +1,5 @@
 class RenderHandler {
-	constructor() {}
+	constructor() { }
 
 	renderFrame() {
 		const physics = game.physicsHandler
@@ -14,7 +14,7 @@ class RenderHandler {
 			height
 		} = pHandler.getPlayerAsOptions()
 		let player = physics.getPlayerBody()
-	
+
 		let playerAngle = player.angle
 		const data = {
 			color: pHandler.canJump(pHandler.player) ? pHandler.player.color : {
@@ -122,7 +122,6 @@ class RenderHandler {
 			height: h
 		} = game.dimensions
 		image(userImage, w / 2, h / 2, w, h)
-
 	}
 
 	deathScreen() {
@@ -130,10 +129,9 @@ class RenderHandler {
 			width: w,
 			height: h
 		} = game.dimensions
-		w
 		this.showText("You Died Loser💀!", w / 2, h / 2)
-		game.deathButton()
-		
+		this.backgroundChanger(assets.deathScreen1)
+		game.deathButton.show()
 		/*
 		 Goal To make a Death Screen When you run out of lives you get to restart the game after
 		 It will have a Text that says YOU DIED LOSER! skull emoji

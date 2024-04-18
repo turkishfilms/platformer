@@ -91,7 +91,8 @@ class PhysicsHandler {
 
 disappearBlock(block){
 	//make block desappear by making w and h 0
-	Matter.Body.scale(block, 0, 0)
+	// Matter.Body.scale(block, 0.001, 0.001)
+  Matter.Composite.remove(this.engine.world.composites[1],block)
 }
 
 	handleDisappear() {
@@ -101,7 +102,6 @@ disappearBlock(block){
 			collisions.forEach(collision => {
 				const block = collision.bodyB
 				if (this.isDisappearBlock(block)) {
-					console.log("testing")
 					this.disappearBlock(block)
 				}
 			})
@@ -109,10 +109,11 @@ disappearBlock(block){
 	}
 
 	addObstacles(obstacles, options = {
-		isStatic: false,
+		isStatic:true,
 		restitution: 0
 	}) {
 		obstacles.forEach(obstacle => {
+      console.log("PH,aO,obstacle", obstacle)
 			let {
 				position: {
 					x,
@@ -123,12 +124,16 @@ disappearBlock(block){
 					h: height,
 
 				},
-				isDisappearing: isDisappearing
+				isDisappearing,
+  sprite,
 			} = obstacle
+
+      console.log(isDisappearing,sprite)
 			let rect = Matter.Bodies.rectangle(x, y, width, height, {
 				isStatic: options.isStatic,
 				restitution: options.restitution,
-				isDisappearing: isDisappearing
+				isDisappearing: isDisappearing,
+        sprite:sprite,
 			})
 			Matter.Composite.add(this.getObstacleComposite(), rect)
 		});
@@ -147,10 +152,8 @@ disappearBlock(block){
   }
 
 	getPlayerBody() {
-
 		const playercomposite = this.getPlayerComposite()
 		if (playercomposite.bodies.length >= 1) return playercomposite.bodies[0]
-
 	}
 
   getObstacleData() {

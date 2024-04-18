@@ -30,7 +30,7 @@ class GameHandler {
     );
     this.physicsHandler.handleDisappear()
     this.renderHandler.showFrame(
-      this.getItemData(),
+      this.getItemData(),/** items */
       [{ text: this.playerHandler.player.lives, x: 80, y: 80 }],
       this.getBackdrop()
     );
@@ -146,7 +146,6 @@ class GameHandler {
     game.setCurrentLevel(1);
     game.resetLevel();
     game.togglePaused();
-    console.log("GH:startOver->startoverbutton", this.startOverButton);
     game.startOverButton.hide();
   }
 

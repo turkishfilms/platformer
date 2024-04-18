@@ -1,7 +1,7 @@
 let game, assets = {}
 
 function preload() {
-	assets.img = loadImage('static/assets/burgercube.jpg');
+	assets.img = loadImage('static/assets/Player/Health bar/burgercube.jpg');
 	assets.yellowGuy = loadImage('static/assets/ememy.jpg');
 	assets.blackGuy = loadImage('static/assets/steveBlack.png')
 	assets.skull = loadImage('static/assets/skull.png')

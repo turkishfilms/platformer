@@ -70,7 +70,9 @@ class PhysicsHandler {
 		//returns player body
 		const playercomposite = this.getPlayerComposite()
 		if (playercomposite.bodies.length >= 1) return playercomposite.bodies[0]
-
+else{
+return 8
+}
 	}
 
 	getObstaclePosition() { //fix this to use labels

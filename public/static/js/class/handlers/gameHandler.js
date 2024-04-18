@@ -24,16 +24,27 @@ class GameHandler {
 		this.renderHandler = renderHandler
 		this.dimensions = dimensions
 		this.isPaused = true
-	this.createStartGameButton("START GAME!!! >:)")
-	    this.gameStart(this)
+		this.startGameButton = this.createStartGameButton("START GAME!!! >:)")
+		this.deathButton = this.createDeathButton("WOW GARB")
+		this.deathButton.hide()
+		this.gameOpeningScreen()
 	}
-gameStart(obj){
-	console.log(obj)
-	image(assets.img,windowWidth/2, windowHeight/2,windowWidth, windowHeight)
-	text("start here", 50 ,50 )
-	
-	obj.isPaused = true
-}
+
+	gameOpeningScreen() {
+		console.log("this is the object")
+		console.log(this)
+		image(assets.img, windowWidth / 2, windowHeight / 2, windowWidth, windowHeight)
+		text("start here", 50, 50)
+		this.isPaused = true
+	}
+	deathButtonActivation() {
+		game.hideDeathButton()
+		game.startGameButton.show()
+		game.gameOpeningScreen()
+	}
+	hideDeathButton() {
+		game.deathButton.hide()
+	}
 	nextFrame() {
 		if (this.isPaused) return
 		this.physicsHandler.simulateWorldByOneFrame()
@@ -128,35 +139,36 @@ gameStart(obj){
 		game.playerHandler.player.lives++
 	}
 
-deathButton(name){
-  let button = createButton(name);
-  button.position(windowWidth-100, windowHeight/2);
-  button.mousePressed(this.gameStart, game)
-  
-}
+	createDeathButton(name) {
+		let button = createButton(name);
+		button.position(windowWidth - 100, windowHeight / 2);
+		button.mousePressed(this.deathButtonActivation)
+		return button
+	}
 
-	startOver(){
+	startOver() {
 		game.setCurrentLevel(1)
 		game.togglePaused()
-        game.startGameButton.hide() 
+		game.startGameButton.hide()
 	}
 
 	startButton(name) {
 		let button = createButton(name);
-		button.position(windowWidth-100, windowHeight/2);
+		button.position(windowWidth - 100, windowHeight / 2);
 		button.mousePressed(this.startOver)
 	}
 
-	startGame(){
+	startGame() {
 		console.log('startgame', this)
 		game.levelInit()
 		game.togglePaused()
-		game.startGameButton.hide() 
+		game.startGameButton.hide()
 	}
-	
-	createStartGameButton(name){
-		this.startGameButton = createButton(name);
-		this.startGameButton.position(windowWidth-100, windowHeight/2);
-		this.startGameButton.mousePressed(this.startGame)
+
+	createStartGameButton(name) {
+		const button = createButton(name);
+		button.position(windowWidth - 100, windowHeight / 2);
+		button.mousePressed(this.startGame)
+		return button
 	}
 }

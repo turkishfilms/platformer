@@ -78,7 +78,7 @@ class GameHandler {
     }); //FIXME physics is beng added in a wierd way fix it
     this.playerHandler.addPlayer(currrentLevel.player[0]);
     physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions());
-    physicsHandler.addObstacles2(currrentLevel.obstacles);
+    physicsHandler.addObstacles(currrentLevel.obstacles);
     this.physicsHandler = physicsHandler;
   }
 

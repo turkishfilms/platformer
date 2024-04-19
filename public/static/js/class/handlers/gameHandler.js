@@ -49,6 +49,11 @@ class GameHandler {
 	  nextFrame() {
     if (this.isPaused) return;
     this.physicsHandler.simulateWorldByOneFrame();
+     this.renderHandler.showFrame(
+      this.getItemData(),/** items */
+      [{ text: this.playerHandler.player.lives, x: 80, y: 80 }],
+      this.getBackdrop()
+    );
     if (this.physicsHandler.isPlayerOffScreen()) {
       this.playerHandler.resetPlayer();
     }
@@ -57,11 +62,7 @@ class GameHandler {
       this.hasCollided()
     );
     this.physicsHandler.handleDisappear()
-    this.renderHandler.showFrame(
-      this.getItemData(),/** items */
-      [{ text: this.playerHandler.player.lives, x: 80, y: 80 }],
-      this.getBackdrop()
-    );
+   
   }
 
   hasCollided() {

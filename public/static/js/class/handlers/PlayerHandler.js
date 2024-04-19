@@ -30,6 +30,7 @@ class PlayerHandler {
      * */
     const color = { r: 0, g: 0, b: 0, a: 250 }; //black
     this.colorPicker(color);
+    console.log('ph,lz w,heF')
     game.pauseDeath();
   }
 

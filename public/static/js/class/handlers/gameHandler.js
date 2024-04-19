@@ -12,11 +12,12 @@ class GameHandler {
 		physicsHandler = new PhysicsHandler({
 			physics: physics
 		}),
-		renderHandler = new RenderHandler(),
+		
 		dimensions = {
 			width: 100,
 			height: 100
-		}
+		},
+   renderHandler = new RenderHandler({screenDimensions : dimensions}),
 	} = {}) {
 		this.playerHandler = playerHandler;
 		this.levelHandler = levelHandler;

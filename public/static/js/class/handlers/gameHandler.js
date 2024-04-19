@@ -45,13 +45,57 @@ class GameHandler {
 	hideDeathButton() {
 		game.deathButton.hide()
 	}
-	nextFrame() {
-		if (this.isPaused) return
-		this.physicsHandler.simulateWorldByOneFrame()
-		this.renderHandler.renderFrame()
-		if (this.physicsHandler.isPlayerOffScreen()) this.playerHandler.resetPlayer()
-		this.playerHandler.updatePlayer()
-	}
+	  nextFrame() {
+    if (this.isPaused) return;
+    this.physicsHandler.simulateWorldByOneFrame();
+    if (this.physicsHandler.isPlayerOffScreen()) {
+      this.playerHandler.resetPlayer();
+    }
+    this.playerHandler.updatePlayer(
+      this.physicsHandler.getPlayerBody().position,
+      this.hasCollided()
+    );
+    this.physicsHandler.handleDisappear()
+    this.renderHandler.showFrame(
+      this.getItemData(),/** items */
+      [{ text: this.playerHandler.player.lives, x: 80, y: 80 }],
+      this.getBackdrop()
+    );
+  }
+
+  hasCollided() {
+    return this.physicsHandler.hasCollided();
+  }
+
+  getBackdrop() {
+    const { redraw, backdrop } = this.levelHandler.getLevelBackdrop();
+    return {
+      redraw: redraw,
+      backdrop: assets[backdrop],
+    };
+  }
+
+  getItemData() {
+    const data = [];
+    data.push(this.getPlayerData());
+    this.physicsHandler.getObstacleData().map((obstacle) => {
+      obstacle.sprite = assets[obstacle.sprite];
+      data.push(obstacle);
+    });
+    return data;
+  }
+
+  getPlayerData() {
+    const { x, y, width, height } = this.playerHandler.getPlayerAsOptions();
+    return {
+      color: this.playerHandler.getColor(),
+      sprite: this.playerHandler.getSprite(),
+      size: { w: width, h: height },
+      position: { x: x, y: y + 10 },
+      angle: this.physicsHandler.getPlayerBody().angle,
+      type: "player",
+    };
+  }
 
   levelInit() {
     const currentLevelNumber = this.getCurrentLevel();
@@ -61,38 +105,24 @@ class GameHandler {
     }); //FIXME physics is beng added in a wierd way fix it
     this.playerHandler.addPlayer(currrentLevel.player[0]);
     physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions());
-    physicsHandler.addObstacles(currrentLevel.obstacles, {
-      isStatic: true,
-    });
+    physicsHandler.addObstacles(currrentLevel.obstacles);
     this.physicsHandler = physicsHandler;
   }
 
   movePlayerRight() {
-    this.playerHandler.movePlayer({
-      x: 1,
-      y: 0,
-    });
+    this.playerHandler.movePlayer({ x: 1, y: 0 });
   }
 
   movePlayerLeft() {
-    this.playerHandler.movePlayer({
-      x: -1,
-      y: 0,
-    });
+    this.playerHandler.movePlayer({ x: -1, y: 0 });
   }
 
   movePlayerUp() {
-    this.playerHandler.movePlayer({
-      x: 0,
-      y: -1,
-    });
+    this.playerHandler.movePlayer({ x: 0, y: -1 });
   }
 
   movePlayerDown() {
-    this.playerHandler.movePlayer({
-      x: 0,
-      y: 1,
-    });
+    this.playerHandler.movePlayer({ x: 0, y: 1 });
   }
 
   getCurrentLevel() {

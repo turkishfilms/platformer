@@ -12,17 +12,18 @@ class GameHandler {
 		physicsHandler = new PhysicsHandler({
 			physics: physics
 		}),
-		renderHandler = new RenderHandler(),
 		dimensions = {
 			width: 100,
 			height: 100
-		}
+		},
+		renderHandler = new RenderHandler({ screenDimensions: dimensions })
 	} = {}) {
 		this.playerHandler = playerHandler;
 		this.levelHandler = levelHandler;
 		this.physicsHandler = physicsHandler
-		this.renderHandler = renderHandler
 		this.dimensions = dimensions
+		this.renderHandler = renderHandler
+		console.log(renderHandler)
 		this.isPaused = true
 		this.startGameButton = this.createStartGameButton("START GAME!!! >:)")
 		this.deathButton = this.createDeathButton("WOW GARB")
@@ -37,14 +38,17 @@ class GameHandler {
 		text("start here", 50, 50)
 		this.isPaused = true
 	}
+
 	deathButtonActivation() {
 		game.hideDeathButton()
 		game.startGameButton.show()
 		game.gameOpeningScreen()
 	}
+
 	hideDeathButton() {
 		game.deathButton.hide()
 	}
+
 	nextFrame() {
 		if (this.isPaused) return
 		this.physicsHandler.simulateWorldByOneFrame()
@@ -67,73 +71,61 @@ class GameHandler {
     this.physicsHandler = physicsHandler;
   }
 
-  movePlayerRight() {
-    this.playerHandler.movePlayer({
-      x: 1,
-      y: 0,
-    });
-  }
+	movePlayerRight() {
+		this.playerHandler.movePlayer({ x: 1, y: 0 });
+	}
 
-  movePlayerLeft() {
-    this.playerHandler.movePlayer({
-      x: -1,
-      y: 0,
-    });
-  }
+	movePlayerLeft() {
+		this.playerHandler.movePlayer({ x: -1, y: 0 });
+	}
 
-  movePlayerUp() {
-    this.playerHandler.movePlayer({
-      x: 0,
-      y: -1,
-    });
-  }
+	movePlayerUp() {
+		this.playerHandler.movePlayer({ x: 0, y: -1 });
+	}
 
-  movePlayerDown() {
-    this.playerHandler.movePlayer({
-      x: 0,
-      y: 1,
-    });
-  }
+	movePlayerDown() {
+		this.playerHandler.movePlayer({ x: 0, y: 1 });
+	}
 
-  getCurrentLevel() {
-    return this.levelHandler.currentLevel;
-  }
+	getCurrentLevel() {
+		return this.levelHandler.currentLevel;
+	}
 
-  resetLevel() {
-    this.levelInit();
-  }
+	resetLevel() {
+		this.levelInit();
+	}
 
-  setCurrentLevel(levelNumber) {
-    this.levelHandler.setCurrentLevel(levelNumber);
-  }
+	setCurrentLevel(levelNumber) {
+		this.levelHandler.setCurrentLevel(levelNumber);
+	}
 
-  getPreviousLevel() {
-    return this.levelHandler.getPreviousLevel();
-  }
+	getPreviousLevel() {
+		return this.levelHandler.getPreviousLevel();
+	}
 
-  getNextLevel() {
-    const nextLevel = this.levelHandler.getNextLevel();
-    return nextLevel;
-  }
+	getNextLevel() {
+		const nextLevel = this.levelHandler.getNextLevel();
+		return nextLevel;
+	}
 
-  nextLevel() {
-    this.setCurrentLevel(this.getNextLevel());
-    this.levelInit();
-  }
+	nextLevel() {
+		this.setCurrentLevel(this.getNextLevel());
+		this.levelInit();
+	}
 
-  previousLevel() {
-    this.setCurrentLevel(this.getPreviousLevel());
-    this.levelInit();
-  }
+	previousLevel() {
+		this.setCurrentLevel(this.getPreviousLevel());
+		this.levelInit();
+	}
 
-  togglePaused() {
-    this.isPaused = this.isPaused ? false : true;
-  }
+	togglePaused() {
+		this.isPaused = this.isPaused ? false : true;
+	}
 
-  pauseDeath() {
-    this.isPaused = true;
-    this.renderHandler.deathScreen();
-  }
+	pauseDeath() {
+		this.isPaused = true;
+		this.renderHandler.deathScreen();
+	}
 
 	addLives() {
 		game.playerHandler.player.lives++

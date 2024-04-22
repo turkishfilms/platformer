@@ -14,8 +14,11 @@ class GameHandler {
     this.physicsHandler = physicsHandler;
     this.renderHandler = renderHandler;
     this.dimensions = dimensions;
-    this.isPaused = false;
-    this.levelInit();
+    this.isPaused = true
+		this.startGameButton = this.createStartGameButton("START GAME!!! >:)")
+		this.deathButton = this.createDeathButton("WOW GARB")
+		this.deathButton.hide()
+		this.gameOpeningScreen()
   }
 
   nextFrame() {
@@ -141,18 +144,52 @@ class GameHandler {
   addLives() {
     game.playerHandler.player.lives++;
   }
+  gameOpeningScreen() {
+		console.log("this is the object")
+		console.log(this)
+		image(assets.img, windowWidth / 2, windowHeight / 2, windowWidth, windowHeight)
+		text("start here", 50, 50)
+		this.isPaused = true
+	}
+	deathButtonActivation() {
+		game.hideDeathButton()
+		game.startGameButton.show()
+		game.gameOpeningScreen()
+	}
+	hideDeathButton() {
+		game.deathButton.hide()
+	}
+  createDeathButton(name) {
+		let button = createButton(name);
+		button.position(windowWidth - 100, windowHeight / 2);
+		button.mousePressed(this.deathButtonActivation)
+		return button
+	}
 
-  startOver() {
-    game.setCurrentLevel(1);
-    game.resetLevel();
-    game.togglePaused();
-    game.startOverButton.hide();
-  }
+	startOver() {
+		game.setCurrentLevel(1)
+		game.togglePaused()
+		game.startGameButton.hide()
+	}
 
-  startButton() {
-    const button = createButton("Try Again?");
-    this.startOverButton = button;
-    this.startOverButton.position(windowWidth - 100, windowHeight / 2);
-    this.startOverButton.mousePressed(this.startOver);
-  }
+	startButton(name) {
+		let button = createButton(name);
+		button.position(windowWidth - 100, windowHeight / 2);
+		button.mousePressed(this.startOver)
+	}
+
+	startGame() {
+		game.levelInit()
+		game.togglePaused()
+		game.startGameButton.hide()
+	}
+
+	createStartGameButton(name) {
+		const button = createButton(name);
+		button.position(windowWidth - 100, windowHeight / 2);
+		button.mousePressed(this.startGame)
+		return button
+	}
 }
+
+

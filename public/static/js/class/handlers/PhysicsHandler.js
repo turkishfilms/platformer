@@ -173,6 +173,10 @@ disappearBlock(block){
     });
   }
 
+  getWorld(){
+    return this.engine.world
+  }
+  
   hasCollided() {
     return (
       Matter.Query.collides(

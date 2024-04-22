@@ -1,23 +1,23 @@
 class Player {
 	constructor({
-		alternateColors = {
-			noJumpColor: {
+		alternateColors = [{
 				r: 222,
 				g: 150,
 				b: 35,
 				a: 250
 			}
-		 },
+
+
+		],
 		color = {
 			r: 222,
 			g: 150,
 			b: 35,
 			a: 250
 		},
-		sprites,	
 		size = {
-			width: 64,
-			height: 64
+			width: 50,
+			height: 50
 		},
 		position = {
 			x: 56,
@@ -47,7 +47,6 @@ class Player {
 		this.maxJumpCount = maxJumpCount
 		this.options = options
 		this.alternateColors = alternateColors
-		this.sprites = sprites
 	}
 }
 

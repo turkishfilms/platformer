@@ -1,0 +1,149 @@
+this is where the lore goes
+.
+
+
+Heng
+Player is a burger
+The player is trapped and trying to escape the dimensions. And monsters are trying to attack him
+ and trying to get rid of him since the monsters want to eat the player. 
+ Level should be 8
+ monsters spawn on level 2 
+End screen it says the player will go back home 
+ Level difficulty can be medium or hard
+ Hard is more monsters and tiny blocks and the monsters will have more health so more jumps needed
+ Also hard mode you have 2 bars of health instead of 3 
+ and medium is regular monsters and blocks are normal size
+Powerup could be low gravity or speed or health
+Powerups spawn in when you are in low health or needed for levels 
+For the health powerup if u are low and kill a monsters a food item will 
+spawn in the place where you killed the monsters
+Health powerups will not spawn always 35 percent chance 
+Give all maxed health
+COLLECT hidden items to unlock skins like hats 
+BOSS IS A a giga burger
+
+Hsing
+the player is trying to escape the place. Trying to get to the exit
+Portals
+
+last level is the one i made
+-last level is hardest
+gravity change on specific levels
+start with 5 levels
+
+crypt world
+- skulls attack you, also chase the player
+
+
+ocean abyss world
+- player drowns if it dosn't go to a place
+ that restores oxygen
+- a bit slower movespeed
+- player falls slower
+
+TV static world
+- some blocks instantly kill the player
+but the killBlocks look like the same as the obstacles
+- some blocks are invisible
+
+Final boss
+- boss could destroy obstacles permanatly, 
+making the player fall into the void
+- obstacles don't regenerate when broken by boss
+boss is skull emblem thing
+- launches skulls
+touch skulls to reflect skulls the damage back to the boss
+
+
+Reginald
+
+level ideas:
+fire world 
+outer space 
+tutorial
+level editor
+upside down/sideways world
+
+POTENTIAL STORY IDEAS:
+motivation for-
+Player,
+
+Maybe competitive, time trials, local/online multiplayer.
+Mario style boss, jump on top of it to damage he causes damage ( minus 1 life) on contact.
+We want to go to the portal to get back to our home dimension
+We accidentally fell into a portal
+Exploring the backrooms and took a wrong turn.
+Collect all the machine (rocket) parts to win the game.
+The portal only lets one person through, and so we are racing other people (aliens) that are also trying to get home.
+trying to get home fast, not so puzzling.
+quest for balance ??
+obstacle,
+
+Basic white blocks. No reason for them to exist, no explantation.
+Meteors, space debris
+void blocks, fragile or pressure sensitive blocks,
+Other world terrain, dinosaur level, dinosaurs. Under the sea, shark, seashells, wrecked pirate ship.
+enemies
+
+The boss is stopping us from reaching the portal, because we owe him money
+The enemies are upet because the player disturbed their environment, ecosystem
+The enemies are mad or arent even bad guys, they just happen to be poisonous.
+npc
+
+Some npcs give you buffs in the game. (buffs like: temporary flying, extra jump, speed buffs, shield buff, invisibility buff(hides from enemies), retry)
+You pay them in skulls of the enemies. (enemies drop skulls when killed)
+These Merchants dislike the enemies and so will grant a random buff upon receiving x amount of skulls.
+Logical reasons for some buffs, parachute, better shoes
+the skulls have in them the power the enemy had, and these power types grant certain powered buffs, (invisibilty, extra jump) potion/magic based
+WHAT DO OTHER FUN GAMES DO?
+motivation for players.
+Astroneer, explore lots of planets and build cool stuff, figure out the secret of the satellite.
+Slither.io, pick up orbs to grow, become the biggest snake. online multiplayer. Agar.io
+MInecraft, open ended, go to the end and slay the dragon. Do whatever you want.
+FNAF, survive for 5 nights, manage power.
+Freerider. make it to the end of the track (fast as possible)
+ROBLOX, open world design, closed objective.
+Star wars battlefront, capture the flag, online competitive.
+Superliminal, to get well using your dreams. get back to reality.
+
+Commonalites:
+
+ALL have an objective
+player and interactables.
+DIFFERENCES:
+
+open world vs closed objective
+multiple lives, explained, or not
+
+Potentially coop mode, in which partners work together.
+motivation-
+Is late for dinner/school.
+Is being chased by ??? monster/police
+Speed run practice.
+
+Running from spiders
+
+on a quest
+
+Our player tripped and dropped all the pieces to the portal gun and needs to jump from platform to platform to collect the pieces
+
+racing other players
+
+key to the exit
+
+ccombination lock to leave platfoems likke paint it tony hawk
+player has to push a box or ball to the end
+change the players size to win
+breaking obspacles w a flamethrower
+
+
+
+
+
+
+
+
+
+
+
+

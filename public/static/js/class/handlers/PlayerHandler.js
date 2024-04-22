@@ -7,111 +7,85 @@
  */
 
 class PlayerHandler {
-  constructor({ player = new Player() } = {}) {
-    this.player = player;
-  }
+	constructor({
+		player = new Player(),
+	} = {}) {
+		this.player = player
+	}
 
-  updatePlayer(position, hasCollided) {
-    this.player.position = position;
-    if (hasCollided) this.incrementJumpCount();
-  }
+	updatePlayer() {
+		const player = game.physicsHandler.getPlayerBody()
+		this.player.position = player.position
+		if (Matter.Query.collides(player, game.physicsHandler.getObstacleComposite().bodies).length > 0) {
+			this.player.jumpCount = Math.min(this.player.jumpCount + 1, this.player.maxJumpCount)
+		}
+	}
 
-  incrementJumpCount() {
-    this.player.jumpCount = Math.min(
-      this.player.jumpCount + 1,
-      this.player.maxJumpCount
-    );
-  }
+	livesZero() {
+		/** goal: when you lose all of your lives, your color changes 
+		 * ingriedents: 
+		 * -lives
+		 * -color */
+		const color = { r: 0, g: 0, b: 0, a: 250 } //black
+		this.colorPicker(color)
+		game.pauseDeath()
 
-  livesZero() {
-    /** goal: when you lose all of your lives, your color changes
-     * ingriedents: -lives  -color
-     *ADD THESE THINGS: when lives zero and try agian button hit restore lives
-     * */
-    const color = { r: 0, g: 0, b: 0, a: 250 }; //black
-    this.colorPicker(color);
-    console.log('ph,lz w,heF')
-    game.pauseDeath();
-  }
+	}
 
-  movePlayer(velocity) {
-    if (
-      (velocity.x != 0 || velocity.y > 0 || this.canJump(this.player)) &&
-      !game.isPaused
-    ) {
-      //if horizontal or downwards go for it. if upwards, check if jump available.
-      if (velocity.y < 0) this.player.jumpCount--;
-      game.physicsHandler.movePlayer({
-        x: velocity.x * this.player.moveSpeed,
-        y: velocity.y * this.player.jumpSpeed,
-      });
-    }
-  }
+	movePlayer(velocity) {
+		if ((velocity.x != 0 || velocity.y > 0 || this.canJump(this.player)) && !game.isPaused) {
+			//if horizontal or downwards go for it. if upwards, check if jump available.
+			if (velocity.y < 0) this.player.jumpCount--
+			game.physicsHandler.movePlayer({ x: velocity.x * this.player.moveSpeed, y: velocity.y * this.player.jumpSpeed })
+		}
+	}
 
-  handleOffScreen() {
-    if (this.physicsHandler.isPlayerOffScreen())
-      this.playerHandler.resetPlayer();
-  }
 
-  canJump(player) {
-    return player.jumpCount > 0;
-  }
+	handleOffScreen() { if (this.physicsHandler.isPlayerOffScreen()) this.playerHandler.resetPlayer() }
 
-  decrementLives() {
-    this.player.lives--;
-  }
+	canJump(player) {
+		return player.jumpCount > 0
+	}
 
-  incrementLives() {
-    this.player.lives++;
-  }
+	decrementLives() {
+		this.player.lives--
+	}
 
-  isPlayerDead() {
-    return this.player.lives <= 0;
-  }
+	incrementLives() {
+		w
+		this.player.lives++
+	}
 
-  resetPlayer() {
-    if (!this.isPlayerDead()) this.decrementLives();
-    else this.livesZero();
-    game.physicsHandler.playerStill();
-    game.physicsHandler.translatePlayer(
-      game.levelHandler.getPlayerStartingPosition()
-    );
-  }
+	isPlayerDead() {
+		return this.player.lives <= 0
+	}
 
-  getPlayerAsOptions() {
-    const {
-      position: { x, y },
-      bounds: { width, height },
-      options: { restitution },
-    } = this.player;
-    return { x, y, width, height, restitution };
-  }
+	resetPlayer() {
+		if (!this.isPlayerDead()) this.decrementLives()
+		else this.livesZero()
 
-  getColor() {
-    return this.canJump(this.player)
-      ? this.player.color
-      : this.player.noJumpColor;
-  }
 
-  getSprite() {
-    const frameModulus = frameCount % this.player.sprites.length;
-    const sprite = this.player.sprites[frameModulus];
-    return sprite;
-  }
+		game.physicsHandler.playerStill()
+		game.physicsHandler.translatePlayer(game.levelHandler.getPlayerStartingPosition())
 
-  addPlayer(player) {
-    const playera = JSON.parse(JSON.stringify(player)); //ensuring no coupling occurs
-    playera.sprites = assets.spiderSprite;
-    this.player = playera;
-  }
-  livesDeath() {
-    // goal when player lives = 0 change color.
-    //ingriedents player, color, lives
-    if (this.isPlayerDead()) {
-      this.colorPicker({ r: 0, g: 0, b: 0, a: 250 });
-    }
-  }
-  colorPicker(color) {
-    this.player.color = color;
-  }
+	}
+
+	getPlayerAsOptions() {
+		const { position: { x, y }, bounds: { width, height }, options: { restitution } } = this.player
+		return { x, y, width, height, restitution }
+	}
+
+	addPlayer(player) {
+		this.player = JSON.parse(JSON.stringify(player)) //ensuring no coupling occurs
+	}
+	livesDeath() {
+		// goal when player lives = 0 change color. 
+		//ingriedents player, color, lives
+		if (this.isPlayerDead()) {
+			this.colorPicker({ r: 0, g: 0, b: 0, a: 250 })
+		}
+	}
+	colorPicker(color) {
+		this.player.color = color
+	}
 }

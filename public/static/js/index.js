@@ -1,6 +1,7 @@
 let game, assets = {}
 
 function preload() {
+	assets.img = loadImage('static/assets/6coloredpipes_byimogiagames.png')
 	assets.skull = loadImage('static/assets/skull.png')
 	assets.cryskull = loadImage('static/assets/skull-orig.png')
 	assets.spiderSheet = loadImage('static/assets/LPC_Spiders/LPC_Spiders/spider05.png')

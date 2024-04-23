@@ -84,7 +84,7 @@ class PlayerHandler {
 			this.colorPicker({ r: 0, g: 0, b: 0, a: 250 })
 		}
 	}
-	colorPicker(color) {
+	getColor(color) {
 		this.player.color = color
 	}
 }

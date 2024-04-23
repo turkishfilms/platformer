@@ -113,7 +113,6 @@ class PhysicsHandler {
 		restitution: 0
 	}) {
 		obstacles.forEach(obstacle => {
-			console.log("PH,aO,obstacle", obstacle)
 			let {
 				position: {
 					x,
@@ -128,7 +127,6 @@ class PhysicsHandler {
 				sprite,
 			} = obstacle
 
-			console.log(isDisappearing, sprite)
 			let rect = Matter.Bodies.rectangle(x, y, width, height, {
 				isStatic: options.isStatic,
 				restitution: options.restitution,
@@ -159,7 +157,6 @@ class PhysicsHandler {
 	getObstacleData() {
 		//FIXME: fix this to use labels
 		return this.engine.world.composites[1].bodies.map((obs) => {
-			console.log("PH,gOD,obs",obs)
 			return {
 				size: {
 					h: obs.bounds.max.y - obs.bounds.min.y,

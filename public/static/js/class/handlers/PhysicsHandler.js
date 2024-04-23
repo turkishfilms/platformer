@@ -159,6 +159,7 @@ class PhysicsHandler {
 	getObstacleData() {
 		//FIXME: fix this to use labels
 		return this.engine.world.composites[1].bodies.map((obs) => {
+			console.log("PH,gOD,obs",obs)
 			return {
 				size: {
 					h: obs.bounds.max.y - obs.bounds.min.y,

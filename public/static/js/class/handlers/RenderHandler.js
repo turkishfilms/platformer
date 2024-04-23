@@ -57,6 +57,7 @@ class RenderHandler {
       angle = 0,
       sprite,
     } = data;
+    console.log("RH,shSP,sp",sprite)
     translate(x, y);
     rotate(angle);
     fill(r, g, b, a);

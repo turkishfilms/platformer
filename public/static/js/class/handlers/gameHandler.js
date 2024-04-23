@@ -55,6 +55,7 @@ class GameHandler {
     const data = [];
     data.push(this.getPlayerData());
     this.physicsHandler.getObstacleData().map((obstacle) => {
+      console.log("GH,gID,ass[obs.sp]",assets[obstacle.sprite])
       obstacle.sprite = assets[obstacle.sprite];
       data.push(obstacle);
     });

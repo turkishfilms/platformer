@@ -9,6 +9,9 @@ function preload() {
 	assets.creeper = loadImage('static/assets/creeper.webp')
 	assets.spiderSheet = loadImage('static/assets/LPC_Spiders/LPC_Spiders/spider05.png')
 	assets.deathScreen1 = loadImage('static/assets/black-screen-of-death.webp') 
+assets.clay= loadImage('static/assets/sbs_-_base_materials_pack_128x128/Base Materials 128x128/Clay/Mat_Clay_Red_06-128x128.png')
+	assets.dark= loadImage("static/assets/sbs_-_base_materials_pack_128x128/Base Materials 128x128/Metal/Mat_Metal_Brushed_03-128x128.png")
+
 }
 
 function setup() {

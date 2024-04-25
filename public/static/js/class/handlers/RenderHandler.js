@@ -9,15 +9,18 @@ class RenderHandler {
     imageMode(CENTER);
   }
 
-  showFrame(items, data, {redraw, backdrop}) {
+  showFrame(items, data, { redraw, backdrop }) {
     if (redraw) {
       background(0);
       if (backdrop) this.backgroundChanger(backdrop);
     }
-    items.forEach(item => this.showSprite(item));
-    data.forEach(info => this.showText(info.text, info.x, info.y));
+    items.forEach((item) => this.showSprite(item));
+    data.forEach((info) => this.showText(info.text, info.x, info.y));
   }
-
+  backgroundChanger(userImage) {
+    const { width: w, height: h } = this.screenDimensions;
+    image(userImage, w / 2, h / 2, w, h);
+  }
   showRect(data) {
     const {
       color: { r, g, b, a } = {
@@ -70,9 +73,6 @@ class RenderHandler {
     const { width: w, height: h } = this.screenDimensions;
     this.backgroundChanger(assets.deathScreen1, w / 2, h / 2);
     this.showText("You Died Loser💀!", w / 2, h / 2);
-    /*
-		 Goal To make a Death Screen When you run out of lives you get to restart the game after
-		 It will have a Text that says YOU DIED LOSER! skull emoji
-		 Ingredients Image, the pause function,text */
+    game.deathButton.show();
   }
 }

@@ -31,14 +31,20 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  // assets.spiderAttackLeftSprite = getSpriteFromSheet(assets.spiderSheet,64,10);
-  let attackLeftPostitions = []
-for(let i = 0; i < 5; i++){
-  attackLeftPostitions.push({x:i*64,y:64})
-}
-  assets.spiderAttackLeftSprite =getAnimationFromSheet(assets.spiderSheet,attackLeftPostitions,{width:64,height:64});
-  assets.spiderRestSprite =getAnimationFromSheet(assets.spiderSheet,[{x:9*64,y:3*64}],{width:64,height:64});
-  // assets.spiderWalkRightSprite = getSpriteFromSheet(assets.spiderSheet, 5);
+  let attackLeftPostitions = [];
+  for (let i = 0; i < 5; i++) {
+    attackLeftPostitions.push({ x: i * 64, y: 64 });
+  }
+  assets.spiderAttackLeftSprite = getAnimationFromSheet(
+    assets.spiderSheet,
+    attackLeftPostitions,
+    { width: 64, height: 64 }
+  );
+  assets.spiderRestSprite = getAnimationFromSheet(
+    assets.spiderSheet,
+    [{ x: 9 * 64, y: 3 * 64 }],
+    { width: 64, height: 64 }
+  );
   background(0);
   textSize(25);
   imageMode(CENTER);
@@ -49,10 +55,14 @@ for(let i = 0; i < 5; i++){
   });
 }
 
-function getAnimationFromSheet(sheet, imagePositions = [], imageSize = {width: 0, height: 0}) {
+function getAnimationFromSheet(
+  sheet,
+  imagePositions = [],
+  imageSize = { width: 0, height: 0 }
+) {
   const spriteList = [];
   imagePositions.forEach((position) => {
-    const x = position.x, 
+    const x = position.x,
       y = position.y,
       width = imageSize.width,
       height = imageSize.height;

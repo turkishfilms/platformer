@@ -99,9 +99,9 @@ class PlayerHandler {
   }
 
   addPlayer(player) {
-    const playera = JSON.parse(JSON.stringify(player)); //ensuring no coupling occurs
-    playera.sprites = assets.spiderSprite;
-    this.player = playera;
+    const playerWithSprite = JSON.parse(JSON.stringify(player)); //ensuring no coupling occurs
+    playerWithSprite.sprites = assets.spiderRestSprite;
+    this.player = playerWithSprite;
   }
   livesDeath() {
     // goal when player lives = 0 change color.

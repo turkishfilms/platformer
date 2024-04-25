@@ -31,13 +31,14 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  assets.spiderAttackLeftSprite = getSpriteFromSheet(
-    assets.spiderSheet,
-    64,
-    10
-  );
-  assets.spiderRestSprite = getSpriteFromSheet(assets.spiderSheet, 1);
-  assets.spiderWalkRightSprite = getSpriteFromSheet(assets.spiderSheet, 5);
+  // assets.spiderAttackLeftSprite = getSpriteFromSheet(assets.spiderSheet,64,10);
+  let attackLeftPostitions = []
+for(let i = 0; i < 5; i++){
+  attackLeftPostitions.push({x:i*64,y:64})
+}
+  assets.spiderAttackLeftSprite =getAnimationFromSheet(assets.spiderSheet,attackLeftPostitions,{width:64,height:64});
+  assets.spiderRestSprite =getAnimationFromSheet(assets.spiderSheet,[{x:9*64,y:3*64}],{width:64,height:64});
+  // assets.spiderWalkRightSprite = getSpriteFromSheet(assets.spiderSheet, 5);
   background(0);
   textSize(25);
   imageMode(CENTER);
@@ -46,10 +47,6 @@ function setup() {
     levels: levelData,
     dimensions: { height: windowHeight, width: windowWidth },
   });
-}
-
-function getSpriteFromSheet(sheet, x, y, width, height) {
-  return sheet.get(x, y, width, height);
 }
 
 function getAnimationFromSheet(sheet, imagePositions = [], imageSize = {width: 0, height: 0}) {

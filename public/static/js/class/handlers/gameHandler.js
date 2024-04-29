@@ -87,10 +87,12 @@ class GameHandler {
 
 	movePlayerRight() {
 		this.playerHandler.movePlayer({ x: 1, y: 0 });
+		this.playerHandler.player.isFacingRight = true
 	}
 
 	movePlayerLeft() {
 		this.playerHandler.movePlayer({ x: -1, y: 0 });
+		this.playerHandler.player.isFacingRight = false
 	}
 
 	movePlayerUp() {

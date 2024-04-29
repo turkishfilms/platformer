@@ -34,7 +34,8 @@ class Player {
 		maxJumpCount = 1,
 		options = {
 			restitution: 0
-		}
+		},
+		isFacingRight = true
 	} = {}) {
 		this.color = color
 		this.bounds = size
@@ -47,6 +48,7 @@ class Player {
 		this.maxJumpCount = maxJumpCount
 		this.options = options
 		this.alternateColors = alternateColors
+		this.isFacingRight = isFacingRight
 	}
 }
 

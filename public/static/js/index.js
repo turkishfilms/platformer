@@ -29,12 +29,9 @@ function getSpriteFromSheet(sheet) {
 	for (let index = 0; index < 10; index++) {
 		spriteList.push(sheet.get(index * size, 64, size, size))
 	}
-
-
-
 	return spriteList
-
 }
+
 function keyPressed() {
 	if (key == "d" || key == "D") {
 		game.movePlayerRight();

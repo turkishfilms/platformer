@@ -93,10 +93,31 @@ class PlayerHandler {
   }
 
   getSprite() {
+    /**
+     * Goal 
+     * Return the Sprtie as the same direction as the player
+     * Sprite
+     * Direction
+     * Translate.
+     * Direction =this.player.isFacingRight 
+     */
+    let direction = this.player.isFacingRight
+if(direction == true){
+  // get the sprite of it is moving right
+}
+else{
+ // get the sprite of it is moving left
+}
+
+
+
+
     const frameModulus = frameCount % this.player.sprites.length;
     const sprite = this.player.sprites[frameModulus];
     return sprite;
   }
+
+  
 
   addPlayer(player) {
     const playera = JSON.parse(JSON.stringify(player)); //ensuring no coupling occurs

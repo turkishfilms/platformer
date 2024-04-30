@@ -121,7 +121,8 @@ else{
 
   addPlayer(player) {
     const playera = JSON.parse(JSON.stringify(player)); //ensuring no coupling occurs
-    playera.sprites = assets.spiderSprite;
+    playera.sprite.left = assets.spiderSpriteWalkLeft
+    playera.sprite.right = assets.spiderSpriteWalkRight
     this.player = playera;
   }
   livesDeath() {

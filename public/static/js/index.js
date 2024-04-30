@@ -16,18 +16,18 @@ function preload() {
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
-	assets.spiderSprite = getSpriteFromSheet(assets.spiderSheet)
+	assets.spiderSpriteWalkLeft = getSpriteFromSheet(assets.spiderSheet,64,64,7,1,4)
+	assets.spiderSpriteWalkRight = getSpriteFromSheet(assets.spiderSheet,64,64,7,3,4)
 	background(0);
 	textSize(25)
 	imageMode(CENTER)
 	game = new GameHandler({ physicsHandler: new PhysicsHandler({ sub: ['player', 'obstacles'] }), levels: levelData, dimensions: { height: windowHeight, width: windowWidth } })
 }
 
-function getSpriteFromSheet(sheet) {
+function getSpriteFromSheet(sheet,sizeWidth,sizeHeight,numImg,row,startCol) {
 	const spriteList = []
-	let size = 64
-	for (let index = 0; index < 10; index++) {
-		spriteList.push(sheet.get(index * size, 64, size, size))
+	for (let index = startCol; index < numImg + startCol; index++) {
+		spriteList.push(sheet.get(index * sizeWidth, row * sizeHeight, sizeWidth, sizeHeight))
 	}
 	return spriteList
 }

@@ -11,7 +11,9 @@ function preload() {
 	assets.deathScreen1 = loadImage('static/assets/black-screen-of-death.webp')
 	assets.clay = loadImage('static/assets/sbs_-_base_materials_pack_128x128/Base Materials 128x128/Clay/Mat_Clay_Red_06-128x128.png')
 	assets.dark = loadImage("static/assets/sbs_-_base_materials_pack_128x128/Base Materials 128x128/Metal/Mat_Metal_Brushed_03-128x128.png")
-
+	assets.cryptd = loadImage('static/assets/crypt-dungeon.jpg')
+	assets.cryptc = loadImage('static/assets/crypt-2.jpg')
+	assets.redskull = loadImage('static/assets/skull_emblem-red.png')
 }
 
 function setup() {

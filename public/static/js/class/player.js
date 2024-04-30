@@ -35,7 +35,11 @@ class Player {
 		options = {
 			restitution: 0
 		},
-		isFacingRight = true
+		isFacingRight = true,
+		sprite = {
+		left : 0,
+		right : 9,
+		}
 	} = {}) {
 		this.color = color
 		this.bounds = size
@@ -49,6 +53,7 @@ class Player {
 		this.options = options
 		this.alternateColors = alternateColors
 		this.isFacingRight = isFacingRight
+		this.sprite = sprite
 	}
 }
 

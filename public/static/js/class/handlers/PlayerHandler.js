@@ -103,10 +103,10 @@ class PlayerHandler {
      */
     let direction = this.player.isFacingRight
 if(direction == true){
-  // get the sprite of it is moving right
+  let rightSprite = this.player.sprite.right
 }
 else{
- // get the sprite of it is moving left
+ let leftSprite = this.player.sprite.left
 }
 
 

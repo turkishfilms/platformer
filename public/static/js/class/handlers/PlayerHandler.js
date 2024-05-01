@@ -103,18 +103,20 @@ class PlayerHandler {
      */
     let direction = this.player.isFacingRight
 if(direction == true){
-  let rightSprite = this.player.sprite.right
+  let rightSprite = this.player.sprite.right[0]
+  return rightSprite
 }
 else{
- let leftSprite = this.player.sprite.left
+ let leftSprite = this.player.sprite.left[0]
+    return leftSprite
 }
 
 
 
 
-    const frameModulus = frameCount % this.player.sprites.length;
-    const sprite = this.player.sprites[frameModulus];
-    return sprite;
+  //const frameModulus = frameCount % this.player.sprites.length;
+   //const sprite = this.player.sprites[frameModulus];
+  return sprite;
   }
 
   

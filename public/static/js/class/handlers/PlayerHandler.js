@@ -102,24 +102,17 @@ class PlayerHandler {
      * Direction =this.player.isFacingRight 
      */
     let direction = this.player.isFacingRight
+    let directionSprite
 if(direction == true){
-  let rightSprite = this.player.sprite.right[0]
-  return rightSprite
+   directionSprite = this.player.sprite.right
 }
 else{
- let leftSprite = this.player.sprite.left[0]
-    return leftSprite
-}
-
-
-
-
-  //const frameModulus = frameCount % this.player.sprites.length;
-   //const sprite = this.player.sprites[frameModulus];
-  return sprite;
+ directionSprite = this.player.sprite.left
+ }
+  const frameModulus = frameCount % ( directionSprite.length -1) ;
+   const sprite = directionSprite[frameModulus];
+   return sprite
   }
-
-  
 
   addPlayer(player) {
     const playera = JSON.parse(JSON.stringify(player)); //ensuring no coupling occurs

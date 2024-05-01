@@ -14,6 +14,8 @@ function preload() {
 	assets.cryptd = loadImage('static/assets/crypt-dungeon.jpg')
 	assets.cryptc = loadImage('static/assets/crypt-2.jpg')
 	assets.redskull = loadImage('static/assets/skull_emblem-red.png')
+	assets.caveskull = loadImage('static/assets/caveskull.png')
+	assets.cryptdblock = loadImage('static/assets/cryptdblock.png ')
 }
 
 function setup() {

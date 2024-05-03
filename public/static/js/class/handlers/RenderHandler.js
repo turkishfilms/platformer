@@ -75,6 +75,7 @@ class RenderHandler {
     this.showText("You Died Loser💀!", w / 2, h / 2);
     game.deathButton.show();
   }
+ 
   moveSpriteDirection(){
      /**
       * Goal
@@ -86,3 +87,5 @@ class RenderHandler {
       */
   }
 }
+
+

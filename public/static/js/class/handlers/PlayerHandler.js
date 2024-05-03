@@ -142,6 +142,7 @@ class PlayerHandler {
   }
 
   addPlayer(player) {
+
     const playera = JSON.parse(JSON.stringify(player)); //ensuring no coupling occurs
     playera.sprite.left = assets.spiderSpriteWalkLeft
     playera.sprite.right = assets.spiderSpriteWalkRight
@@ -158,6 +159,7 @@ class PlayerHandler {
      * if xSpeed == 0 
      * playera.sprite.resting = assets.spiderSpriteRest
      */
+
   }
   livesDeath() {
     // goal when player lives = 0 change color.

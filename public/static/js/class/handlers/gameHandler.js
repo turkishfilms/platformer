@@ -27,7 +27,8 @@ class GameHandler {
 		this.physicsHandler.simulateWorldByOneFrame();
 		this.playerHandler.updatePlayer(
 			this.physicsHandler.getPlayerBody().position,
-			this.hasCollided()
+			this.hasCollided(),
+			this.physicsHandler.getPlayerBody().velocity.x
 		);
 		this.physicsHandler.handleDisappear()
 		this.renderHandler.showFrame(

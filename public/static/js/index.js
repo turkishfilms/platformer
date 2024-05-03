@@ -18,6 +18,7 @@ function setup() {
 	createCanvas(windowWidth, windowHeight);
 	assets.spiderSpriteWalkLeft = getSpriteFromSheet(assets.spiderSheet,64,64,7,1,4)
 	assets.spiderSpriteWalkRight = getSpriteFromSheet(assets.spiderSheet,64,64,7,3,4)
+	assets.spiderSpriteRest = getSpriteFromSheet(assets.spiderSheet,64,64,1,4,0)
 	background(0);
 	textSize(25)
 	imageMode(CENTER)

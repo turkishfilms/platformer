@@ -4,7 +4,8 @@ class Obstacle {
 		this.position = { x: x, y: y }
 		this.size = { w: w, h: h }
 		this.color = color;
-		this.isDisappearing =isDisappearing
+		this.isDisappearing = isDisappearing
+		this.isEndBlock = isEndBlock
 		this.sprite = sprite
 	}
 }

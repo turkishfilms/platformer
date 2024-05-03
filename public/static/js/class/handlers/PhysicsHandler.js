@@ -81,7 +81,7 @@ class PhysicsHandler {
 		);
 	}
 
-	disappearCollisionCheck() {
+		collisionCheck() {
 		return this.getCollisions().length > 0
 	}
 
@@ -96,7 +96,7 @@ class PhysicsHandler {
 	}
 
 	handleDisappear() {
-		if (this.disappearCollisionCheck()) {
+		if (this.collisionCheck()) {
 
 			const collisions = this.getCollisions()
 			collisions.forEach(collision => {
@@ -106,6 +106,30 @@ class PhysicsHandler {
 				}
 			})
 		}
+	}
+
+	handleEndBlock(){
+		/**goal:
+		 * transfer player onto next level upon contact
+		 *Ingredients:*
+		 * need a way to check(hascollided) if the player had touched that block (function)
+		 * need a way to change level (function)
+
+		*/
+		if (this.collisionCheck()) {
+
+			const collisions = this.getCollisions()
+			collisions.forEach(collision => {
+				const block = collision.bodyB
+				if (this.isEndBlock(block)) {
+					
+				game.nextLevel()	
+				}
+			})}
+	}
+
+	isEndBlock(block){
+			return block.isEndBlock
 	}
 
 	addObstacles(obstacles, options = {
@@ -136,7 +160,7 @@ class PhysicsHandler {
 			Matter.Composite.add(this.getObstacleComposite(), rect)
 		});
 	}
-
+	
 	getPlayerComposite() {
 		return Matter.Composite.allComposites(this.engine.world).filter(
 			(composite) => composite.label == this.compositeStructure.player

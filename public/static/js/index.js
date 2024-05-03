@@ -48,7 +48,7 @@ function getSpriteFromSheet(sheet,sizeWidth,sizeHeight,numImg,row,startCol) {
 	}
 	return spriteList
 
-
+}
 function keyPressed() {
   switch (key) {
     case "d" || "D":

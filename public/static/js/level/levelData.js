@@ -3,7 +3,7 @@ let levelData = [
 	physics: [new Physics()],
 	player: [new Player({ lives:3,color: { r: 0, g: 255, b: 0, a: 255 }, position: { x: 50, y: 50 }, options: { restitution: 0, inertia: Infinity} })],
 	obstacles: [
-		new Obstacle({ x:10,y: 200,w: 150,h: 50,sprite:"clay",isDisappearing:true }), 
+		new Obstacle({ x:10,y: 200,w: 150,h: 50,sprite:"clay",isDisappearing:true, isEndBlock:true }), 
 		new Obstacle({ x:250,y: 350,w: 200,h: 50,sprite:"dark" }), 
 		new Obstacle({ x:475,y: 100,w: 50,h: 225,sprite:"dark" }),
 		new Obstacle({ x:75,y: 475,w: 50,h: 25,sprite:"dark" }), 
@@ -12,7 +12,7 @@ let levelData = [
 		new Obstacle({ x:650,y: 550,w: 25,h: 25,sprite:"dark" }), 
 		new Obstacle({ x:800,y: 500,w: 25,h: 25,sprite:"dark" }), 
 		new Obstacle({ x:950,y: 450,w: 25,h: 25,sprite:"dark" }), 
-		new Obstacle({ x:1100,y: 400,w: 25,h: 25,sprite:"dark" })],
+		new Obstacle({ x:1100,y: 400,w: 25,h: 25,sprite:"cryskull", isEndBlock:true  })],
 	redraw:true,
 	backdrop: "clay"
 },

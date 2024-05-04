@@ -116,13 +116,15 @@ class PhysicsHandler {
 		 * need a way to change level (function)
 
 		*/
+		
+		
 		if (this.collisionCheck()) {
-
+		
 			const collisions = this.getCollisions()
 			collisions.forEach(collision => {
 				const block = collision.bodyB
 				if (this.isEndBlock(block)) {
-					
+				
 				game.nextLevel()	
 				}
 			})}
@@ -134,8 +136,10 @@ class PhysicsHandler {
 
 	addObstacles(obstacles, options = {
 		isStatic: true,
-		restitution: 0
+		restitution: 0,
+		
 	}) {
+	
 		obstacles.forEach(obstacle => {
 			let {
 				position: {
@@ -149,6 +153,7 @@ class PhysicsHandler {
 				},
 				isDisappearing,
 				sprite,
+				isEndBlock
 			} = obstacle
 
 			let rect = Matter.Bodies.rectangle(x, y, width, height, {
@@ -156,6 +161,7 @@ class PhysicsHandler {
 				restitution: options.restitution,
 				isDisappearing: isDisappearing,
 				sprite: sprite,
+				isEndBlock: isEndBlock,
 			})
 			Matter.Composite.add(this.getObstacleComposite(), rect)
 		});

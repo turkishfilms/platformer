@@ -7,12 +7,16 @@
  */
 
 class PlayerHandler {
-  constructor({ player = new Player() } = {}) {
+  constructor({
+    player = new Player()
+  } = {}) {
     this.player = player;
   }
 
-  updatePlayer(position, hasCollided) {
+  updatePlayer(position, hasCollided, Xspeed) {
     this.player.position = position;
+    this.player.speed = Xspeed
+
     if (hasCollided) this.incrementJumpCount();
   }
 
@@ -28,7 +32,12 @@ class PlayerHandler {
      * ingriedents: -lives  -color
      *ADD THESE THINGS: when lives zero and try agian button hit restore lives
      * */
-    const color = { r: 0, g: 0, b: 0, a: 250 }; //black
+    const color = {
+      r: 0,
+      g: 0,
+      b: 0,
+      a: 250
+    }; //black
     this.colorPicker(color);
     game.pauseDeath();
   }
@@ -79,35 +88,89 @@ class PlayerHandler {
 
   getPlayerAsOptions() {
     const {
-      position: { x, y },
-      bounds: { width, height },
-      options: { restitution },
+      position: {
+        x,
+        y
+      },
+      bounds: {
+        width,
+        height
+      },
+      options: {
+        restitution
+      },
     } = this.player;
-    return { x, y, width, height, restitution };
+    return {
+      x,
+      y,
+      width,
+      height,
+      restitution
+    };
   }
 
   getColor() {
-    return this.canJump(this.player)
-      ? this.player.color
-      : this.player.noJumpColor;
+    return this.canJump(this.player) ?
+      this.player.color :
+      this.player.noJumpColor;
   }
 
   getSprite() {
-    const frameModulus = frameCount % this.player.sprites.length;
-    const sprite = this.player.sprites[frameModulus];
-    return sprite;
+    /**
+     * Goal 
+     * Return the Sprtie as the same direction as the player
+     * Sprite
+     * Direction
+     * Translate.
+     * Direction =this.player.isFacingRight 
+     */
+    let directionIsRight = this.player.isFacingRight
+    let directionSprite
+    if (directionIsRight) {
+      directionSprite = this.player.sprite.right
+    } else {
+      directionSprite = this.player.sprite.left
+    }
+    if (this.player.speed == 0) {
+      directionSprite = this.player.sprite.rest
+    }
+    const frameModulus = frameCount % (directionSprite.length -2  );
+    // ????? -2 ??????????
+    const sprite = directionSprite[frameModulus];
+    
+    return sprite
   }
 
   addPlayer(player) {
-    const playerWithSprite = JSON.parse(JSON.stringify(player)); //ensuring no coupling occurs
-    playerWithSprite.sprites = assets.spiderRestSprite;
-    this.player = playerWithSprite;
+
+    const playera = JSON.parse(JSON.stringify(player)); //ensuring no coupling occurs
+    playera.sprite.left = assets.spiderSpriteWalkLeft
+    playera.sprite.right = assets.spiderSpriteWalkRight
+    playera.sprite.rest = assets.spiderSpriteRest
+    this.player = playera;
+
+    /**
+     * Goal make a resting for the sprite
+     * Ingriedients 
+     * sprite
+     * physic handler
+     * Xpeed
+     * Translate 
+     * if xSpeed == 0 
+     * playera.sprite.resting = assets.spiderSpriteRest
+     */
+
   }
   livesDeath() {
     // goal when player lives = 0 change color.
     //ingriedents player, color, lives
     if (this.isPlayerDead()) {
-      this.colorPicker({ r: 0, g: 0, b: 0, a: 250 });
+      this.colorPicker({
+        r: 0,
+        g: 0,
+        b: 0,
+        a: 250
+      });
     }
   }
   colorPicker(color) {

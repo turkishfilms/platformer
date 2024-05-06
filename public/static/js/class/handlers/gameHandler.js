@@ -27,7 +27,8 @@ class GameHandler {
 		this.physicsHandler.simulateWorldByOneFrame();
 		this.playerHandler.updatePlayer(
 			this.physicsHandler.getPlayerBody().position,
-			this.hasCollided()
+			this.hasCollided(),
+			this.physicsHandler.getPlayerBody().velocity.x
 		);
 		this.physicsHandler.handleDisappear()
 		this.physicsHandler.handleEndBlock()
@@ -89,10 +90,12 @@ class GameHandler {
 
 	movePlayerRight() {
 		this.playerHandler.movePlayer({ x: 1, y: 0 });
+		this.playerHandler.player.isFacingRight = true
 	}
 
 	movePlayerLeft() {
 		this.playerHandler.movePlayer({ x: -1, y: 0 });
+		this.playerHandler.player.isFacingRight = false
 	}
 
 	movePlayerUp() {

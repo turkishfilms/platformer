@@ -42,7 +42,9 @@ let levelData = [
 		new Obstacle({ x:100,y: 300,w: 150,h: 50,sprite:"cryskull" }),
 		new Obstacle({ x:450,y: 150,w: 200,h: 200,sprite:"cryskull" }),
 		new Obstacle({ x:700,y: 400,w: 50,h: 50,sprite:"cryskull", isDisappearing:true }),
-		new Obstacle({ x:850,y: 500,w: 150,h: 50,sprite:"gemWhite",isEndBlock:true })],
+		new Obstacle({ x:850,y: 500,w: 150,h: 50,sprite:"gemWhite",isDisappearing:true}),
+		new Obstacle({ x:875,y: 500,w: 10,h: 10,sprite:"gemWhite",isEndBlock:true })
+	],
 
 	redraw:true,
 	backdrop: "cryskull"
@@ -57,7 +59,9 @@ let levelData = [
 		new Obstacle({ x:150,y: 200,w: 100,h: 50,sprite:"cryskull" }),
 		new Obstacle({ x:300,y: 300,w: 150,h: 50,sprite:"cryskull" }),
 		new Obstacle({ x:500,y: 250,w: 50,h: 200,sprite:"cryskull",isDisappearing:true }),
-		new Obstacle({ x:650,y: 400,w: 25,h: 25,sprite:"gemWhite",isEndBlock:true })],
+		new Obstacle({ x:650,y: 400,w: 10, h: 10,sprite:"gemWhite"}),
+		new Obstacle({ x:650,y: 400,w: 25, h: 25,sprite:"gemWhite",isEndBlock:true })
+	],
 
 	redraw:true,
 	backdrop: "cryskull"

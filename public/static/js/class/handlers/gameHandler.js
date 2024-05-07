@@ -1,3 +1,4 @@
+//end screen triggers after the 3rd level, there is more levels,  early (white gem
 
 class GameHandler {
 	constructor({

@@ -47,11 +47,11 @@ let levelData = [
 	redraw:true,
 	backdrop: "cryskull"
 },
-{
+{//4
 	physics: [
 		new Physics({ restitution: 0.01 })],
 	player: [
-		new Player({ position:{y:50}, color: { r: 0, g: 255, b: 0, a: 255 }, options: { restitution: 0, inertia: Infinity } })],
+		new Player({ position:{y:50,x:100}, color: { r: 0, g: 255, b: 0, a: 255 }, options: { restitution: 0, inertia: Infinity } })],
 	obstacles: [
 		new Obstacle({ x:0,y: 100,w: 100,h: 100,sprite:"cryskull" }),
 		new Obstacle({ x:150,y: 200,w: 100,h: 50,sprite:"cryskull" }),

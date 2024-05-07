@@ -26,6 +26,9 @@ function preload() {
   );
   assets.dark = loadImage(
     "static/assets/sbs_-_base_materials_pack_128x128/Base Materials 128x128/Metal/Mat_Metal_Brushed_03-128x128.png"
+  )
+  assets.gem = loadImage(
+    "static/assets/Collectibles/gems_db16.png"
   );
 }
 
@@ -35,6 +38,7 @@ function setup() {
 	assets.spiderSpriteWalkLeft = getSpriteFromSheet(assets.spiderSheet,64,64,7,1,4)
 	assets.spiderSpriteWalkRight = getSpriteFromSheet(assets.spiderSheet,64,64,7,3,4)
 	assets.spiderSpriteRest = getSpriteFromSheet(assets.spiderSheet,64,64,1,4,0)
+  assets.gemWhite = getSpriteFromSheet(assets.gem,32,32,1,2,1)[0]
 	background(0);
 	textSize(25)
 	imageMode(CENTER)

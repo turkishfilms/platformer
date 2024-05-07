@@ -75,4 +75,17 @@ class RenderHandler {
     this.showText("You Died Loser💀!", w / 2, h / 2);
     game.deathButton.show();
   }
+ 
+  moveSpriteDirection(){
+     /**
+      * Goal
+      * To make sprite face the same direction when the player is moving
+      * Ingridents: 
+      *Sprite 
+       player's postion
+      player's Direction
+      */
+  }
 }
+
+

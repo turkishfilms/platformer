@@ -1,3 +1,4 @@
+
 class GameHandler {
 	constructor({
 		levels = [],
@@ -26,7 +27,8 @@ class GameHandler {
 		this.physicsHandler.simulateWorldByOneFrame();
 		this.playerHandler.updatePlayer(
 			this.physicsHandler.getPlayerBody().position,
-			this.hasCollided()
+			this.hasCollided(),
+			{Xspeed:this.physicsHandler.getPlayerBody().velocity.x,Yspeed:this.physicsHandler.getPlayerBody().velocity.y}
 		);
 		this.physicsHandler.handleDisappear()
 		this.renderHandler.showFrame(
@@ -87,10 +89,12 @@ class GameHandler {
 
 	movePlayerRight() {
 		this.playerHandler.movePlayer({ x: 1, y: 0 });
+		this.playerHandler.player.isFacingRight = true
 	}
 
 	movePlayerLeft() {
 		this.playerHandler.movePlayer({ x: -1, y: 0 });
+		this.playerHandler.player.isFacingRight = false
 	}
 
 	movePlayerUp() {

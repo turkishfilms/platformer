@@ -1,5 +1,3 @@
-//end screen triggers after the 3rd level, there is more levels,  early (white gem
-
 class GameHandler {
 	constructor({
 		levels = [],
@@ -31,6 +29,7 @@ class GameHandler {
 			this.hasCollided(),
 			this.physicsHandler.getPlayerBody().velocity.x
 		);
+		//this.physicsHandler.handleSpecialBlocks() - wraps those two into one function
 		this.physicsHandler.handleDisappear()
 		this.physicsHandler.handleEndBlock()
 		this.renderHandler.showFrame(
@@ -150,19 +149,23 @@ class GameHandler {
 	addLives() {
 		game.playerHandler.player.lives++;
 	}
+
 	gameOpeningScreen() {
 		image(assets.burger, windowWidth / 2, windowHeight / 2, windowWidth, windowHeight)
 		text("start here", 50, 50)
 		this.isPaused = true
 	}
+
 	deathButtonActivation() {
 		game.hideDeathButton()
 		game.startGameButton.show()
 		game.gameOpeningScreen()
 	}
+
 	hideDeathButton() {
 		game.deathButton.hide()
 	}
+
 	createDeathButton(name) {
 		let button = createButton(name);
 		button.position(windowWidth - 100, windowHeight / 2);

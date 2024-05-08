@@ -29,7 +29,7 @@ let levelData = [
 		new Obstacle({ x:980,y: 270,w: 25,h:25,sprite:"gemWhite", isEndBlock:true })]
 ,
 	redraw:true,
-	backdrop: "cryskull"
+	backdrop: "underWaterAbyss"
 },
 {
 	physics: [
@@ -47,7 +47,7 @@ let levelData = [
 	],
 
 	redraw:true,
-	backdrop: "cryskull"
+	backdrop: "crypt1"
 },
 {//4
 	physics: [
@@ -64,7 +64,7 @@ let levelData = [
 	],
 
 	redraw:true,
-	backdrop: "cryskull"
+	backdrop: "crypt2"
 },
 {
 	physics: [
@@ -76,9 +76,8 @@ let levelData = [
 		new Obstacle({ x:450,y: 500,w: 10,h: 10,sprite:"cryskull" }),
 		new Obstacle({ x:575,y: 575,w: 10,h: 10,sprite:"cryskull" }),
 		new Obstacle({ x:750,y: 475,w: 10,h: 10,sprite:"cryskull" }),
-		new Obstacle({ x:1150,y: 475,w: 10,h: 10,sprite:"gemWhite",isDisappearing:true })]
-,
+		new Obstacle({ x:1150,y: 475,w: 10,h: 10,sprite:"gemWhite",isDisappearing:true, isEndBlock:true })],
 	redraw:true,
-	backdrop: "cryskull"
+	backdrop: "crypt3"
 }
 ]

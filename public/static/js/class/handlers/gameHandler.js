@@ -192,6 +192,10 @@ class GameHandler {
 		button.mousePressed(this.startGame)
 		return button
 	}
+
+attack(){
+
+}
 }
 
 

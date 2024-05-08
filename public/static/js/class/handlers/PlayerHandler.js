@@ -13,7 +13,10 @@ class PlayerHandler {
     this.player = player;
   }
 
-  updatePlayer(position, hasCollided, {Xspeed,Yspeed}) {
+  updatePlayer(position, hasCollided, {
+    Xspeed,
+    Yspeed
+  }) {
     this.player.position = position;
     this.player.speed.x = Xspeed
     this.player.speed.y = Yspeed
@@ -128,21 +131,28 @@ class PlayerHandler {
     let directionIsRight = this.player.isFacingRight
     let showSprite
     if (directionIsRight) {
+      if (this.player.isAttacking) {
+        showSprite = this.player.sprite.attack.left
+      }
       showSprite = this.player.sprite.right
     } else {
+      if (this.player.isAttacking) {
+        showSprite = this.player.sprite.attack.left
+      }
       showSprite = this.player.sprite.left
     }
     if (this.player.speed.x == 0) {
       showSprite = this.player.sprite.rest
     }
-    if(this.player.speed.y < 0 ){
+    if (this.player.speed.y < 0) {
 
-    showSprite = this.player.sprite.jump
+      showSprite = this.player.sprite.jump
     }
-    const frameModulus = frameCount % (showSprite.length -2  );
+
+    const frameModulus = frameCount % (showSprite.length - 2);
     // ????? -2 ??????????
     const sprite = showSprite[frameModulus];
-    
+
     return sprite
   }
 
@@ -153,6 +163,14 @@ class PlayerHandler {
     playera.sprite.right = assets.spiderSpriteWalkRight
     playera.sprite.jump = assets.spiderSpriteJump
     playera.sprite.rest = assets.spiderSpriteRest
+    playera.sprite.attack.left = assets.spiderSpriteAttackLeft
+    /**
+     * Goal
+     * When you press a key it will do a attack animation
+     * Ingriedent 
+     * Sprite
+     * 
+     */
     this.player = playera;
 
     /**

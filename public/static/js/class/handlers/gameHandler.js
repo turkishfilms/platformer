@@ -151,7 +151,7 @@ class GameHandler {
 		game.playerHandler.player.lives++;
 	}
 	gameOpeningScreen() {
-		image(assets.img, windowWidth / 2, windowHeight / 2, windowWidth, windowHeight)
+		image(assets.burger, windowWidth / 2, windowHeight / 2, windowWidth, windowHeight)
 		text("start here", 50, 50)
 		this.isPaused = true
 	}

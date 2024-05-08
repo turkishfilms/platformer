@@ -13,9 +13,10 @@ class PlayerHandler {
     this.player = player;
   }
 
-  updatePlayer(position, hasCollided, Xspeed) {
+  updatePlayer(position, hasCollided, {Xspeed,Yspeed}) {
     this.player.position = position;
-    this.player.speed = Xspeed
+    this.player.speed.x = Xspeed
+    this.player.speed.y = Yspeed
 
     if (hasCollided) this.incrementJumpCount();
   }
@@ -125,18 +126,22 @@ class PlayerHandler {
      * Direction =this.player.isFacingRight 
      */
     let directionIsRight = this.player.isFacingRight
-    let directionSprite
+    let showSprite
     if (directionIsRight) {
-      directionSprite = this.player.sprite.right
+      showSprite = this.player.sprite.right
     } else {
-      directionSprite = this.player.sprite.left
+      showSprite = this.player.sprite.left
     }
-    if (this.player.speed == 0) {
-      directionSprite = this.player.sprite.rest
+    if (this.player.speed.x == 0) {
+      showSprite = this.player.sprite.rest
     }
-    const frameModulus = frameCount % (directionSprite.length -2  );
+    if(this.player.speed.y < 0 ){
+
+    showSprite = this.player.sprite.jump
+    }
+    const frameModulus = frameCount % (showSprite.length -2  );
     // ????? -2 ??????????
-    const sprite = directionSprite[frameModulus];
+    const sprite = showSprite[frameModulus];
     
     return sprite
   }
@@ -146,6 +151,7 @@ class PlayerHandler {
     const playera = JSON.parse(JSON.stringify(player)); //ensuring no coupling occurs
     playera.sprite.left = assets.spiderSpriteWalkLeft
     playera.sprite.right = assets.spiderSpriteWalkRight
+    playera.sprite.jump = assets.spiderSpriteJump
     playera.sprite.rest = assets.spiderSpriteRest
     this.player = playera;
 

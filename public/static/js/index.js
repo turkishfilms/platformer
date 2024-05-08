@@ -38,6 +38,8 @@ function setup() {
 	assets.spiderSpriteWalkLeft = getSpriteFromSheet(assets.spiderSheet,64,64,7,1,4)
 	assets.spiderSpriteWalkRight = getSpriteFromSheet(assets.spiderSheet,64,64,7,3,4)
 	assets.spiderSpriteRest = getSpriteFromSheet(assets.spiderSheet,64,64,1,4,0)
+  assets.spiderSpriteJump = getSpriteFromSheet(assets.spiderSheet,64,64,1,0,2)
+
   assets.gemWhite = getSpriteFromSheet(assets.gem,32,32,1,2,1)[0]
 	background(0);
 	textSize(25)

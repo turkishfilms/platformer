@@ -27,7 +27,7 @@ class GameHandler {
 		this.playerHandler.updatePlayer(
 			this.physicsHandler.getPlayerBody().position,
 			this.hasCollided(),
-			this.physicsHandler.getPlayerBody().velocity.x
+			{Xspeed:this.physicsHandler.getPlayerBody().velocity.x,Yspeed:this.physicsHandler.getPlayerBody().velocity.y}
 		);
 		//this.physicsHandler.handleSpecialBlocks() - wraps those two into one function
 		this.physicsHandler.handleDisappear()

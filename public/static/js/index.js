@@ -12,11 +12,10 @@ let game,
 
 function preload() {
   assets.img = loadImage("static/assets/Player/Health bar/burgercube.jpg");
-  assets.yellowGuy = loadImage("static/assets/ememy.jpg");
-  assets.blackGuy = loadImage("static/assets/steveBlack.png");
+ 
   assets.skull = loadImage("static/assets/skull.png");
   assets.cryskull = loadImage("static/assets/skull-orig.png");
-  assets.creeper = loadImage("static/assets/creeper.webp");
+  assets.abyss = loadImage("static/assets/abyss.jpg");
   assets.spiderSheet = loadImage(
     "static/assets/LPC_Spiders/LPC_Spiders/spider05.png"
   );
@@ -26,10 +25,12 @@ function preload() {
   );
   assets.dark = loadImage(
     "static/assets/sbs_-_base_materials_pack_128x128/Base Materials 128x128/Metal/Mat_Metal_Brushed_03-128x128.png"
-  )
+  );
+  assets.cryptd = loadImage("static/assets/crypt-dungeon.jpg")
   assets.gem = loadImage(
     "static/assets/Collectibles/gems_db16.png"
   );
+  assets.redskull= loadImage("static/assets/skull_emblem-red.png")
 }
 
 function setup() {

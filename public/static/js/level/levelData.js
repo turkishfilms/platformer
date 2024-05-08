@@ -29,7 +29,7 @@ let levelData = [
 		new Obstacle({ x:980,y: 270,w: 25,h:25,sprite:"gemWhite", isEndBlock:true })]
 ,
 	redraw:true,
-	backdrop: "cryskull"
+	backdrop: "cryptd"
 },
 {
 	physics: [
@@ -47,7 +47,7 @@ let levelData = [
 	],
 
 	redraw:true,
-	backdrop: "cryskull"
+	backdrop: "abyss"
 },
 {//4
 	physics: [
@@ -56,11 +56,12 @@ let levelData = [
 		new Player({ position:{y:50,x:100}, color: { r: 0, g: 255, b: 0, a: 255 }, options: { restitution: 0, inertia: Infinity } })],
 	obstacles: [
 		new Obstacle({ x:0,y: 100,w: 100,h: 100,sprite:"cryskull" }),
-		new Obstacle({ x:150,y: 200,w: 100,h: 50,sprite:"cryskull" }),
+		new Obstacle({ x:150,y: 200,w: 100,h: 50,sprite:"cryskull",isDisappearing:true }),
 		new Obstacle({ x:300,y: 300,w: 150,h: 50,sprite:"cryskull" }),
 		new Obstacle({ x:500,y: 250,w: 50,h: 200,sprite:"cryskull",isDisappearing:true }),
 		new Obstacle({ x:650,y: 400,w: 10, h: 10,sprite:"gemWhite"}),
-		new Obstacle({ x:650,y: 400,w: 25, h: 25,sprite:"gemWhite",isEndBlock:true })
+		new Obstacle({ x:650,y: 400,w: 25, h: 25,sprite:"gemWhite",isEndBlock:true }),
+		new Obstacle({ x:650,y: 400,w: 75, h: 25,sprite:"cryskull", })
 	],
 
 	redraw:true,

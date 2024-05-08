@@ -11,12 +11,9 @@ let game,
   assets = {};
 
 function preload() {
-  assets.burger= loadImage("static/assets/Player/Health bar/burgercube.jpg");
-  assets.yellowGuy = loadImage("static/assets/ememy.jpg");
-  assets.blackGuy = loadImage("static/assets/steveBlack.png");
+  assets.burger= loadImage("static/assets/Player/Avatar/burgercube.jpg");
   assets.skull = loadImage("static/assets/skull.png");
   assets.cryskull = loadImage("static/assets/skull-orig.png");
-  assets.creeper = loadImage("static/assets/creeper.webp");
   assets.spiderSheet = loadImage(
     "static/assets/LPC_Spiders/LPC_Spiders/spider05.png"
   );
@@ -30,10 +27,13 @@ function preload() {
   assets.gem = loadImage(
     "static/assets/Collectibles/gems_db16.png"
   );
+  assets.underWaterAbyss = loadImage("static/assets/abyss.jpg")
+  assets.crypt1 = loadImage("static/assets/crypt-2.jpg")
+  assets.crypt2 = loadImage("static/assets/crypt-3-hall.jpg")
+  assets.crypt3 = loadImage("static/assets/crypt-dungeon.jpg")
 }
 
 function setup() {
-
 	createCanvas(windowWidth, windowHeight);
 	assets.spiderSpriteWalkLeft = getSpriteFromSheet(assets.spiderSheet,64,64,7,1,4)
 	assets.spiderSpriteWalkRight = getSpriteFromSheet(assets.spiderSheet,64,64,7,3,4)
@@ -42,6 +42,7 @@ function setup() {
 	background(0);
 	textSize(25)
 	imageMode(CENTER)
+  // getAllSpritesFromSheets() -wraps all the above
 	game = new GameHandler({ physicsHandler: new PhysicsHandler({ sub: ['player', 'obstacles'] }), levels: levelData, dimensions: { height: windowHeight, width: windowWidth } })
 }
 

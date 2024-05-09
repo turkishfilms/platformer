@@ -194,7 +194,8 @@ class GameHandler {
 	}
 
 attack(){
-
+	this.playerHandler.player.attack = true
+console.log("im attacking")
 }
 }
 

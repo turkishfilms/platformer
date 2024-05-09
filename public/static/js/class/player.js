@@ -39,6 +39,7 @@ class Player {
 		sprite = {
 		left : 0,
 		right : 9,
+		attack:{left:0, right : 0}
 		}
 	} = {}) {
 		this.color = color

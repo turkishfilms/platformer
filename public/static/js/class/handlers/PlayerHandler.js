@@ -130,22 +130,24 @@ class PlayerHandler {
      */
     let directionIsRight = this.player.isFacingRight
     let showSprite
-    if (directionIsRight) {
-      if (this.player.isAttacking) {
-        showSprite = this.player.sprite.attack.left
+    //Pick the correct sprite to hsow based on atk and dir
+    if (directionIsRight) { //player facing right
+      if (this.player.isAttacking) { //is attack
+        showSprite = this.player.sprite.attack.right
+      } else { //is not attacking
+        showSprite = this.player.sprite.right
       }
-      showSprite = this.player.sprite.right
-    } else {
-      if (this.player.isAttacking) {
+    } else { //player facing left
+      if (this.player.isAttacking) {//is attack
         showSprite = this.player.sprite.attack.left
-      }
+      }else{//no attacking 
       showSprite = this.player.sprite.left
     }
-    if (this.player.speed.x == 0) {
+    }
+    if (this.player.speed.x == 0) {//rest
       showSprite = this.player.sprite.rest
     }
-    if (this.player.speed.y < 0) {
-
+    if (this.player.speed.y < 0) {//jump
       showSprite = this.player.sprite.jump
     }
 
@@ -164,6 +166,7 @@ class PlayerHandler {
     playera.sprite.jump = assets.spiderSpriteJump
     playera.sprite.rest = assets.spiderSpriteRest
     playera.sprite.attack.left = assets.spiderSpriteAttackLeft
+    playera.sprite.attack.right = assets.spiderSpriteAttackRight
     /**
      * Goal
      * When you press a key it will do a attack animation

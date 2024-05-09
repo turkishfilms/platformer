@@ -31,14 +31,15 @@ class GameHandler {
 			this.hasCollided(),
 			this.physicsHandler.getPlayerBody().velocity.x
 		);
-		this.physicsHandler.handleDisappear()
-		this.physicsHandler.handleEndBlock()
-		this.physicsHandler.handleKillBlock()
 		this.renderHandler.showFrame(
 			this.getItemData(),/** items */
 			[{ text: this.playerHandler.player.lives, x: 80, y: 80 }],
 			this.getBackdrop()
 		);
+		this.physicsHandler.handleDisappear()
+		this.physicsHandler.handleEndBlock()
+		this.physicsHandler.handleKillBlock()
+
 		if (this.physicsHandler.isPlayerOffScreen()) {
 			this.playerHandler.resetPlayer();
 		}

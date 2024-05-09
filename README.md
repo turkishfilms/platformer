@@ -37,20 +37,9 @@ Then open localhost port 3011 (127.0.0.1:3011) in a web browser.
 Use the 'd' key to move the player right.  
 Use the 'a' key to move the player left.  
 Use the 'w' key to make the player jump.  
-Press '3' to go to the previous level.  //doesn't work
-Press '4' to go to the next level.  //doesn't work
-Press '5' to clear all obstacles from the current level.  //freezes game with error
-
-PhysicsHandler.js:58 Uncaught TypeError: Cannot read properties of undefined (reading 'bodies')
-    at PhysicsHandler.getPlayerBody (PhysicsHandler.js:58:23)
-    at PlayerHandler.updatePlayer (PlayerHandler.js:19:38)
-    at GameHandler.nextFrame (gameHandler.js:31:22)
-    at draw (index.js:29:7)
-    at e.default.redraw (p5.min.js:2:542441)
-    at _draw (p5.min.js:2:462354)
-
-Assuming because no objects on first level
-
+Use the 'p' key to advance to the next level.
+Use the 'o' key to go to the previous level.  
+Use the 'e' key to reset the level.  
 
 Press 'q' to pause/unpause the game.  
 

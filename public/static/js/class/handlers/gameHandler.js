@@ -41,41 +41,6 @@ class GameHandler {
 			this.playerHandler.resetPlayer();
 		}
 	}
-
-	hasCollided() {
-		return this.physicsHandler.hasCollided();
-	}
-
-	getBackdrop() {
-		const { redraw, backdrop } = this.levelHandler.getLevelBackdrop();
-		return {
-			redraw: redraw,
-			backdrop: assets[backdrop],
-		};
-	}
-
-	getItemData() {
-		const data = [];
-		data.push(this.getPlayerData());
-		this.physicsHandler.getObstacleData().map((obstacle) => {
-			obstacle.sprite = assets[obstacle.sprite];
-			data.push(obstacle);
-		});
-		return data;
-	}
-
-	getPlayerData() {
-		const { x, y, width, height } = this.playerHandler.getPlayerAsOptions();
-		return {
-			color: this.playerHandler.getColor(),
-			sprite: this.playerHandler.getSprite(),
-			size: { w: width, h: height },
-			position: { x: x, y: y + 10 },
-			angle: this.physicsHandler.getPlayerBody().angle,
-			type: "player",
-		};
-	}
-
 	levelInit() {
 		const currentLevelNumber = this.getCurrentLevel();
 		const currrentLevel = this.levelHandler.getLevelData(currentLevelNumber);
@@ -123,8 +88,7 @@ class GameHandler {
 	}
 
 	getNextLevel() {
-		const nextLevel = this.levelHandler.getNextLevel();
-		return nextLevel;
+		return this.levelHandler.getNextLevel();
 	}
 
 	nextLevel() {
@@ -197,6 +161,42 @@ class GameHandler {
 		button.mousePressed(this.startGame)
 		return button
 	}
+
+	hasCollided() {
+		return this.physicsHandler.hasCollided();
+	}
+
+	getBackdrop() {
+		const { redraw, backdrop } = this.levelHandler.getLevelBackdrop();
+		return {
+			redraw: redraw,
+			backdrop: assets[backdrop],
+		};
+	}
+
+	getItemData() {
+		const data = [];
+		data.push(this.getPlayerData());
+		this.physicsHandler.getObstacleData().map((obstacle) => {
+			obstacle.sprite = assets[obstacle.sprite];
+			data.push(obstacle);
+		});
+		return data;
+	}
+
+	getPlayerData() {
+		const { x, y, width, height } = this.playerHandler.getPlayerAsOptions();
+		return {
+			color: this.playerHandler.getColor(),
+			sprite: this.playerHandler.getSprite(),
+			size: { w: width, h: height },
+			position: { x: x, y: y + 10 },
+			angle: this.physicsHandler.getPlayerBody().angle,
+			type: "player",
+		};
+	}
+
+
 }
 
 

@@ -133,6 +133,34 @@ class PhysicsHandler {
 	isEndBlock(block){
 			return block.isEndBlock
 	}
+	
+	handleKillBlock(){
+		/**goal:
+		 * transfer player onto next level upon contact
+		 *Ingredients:*
+		 * need a way to check(hascollided) if the player had touched that block (function)
+		 * need a way to change level (function)
+
+		*/
+		
+		
+		if (this.collisionCheck()) {
+		
+			const collisions = this.getCollisions()
+			collisions.forEach(collision => {
+				const block = collision.bodyB
+		
+				if (this.isKillBlock(block)) {
+			
+				game.playerHandler.resetPlayer()
+				}
+			})}
+	}
+
+	isKillBlock(block){
+	
+			return block.isKillBlock
+	}
 
 	addObstacles(obstacles, options = {
 		isStatic: true,
@@ -153,7 +181,8 @@ class PhysicsHandler {
 				},
 				isDisappearing,
 				sprite,
-				isEndBlock
+				isEndBlock,
+				isKillBlock,
 			} = obstacle
 
 			let rect = Matter.Bodies.rectangle(x, y, width, height, {
@@ -162,6 +191,7 @@ class PhysicsHandler {
 				isDisappearing: isDisappearing,
 				sprite: sprite,
 				isEndBlock: isEndBlock,
+				isKillBlock: isKillBlock
 			})
 			Matter.Composite.add(this.getObstacleComposite(), rect)
 		});

@@ -33,6 +33,7 @@ class GameHandler {
 		);
 		this.physicsHandler.handleDisappear()
 		this.physicsHandler.handleEndBlock()
+		this.physicsHandler.handleKillBlock()
 		this.renderHandler.showFrame(
 			this.getItemData(),/** items */
 			[{ text: this.playerHandler.player.lives, x: 80, y: 80 }],

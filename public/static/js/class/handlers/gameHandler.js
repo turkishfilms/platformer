@@ -194,9 +194,11 @@ class GameHandler {
 	}
 
 attack(){
-	this.playerHandler.player.attack = true
-console.log("im attacking")
+	this.playerHandler.player.isAttacking = true 
+	const attackTime = this.playerHandler.player.sprite.attack.left.length
+	this.playerHandler.player.attackEndFrame = frameCount + attackTime + 1
 }
+
 }
 
 

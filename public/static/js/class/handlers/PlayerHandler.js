@@ -120,19 +120,15 @@ class PlayerHandler {
   }
 
   getSprite() {
-    /**
-     * Goal 
-     * Return the Sprtie as the same direction as the player
-     * Sprite
-     * Direction
-     * Translate.
-     * Direction =this.player.isFacingRight 
-     */
+  // ERROR length error when move right gets a error
+    
     let directionIsRight = this.player.isFacingRight
     let showSprite
+    
     //Pick the correct sprite to hsow based on atk and dir
     if (directionIsRight) { //player facing right
       if (this.player.isAttacking) { //is attack
+  
         showSprite = this.player.sprite.attack.right
       } else { //is not attacking
         showSprite = this.player.sprite.right
@@ -202,5 +198,9 @@ class PlayerHandler {
   }
   colorPicker(color) {
     this.player.color = color;
+  }
+  attackTime(){
+    if(frameCount > this.player.attackEndFrame)
+  isAttacking = false
   }
 }

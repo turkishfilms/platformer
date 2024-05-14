@@ -33,10 +33,8 @@ class PlayerHandler {
   }
 
   livesZero() {
-    /** goal: when you lose all of your lives, your color changes
-     * ingriedents: -lives  -color
-     *ADD THESE THINGS: when lives zero and try agian button hit restore lives
-     * */
+    console.log('death window')
+
     const color = {
       r: 0,
       g: 0,

@@ -1,4 +1,3 @@
-
 class GameHandler {
 	constructor({
 		levels = [],
@@ -30,51 +29,21 @@ class GameHandler {
 			this.hasCollided(),
 			{Xspeed:this.physicsHandler.getPlayerBody().velocity.x,Yspeed:this.physicsHandler.getPlayerBody().velocity.y}
 		);
-		this.physicsHandler.handleDisappear()
+
+
 		this.renderHandler.showFrame(
 			this.getItemData(),/** items */
 			[{ text: this.playerHandler.player.lives, x: 80, y: 80 }],
 			this.getBackdrop()
 		);
+		this.physicsHandler.handleDisappear()
+		this.physicsHandler.handleEndBlock()
+		this.physicsHandler.handleKillBlock()
+
 		if (this.physicsHandler.isPlayerOffScreen()) {
 			this.playerHandler.resetPlayer();
 		}
 	}
-
-	hasCollided() {
-		return this.physicsHandler.hasCollided();
-	}
-
-	getBackdrop() {
-		const { redraw, backdrop } = this.levelHandler.getLevelBackdrop();
-		return {
-			redraw: redraw,
-			backdrop: assets[backdrop],
-		};
-	}
-
-	getItemData() {
-		const data = [];
-		data.push(this.getPlayerData());
-		this.physicsHandler.getObstacleData().map((obstacle) => {
-			obstacle.sprite = assets[obstacle.sprite];
-			data.push(obstacle);
-		});
-		return data;
-	}
-
-	getPlayerData() {
-		const { x, y, width, height } = this.playerHandler.getPlayerAsOptions();
-		return {
-			color: this.playerHandler.getColor(),
-			sprite: this.playerHandler.getSprite(),
-			size: { w: width, h: height },
-			position: { x: x, y: y + 10 },
-			angle: this.physicsHandler.getPlayerBody().angle,
-			type: "player",
-		};
-	}
-
 	levelInit() {
 		const currentLevelNumber = this.getCurrentLevel();
 		const currrentLevel = this.levelHandler.getLevelData(currentLevelNumber);
@@ -122,8 +91,7 @@ class GameHandler {
 	}
 
 	getNextLevel() {
-		const nextLevel = this.levelHandler.getNextLevel();
-		return nextLevel;
+		return this.levelHandler.getNextLevel();
 	}
 
 	nextLevel() {
@@ -148,19 +116,23 @@ class GameHandler {
 	addLives() {
 		game.playerHandler.player.lives++;
 	}
+
 	gameOpeningScreen() {
-		image(assets.img, windowWidth / 2, windowHeight / 2, windowWidth, windowHeight)
+		image(assets.burger, windowWidth / 2, windowHeight / 2, windowWidth, windowHeight)
 		text("start here", 50, 50)
 		this.isPaused = true
 	}
+
 	deathButtonActivation() {
 		game.hideDeathButton()
 		game.startGameButton.show()
 		game.gameOpeningScreen()
 	}
+
 	hideDeathButton() {
 		game.deathButton.hide()
 	}
+
 	createDeathButton(name) {
 		let button = createButton(name);
 		button.position(windowWidth - 100, windowHeight / 2);
@@ -193,11 +165,47 @@ class GameHandler {
 		return button
 	}
 
+
 attack(){
 	this.playerHandler.player.isAttacking = true 
 	const attackTime = this.playerHandler.player.sprite.attack.left.length
 	this.playerHandler.player.attackEndFrame = frameCount + attackTime + 1
 }
+
+	hasCollided() {
+		return this.physicsHandler.hasCollided();
+	}
+
+	getBackdrop() {
+		const { redraw, backdrop } = this.levelHandler.getLevelBackdrop();
+		return {
+			redraw: redraw,
+			backdrop: assets[backdrop],
+		};
+	}
+
+	getItemData() {
+		const data = [];
+		data.push(this.getPlayerData());
+		this.physicsHandler.getObstacleData().map((obstacle) => {
+			obstacle.sprite = assets[obstacle.sprite];
+			data.push(obstacle);
+		});
+		return data;
+	}
+
+	getPlayerData() {
+		const { x, y, width, height } = this.playerHandler.getPlayerAsOptions();
+		return {
+			color: this.playerHandler.getColor(),
+			sprite: this.playerHandler.getSprite(),
+			size: { w: width, h: height },
+			position: { x: x, y: y + 10 },
+			angle: this.physicsHandler.getPlayerBody().angle,
+			type: "player",
+		};
+	}
+
 
 }
 

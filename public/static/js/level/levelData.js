@@ -39,7 +39,9 @@ let levelData = [
 		new Obstacle({ x:980,y: 270,w: 25,h:25,sprite:gemWhite, isEndBlock:true })]
 ,
 	redraw:true,
+
 	backdrop: cryptd
+
 },
 {//3
 	physics: [
@@ -59,6 +61,7 @@ let levelData = [
 
 	redraw:true,
 	backdrop: abyss
+
 },
 {//4
 	physics: [
@@ -77,13 +80,16 @@ let levelData = [
 	],
 
 	redraw:true,
+
 	backdrop: cryskull
+
 },
 {
 	physics: [
 		new Physics({ restitution: 0.01 })],
 	player: [new Player({ color: { r: 0, g: 255, b: 0, a: 255 }, lives: 1, position: { x: 100, y: 300 }, options: { restitution: 0, inertia: Infinity } })],
 	obstacles: [
+
 		new Obstacle({ x:100,y: 400,w: 125,h: 50,sprite:cryskull }),
 		new Obstacle({ x:325,y: 575,w: 10,h: 10,sprite:cryskull }),
 		new Obstacle({ x:450,y: 500,w: 10,h: 10,sprite:cryskull }),
@@ -93,5 +99,6 @@ let levelData = [
 ,
 	redraw:true,
 	backdrop: cryskull
+
 }
 ]

@@ -1,5 +1,3 @@
-//end screen triggers after the 3rd level, there is more levels,  early (white gem
-
 class GameHandler {
 	constructor({
 		levels = [],
@@ -29,8 +27,10 @@ class GameHandler {
 		this.playerHandler.updatePlayer(
 			this.physicsHandler.getPlayerBody().position,
 			this.hasCollided(),
-			this.physicsHandler.getPlayerBody().velocity.x
+			{Xspeed:this.physicsHandler.getPlayerBody().velocity.x,Yspeed:this.physicsHandler.getPlayerBody().velocity.y}
 		);
+
+
 		this.renderHandler.showFrame(
 			this.getItemData(),/** items */
 			[{ text: this.playerHandler.player.lives, x: 80, y: 80 }],
@@ -44,41 +44,6 @@ class GameHandler {
 			this.playerHandler.resetPlayer();
 		}
 	}
-
-	hasCollided() {
-		return this.physicsHandler.hasCollided();
-	}
-
-	getBackdrop() {
-		const { redraw, backdrop } = this.levelHandler.getLevelBackdrop();
-		return {
-			redraw: redraw,
-			backdrop: assets[backdrop],
-		};
-	}
-
-	getItemData() {
-		const data = [];
-		data.push(this.getPlayerData());
-		this.physicsHandler.getObstacleData().map((obstacle) => {
-			obstacle.sprite = assets[obstacle.sprite];
-			data.push(obstacle);
-		});
-		return data;
-	}
-
-	getPlayerData() {
-		const { x, y, width, height } = this.playerHandler.getPlayerAsOptions();
-		return {
-			color: this.playerHandler.getColor(),
-			sprite: this.playerHandler.getSprite(),
-			size: { w: width, h: height },
-			position: { x: x, y: y + 10 },
-			angle: this.physicsHandler.getPlayerBody().angle,
-			type: "player",
-		};
-	}
-
 	levelInit() {
 		const currentLevelNumber = this.getCurrentLevel();
 		const currrentLevel = this.levelHandler.getLevelData(currentLevelNumber);
@@ -126,8 +91,7 @@ class GameHandler {
 	}
 
 	getNextLevel() {
-		const nextLevel = this.levelHandler.getNextLevel();
-		return nextLevel;
+		return this.levelHandler.getNextLevel();
 	}
 
 	nextLevel() {
@@ -152,19 +116,23 @@ class GameHandler {
 	addLives() {
 		game.playerHandler.player.lives++;
 	}
+
 	gameOpeningScreen() {
-		image(assets.img, windowWidth / 2, windowHeight / 2, windowWidth, windowHeight)
+		image(assets.burger, windowWidth / 2, windowHeight / 2, windowWidth, windowHeight)
 		text("start here", 50, 50)
 		this.isPaused = true
 	}
+
 	deathButtonActivation() {
 		game.hideDeathButton()
 		game.startGameButton.show()
 		game.gameOpeningScreen()
 	}
+
 	hideDeathButton() {
 		game.deathButton.hide()
 	}
+
 	createDeathButton(name) {
 		let button = createButton(name);
 		button.position(windowWidth - 100, windowHeight / 2);
@@ -196,6 +164,42 @@ class GameHandler {
 		button.mousePressed(this.startGame)
 		return button
 	}
+
+	hasCollided() {
+		return this.physicsHandler.hasCollided();
+	}
+
+	getBackdrop() {
+		const { redraw, backdrop } = this.levelHandler.getLevelBackdrop();
+		return {
+			redraw: redraw,
+			backdrop: assets[backdrop],
+		};
+	}
+
+	getItemData() {
+		const data = [];
+		data.push(this.getPlayerData());
+		this.physicsHandler.getObstacleData().map((obstacle) => {
+			obstacle.sprite = assets[obstacle.sprite];
+			data.push(obstacle);
+		});
+		return data;
+	}
+
+	getPlayerData() {
+		const { x, y, width, height } = this.playerHandler.getPlayerAsOptions();
+		return {
+			color: this.playerHandler.getColor(),
+			sprite: this.playerHandler.getSprite(),
+			size: { w: width, h: height },
+			position: { x: x, y: y + 10 },
+			angle: this.physicsHandler.getPlayerBody().angle,
+			type: "player",
+		};
+	}
+
+
 }
 
 

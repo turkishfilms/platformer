@@ -165,6 +165,13 @@ class GameHandler {
 		return button
 	}
 
+
+attack(){
+	this.playerHandler.player.isAttacking = true 
+	const attackTime = this.playerHandler.player.sprite.attack.left.length
+	this.playerHandler.player.attackEndFrame = frameCount + attackTime + 1
+}
+
 	hasCollided() {
 		return this.physicsHandler.hasCollided();
 	}

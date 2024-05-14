@@ -36,9 +36,11 @@ class Player {
 			restitution: 0
 		},
 		isFacingRight = true,
+		isAttacking = false, 
 		sprite = {
 		left : 0,
 		right : 9,
+		attack:{left:0, right : 0}
 		}
 	} = {}) {
 		this.color = color
@@ -54,6 +56,7 @@ class Player {
 		this.alternateColors = alternateColors
 		this.isFacingRight = isFacingRight
 		this.sprite = sprite
+		this.isAttacking = isAttacking
 	}
 }
 

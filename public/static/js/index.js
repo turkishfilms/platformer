@@ -23,14 +23,19 @@ function preload() {
   );
   assets.dark = loadImage(
     "static/assets/sbs_-_base_materials_pack_128x128/Base Materials 128x128/Metal/Mat_Metal_Brushed_03-128x128.png"
-  )
+  );
+  assets.cryptd = loadImage("static/assets/crypt-dungeon.jpg")
   assets.gem = loadImage(
     "static/assets/Collectibles/gems_db16.png"
   );
+
+  assets.redskull= loadImage("static/assets/skull_emblem-red.png")
+
   assets.underWaterAbyss = loadImage("static/assets/abyss.jpg")
   assets.crypt1 = loadImage("static/assets/crypt-2.jpg")
   assets.crypt2 = loadImage("static/assets/crypt-3-hall.jpg")
   assets.crypt3 = loadImage("static/assets/crypt-dungeon.jpg")
+
 }
 
 function setup() {

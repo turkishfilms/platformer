@@ -1,0 +1,14 @@
+MAKING AN ENEMY
+
+GOAL: Enemy or enemies That atacks player, the enemies should move, have an AI and do damage. Enemies should have health bar too. 
+INGREDIENTS: 
+- Enemy.js Class
+- (Properties) Health, position, speed, size, sprites, damage value
+- (Methods) Follow te player (move), Attack
+- EnemyHandler.js Class
+- (Properties) List of enemies on screen, 
+- (Methods) Add Enemies, Get Enemy Health/Position/Damage
+- AI/ player Tracking/ When to Attack?
+TRANSLATING:
+
+

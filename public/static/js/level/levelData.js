@@ -33,6 +33,7 @@ let levelData = [
 		new Obstacle({ x:200,y: 200,w: 150,h: 50,sprite:cryskull }),
 		new Obstacle({ x:50,y: 250,w: 150,h: 50,sprite:cryskull }),
 		new Obstacle({ x:400,y: 300,w: 100,h: 50,sprite:cryskull,isDisappearing:true }),
+		new Obstacle({x:525,y: 230,w: 25,h: 25,sprite:redskull, isKillBlock:true}),
 		new Obstacle({ x:600,y: 400,w: 200,h: 50,sprite:cryskull,isDisappearing:true }),
 		new Obstacle({ x:800,y: 120,w: 50,h: 200,sprite:cryskull }),
 		new Obstacle({ x:980,y: 270,w: 25,h:25,sprite:gemWhite, isEndBlock:true })]
@@ -52,6 +53,7 @@ let levelData = [
 		new Obstacle({ x:450,y: 150,w: 200,h: 200,sprite:cryskull }),
 		new Obstacle({ x:700,y: 400,w: 50,h: 50,sprite:cryskull, isDisappearing:true }),
 		new Obstacle({ x:850,y: 500,w: 150,h: 50,sprite:gemWhite,isDisappearing:true}),
+		new Obstacle({ x:875,y: 475,w: 10,h: 10,sprite:redskull,isKillBlock:true }),
 		new Obstacle({ x:875,y: 500,w: 10,h: 10,sprite:gemWhite,isEndBlock:true })
 	],
 

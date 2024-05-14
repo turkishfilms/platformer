@@ -20,7 +20,7 @@ class PlayerHandler {
     this.player.position = position;
     this.player.speed.x = Xspeed
     this.player.speed.y = Yspeed
-
+    this.attackTime()
     if (hasCollided) this.incrementJumpCount();
   }
 
@@ -29,6 +29,7 @@ class PlayerHandler {
       this.player.jumpCount + 1,
       this.player.maxJumpCount
     );
+    
   }
 
   livesZero() {
@@ -121,36 +122,32 @@ class PlayerHandler {
 
   getSprite() {
   // ERROR length error when move right gets a error
-    
-    let directionIsRight = this.player.isFacingRight
-    let showSprite
-    
+    /**
+     * Is if facing right but jumping it should still use the same attack right animation
+     * Is if facing left but jumping it should still use the same attack left animation
+     * Prop
+     * isFacingRight
+     * isAttacking
+     * isFacingSpeed
+     */
+    return this.getFrameFromSprite(this.getAnimation(this.player))
+  }
+
+  getAnimation({isFacingRight,isAttacking,speed, sprite}){
     //Pick the correct sprite to hsow based on atk and dir
-    if (directionIsRight) { //player facing right
-      if (this.player.isAttacking) { //is attack
-  
-        showSprite = this.player.sprite.attack.right
-      } else { //is not attacking
-        showSprite = this.player.sprite.right
+    if (isAttacking) { //is attack 
+      if (isFacingRight)  return sprite.attack.right
+      else return sprite.attack.left
+    } else if (speed.y < 0) return sprite.jump //player jumping
+      else if (speed.x == 0) return sprite.rest //resting
+      else if (isFacingRight) return sprite.right
+      else return sprite.left
       }
-    } else { //player facing left
-      if (this.player.isAttacking) {//is attack
-        showSprite = this.player.sprite.attack.left
-      }else{//no attacking 
-      showSprite = this.player.sprite.left
-    }
-    }
-    if (this.player.speed.x == 0) {//rest
-      showSprite = this.player.sprite.rest
-    }
-    if (this.player.speed.y < 0) {//jump
-      showSprite = this.player.sprite.jump
-    }
 
-    const frameModulus = frameCount % (showSprite.length - 2);
+getFrameFromSprite(spriteList){
+    const frameModulus = frameCount % (spriteList.length - 2);
     // ????? -2 ??????????
-    const sprite = showSprite[frameModulus];
-
+    const sprite = spriteList[frameModulus];
     return sprite
   }
 
@@ -201,6 +198,6 @@ class PlayerHandler {
   }
   attackTime(){
     if(frameCount > this.player.attackEndFrame)
-  isAttacking = false
+  this.player.isAttacking = false
   }
 }

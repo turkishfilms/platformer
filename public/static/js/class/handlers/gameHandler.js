@@ -36,6 +36,7 @@ class GameHandler {
 			[{ text: this.playerHandler.player.lives, x: 80, y: 80 }],
 			this.getBackdrop()
 		);
+		//FIXME: one physicsHandler.handelSpecialBlocksFunction
 		this.physicsHandler.handleDisappear()
 		this.physicsHandler.handleEndBlock()
 		this.physicsHandler.handleKillBlock()
@@ -47,14 +48,14 @@ class GameHandler {
 
 	levelInit() {
 		const currentLevelNumber = this.getCurrentLevel();
-		const currrentLevel = this.levelHandler.getLevelData(currentLevelNumber);
+		const currentLevel = this.levelHandler.getLevelData(currentLevelNumber);
 		const physicsHandler = new PhysicsHandler({
-			physics: currrentLevel.physics,
+			physics: currentLevel.physics,
 		}); //FIXME physics is beng added in a wierd way fix it
-		this.playerHandler.addPlayer(currrentLevel.player[0]);
-		//FIXME: Combine all Physics Add fucntions, it doestn care if you are a player or not
+		this.playerHandler.addPlayer(currentLevel.player[0]);
+		//FIXME: Combine all Physics Add functions, it doestn care if you are a player or not
 		physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions());
-		physicsHandler.addObstacles(currrentLevel.obstacles);
+		physicsHandler.addObstacles(currentLevel.obstacles);
 		physicsHandler.addEnemies(currentLevel.enemies)
 		this.physicsHandler = physicsHandler;
 	}
@@ -186,6 +187,10 @@ class GameHandler {
 		this.physicsHandler.getObstacleData().map((obstacle) => {
 			obstacle.sprite = assets[obstacle.sprite];
 			data.push(obstacle);
+		});
+		this.physicsHandler.getEnemyData().map((enemy) => {
+			enemy.sprite = assets[enemy.sprite];
+			data.push(enemy);
 		});
 		return data;
 	}

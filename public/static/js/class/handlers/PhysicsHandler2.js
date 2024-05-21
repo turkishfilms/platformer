@@ -1,23 +1,10 @@
-class PhysicsHandler {
+class PhysicsHandler2 {
 	constructor({
 		physics = new Physics(),
-		compositeStructure = {
-			player: "player",
-			obstacle: "obstacle",
-		},
 	} = {}) {
 		this.engine = Matter.Engine.create({
 			...physics,
 		});
-		Object.keys(compositeStructure).forEach((comp) => {
-			Matter.Composite.add(
-				this.engine.world,
-				Matter.Composite.create({
-					label: compositeStructure[comp],
-				})
-			);
-		});
-		this.compositeStructure = compositeStructure;
 		this.bounds = Matter.Bounds.create(this.initVertices());
 	}
 

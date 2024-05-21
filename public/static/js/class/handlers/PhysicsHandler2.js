@@ -15,56 +15,90 @@ class PhysicsHandler2 {
 			{ x: windowWidth, y: windowHeight },
 			{ x: windowWidth, y: windowHeight },
 		];
-		const points = corners.map((corner) =>
+		return Matter.Vertices.create(corners.map((corner) =>
 			Matter.Vector.create(corner.x, corner.y)
-		);
-		return Matter.Vertices.create(points, Matter.Body.create());
+		), Matter.Body.create());
 	}
 
-	isPlayerOffScreen() {
+	isItemOffScreen(item) {
 		return (
-			Matter.Query.region([this.getPlayerBody()], this.bounds, {
+			Matter.Query.region([item], this.bounds, {
 				outside: true,
 			}).length >= 1
 		);
 	}
 
-	movePlayer(velocity) {
-		const { x, y } = velocity;
-		const player = this.getPlayerBody();
-		const playerVelocity = player.velocity;
-		const movementVelocity = Matter.Vector.create(x, y);
+	moveItem(item, { x, y }) {
 		Matter.Body.setVelocity(
-			player,
-			Matter.Vector.add(movementVelocity, playerVelocity)
+			item,
+			Matter.Vector.add(Matter.Vector.create(x, y), item.velocity)
 		);
 	}
 
-	translatePlayer(position) {
-		const { x, y } = position;
-		Matter.Body.setPosition(this.getPlayerBody(), Matter.Vector.create(x, y));
+	translatePlayer(item, { x, y }) {
+		Matter.Body.setPosition(item, Matter.Vector.create(x, y));
 	}
 
 	simulateWorldByOneFrame() {
 		Matter.Engine.update(this.engine);
 	}
 
-	addPlayer(playerOptions) {
-		const { x, y, width, height, restitution } = playerOptions;
-		const playerRect = Matter.Bodies.rectangle(x, y, width, height, {
-			inertia: Infinity,
-			restitution: restitution,
-		});
-		//this is prone to failure, paramaterize the output
-		Matter.Composite.add(this.getPlayerComposite(), playerRect);
+	addItem(item) {
+		Matter.Composite.add(this.world.composites, Matter.Body.rectangle(item.x, item.y, item.width, item.height, {
+		}));
 	}
 
-	getCollisions() {
-		//it returns the player and what it colllides with
+	// addObstacles(obstacles, options = {
+	// 	isStatic: true,
+	// 	restitution: 0,
+	//
+	// }) {
+	//
+	// 	obstacles.forEach(obstacle => {
+	// 		let {
+	// 			position: {
+	// 				x,
+	// 				y
+	// 			},
+	// 			size: {
+	// 				w: width,
+	// 				h: height,
+	//
+	// 			},
+	// 			isDisappearing,
+	// 			sprite,
+	// 			isEndBlock,
+	// 			isKillBlock,
+	// 		} = obstacle
+	//
+	// 		let rect = Matter.Bodies.rectangle(x, y, width, height, {
+	// 			isStatic: options.isStatic,
+	// 			restitution: options.restitution,
+	// 			isDisappearing: isDisappearing,
+	// 			sprite: sprite,
+	// 			isEndBlock: isEndBlock,
+	// 			isKillBlock: isKillBlock
+	// 		})
+	// 		Matter.Composite.add(this.getObstacleComposite(), rect)
+	// 	});
+	// }
+	//
+	// addPlayer(playerOptions) {
+	// 	const { x, y, width, height, restitution } = playerOptions;
+	// 	const playerRect = Matter.Bodies.rectangle(x, y, width, height, {
+	// 		inertia: Infinity,
+	// 		restitution: restitution,
+	// 	});
+	// 	//this is prone to failure, paramaterize the output
+	// 	Matter.Composite.add(this.getPlayerComposite(), playerRect);
+	// }
+
+	getCollisions(item) {
+		//it returns the item and what it colllides with
 		//in an array
 		return Matter.Query.collides(
-			this.getPlayerBody(),
-			game.physicsHandler.getObstacleComposite().bodies
+			item,
+			this.world.bodies
 		);
 	}
 
@@ -72,159 +106,62 @@ class PhysicsHandler2 {
 		return this.getCollisions().length > 0
 	}
 
-	isDisappearBlock(block) {
-		return block.isDisappearing
+	isTypeBlock(item, type) {
+		return item[type]
 	}
 
-	disappearBlock(block) {
+
+	disappearItem(item) {
 		//make block desappear by making w and h 0
 		// Matter.Body.scale(block, 0.001, 0.001)
-		Matter.Composite.remove(this.engine.world.composites[1], block)
+		Matter.Composite.remove(this.engine.world.composites, item)
 	}
 
-	handleDisappear() {
+	handleSpecialItems(type, action) {
 		if (this.collisionCheck()) {
-
-			const collisions = this.getCollisions()
-			collisions.forEach(collision => {
-				const block = collision.bodyB
-				if (this.isDisappearBlock(block)) {
-					this.disappearBlock(block)
-				}
+			this.getCollisions().forEach(collision => {
+				if (this.isTypeBlock(collision.bodyB, type)) action()
 			})
 		}
 	}
 
-	handleEndBlock() {
-		if (this.collisionCheck()) {
+	//disappear this.disappearBlock(block)
+	// end game.nextLevel()
+	// kill game.playerHandler.resetPlayer()
 
-			const collisions = this.getCollisions()
-			collisions.forEach(collision => {
-				const block = collision.bodyB
-				if (this.isEndBlock(block)) {
+	getItem(label) {
 
-					game.nextLevel()
-				}
-			})
-		}
 	}
 
-	isEndBlock(block) {
-		return block.isEndBlock
-	}
+	// getPlayerBody() {
+	// 	const playercomposite = this.getPlayerComposite()
+	// 	if (playercomposite.bodies.length >= 1) return playercomposite.bodies[0]
+	// }
 
-	handleKillBlock() {
-		if (this.collisionCheck()) {
+	// getObstacleData() {
+	// 	//FIXME: fix this to use labels
+	// 	return this.engine.world.composites[1].bodies.map((obs) => {
+	// 		return {
+	// 			size: {
+	// 				h: obs.bounds.max.y - obs.bounds.min.y,
+	// 				w: obs.bounds.max.x - obs.bounds.min.x,
+	// 			},
+	// 			position: {
+	// 				x: obs.position.x,
+	// 				y: obs.position.y,
+	// 			},
+	// 			sprite: obs.sprite,
+	// 		};
+	// 	});
+	// }
 
-			const collisions = this.getCollisions()
-			collisions.forEach(collision => {
-				const block = collision.bodyB
-
-				if (this.isKillBlock(block)) {
-
-					game.playerHandler.resetPlayer()
-				}
-			})
-		}
-	}
-
-	isKillBlock(block) {
-
-		return block.isKillBlock
-	}
-
-	addObstacles(obstacles, options = {
-		isStatic: true,
-		restitution: 0,
-
-	}) {
-
-		obstacles.forEach(obstacle => {
-			let {
-				position: {
-					x,
-					y
-				},
-				size: {
-					w: width,
-					h: height,
-
-				},
-				isDisappearing,
-				sprite,
-				isEndBlock,
-				isKillBlock,
-			} = obstacle
-
-			let rect = Matter.Bodies.rectangle(x, y, width, height, {
-				isStatic: options.isStatic,
-				restitution: options.restitution,
-				isDisappearing: isDisappearing,
-				sprite: sprite,
-				isEndBlock: isEndBlock,
-				isKillBlock: isKillBlock
-			})
-			Matter.Composite.add(this.getObstacleComposite(), rect)
-		});
-	}
-
-	getPlayerComposite() {
-		return Matter.Composite.allComposites(this.engine.world).filter(
-			(composite) => composite.label == this.compositeStructure.player
-		)[0];
-	}
-
-	getObstacleComposite() {
-		return Matter.Composite.allComposites(this.engine.world).filter(
-			(composite) => composite.label == this.compositeStructure.obstacle
-		)[0];
-	}
-
-	getPlayerBody() {
-		const playercomposite = this.getPlayerComposite()
-		if (playercomposite.bodies.length >= 1) return playercomposite.bodies[0]
-	}
-
-	getObstacleData() {
-		//FIXME: fix this to use labels
-		return this.engine.world.composites[1].bodies.map((obs) => {
-			return {
-				size: {
-					h: obs.bounds.max.y - obs.bounds.min.y,
-					w: obs.bounds.max.x - obs.bounds.min.x,
-				},
-				position: {
-					x: obs.position.x,
-					y: obs.position.y,
-				},
-				sprite: obs.sprite,
-			};
-		});
-	}
-
-	hasCollided() {
+	hasCollided(item) {
 		return (
 			Matter.Query.collides(
-				this.getPlayerBody(),
-				this.getObstacleComposite().bodies
+				item,
+				this.getObstacleComposite().bodies//?? hmmm
 			).length > 0
 		);
-	}
-
-	getObstaclePosition() {
-		//fix this to use labels
-		return this.engine.world.composites[1].bodies.map((obs) => {
-			return {
-				size: {
-					h: obs.bounds.max.y - obs.bounds.min.y,
-					w: obs.bounds.max.x - obs.bounds.min.x,
-				},
-				position: {
-					x: obs.position.x,
-					y: obs.position.y,
-				},
-			};
-		});
 	}
 
 	clearComposite() {
@@ -232,20 +169,9 @@ class PhysicsHandler2 {
 		// Reoves composites from the given composite.
 	}
 
-	playerStill() {
-		Matter.Body.setAngularSpeed(this.getPlayerBody(), 0);
-		Matter.Body.setAngle(this.getPlayerBody(), 0);
-		Matter.Body.setVelocity(this.getPlayerBody(), Matter.Vector.create(0, 0));
-	}
-
-	addEnemies(enemies) {
-		enemies.forEach(enemy => {
-			Matter.Composite.add(this.engine.world, Matter.Body.rectangle({ enemy }))
-		})
-	}
-
-	getEnemyData() {
-
-		return enemies
+	itemFreeze(item) {
+		Matter.Body.setAngularSpeed(item, 0);
+		Matter.Body.setAngle(item, 0);
+		Matter.Body.setVelocity(item, Matter.Vector.create(0, 0));
 	}
 }

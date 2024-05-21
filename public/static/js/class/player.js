@@ -1,14 +1,5 @@
 class Player {
 	constructor({
-		alternateColors = [{
-				r: 222,
-				g: 150,
-				b: 35,
-				a: 250
-			}
-
-
-		],
 		color = {
 			r: 222,
 			g: 150,
@@ -55,13 +46,17 @@ class Player {
 		this.isFacingRight = isFacingRight
 		this.sprite = sprite
 	}
+
+  getRectData() {
+    return {
+      x: this.position.x,
+      y: this.position.y,
+      width: this.size.width,
+      height: this.size.height,
+      options: {
+        sprite: this.sprite,
+		isFacingRight:this.isFacingRight
+      },
+    };
+  }
 }
-
-
-
-
-
-
-
-
-

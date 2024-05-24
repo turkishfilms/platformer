@@ -81,7 +81,7 @@ class PhysicsHandler {
 		);
 	}
 
-	collisionCheck() {
+		collisionCheck() {
 		return this.getCollisions().length > 0
 	}
 
@@ -108,50 +108,66 @@ class PhysicsHandler {
 		}
 	}
 
-	handleEndBlock() {
-		if (this.collisionCheck()) {
+	handleEndBlock(){
+		/**goal:
+		 * transfer player onto next level upon contact
+		 *Ingredients:*
+		 * need a way to check(hascollided) if the player had touched that block (function)
+		 * need a way to change level (function)
 
+		*/
+		
+		
+		if (this.collisionCheck()) {
+		
 			const collisions = this.getCollisions()
 			collisions.forEach(collision => {
 				const block = collision.bodyB
 				if (this.isEndBlock(block)) {
-
-					game.nextLevel()
+				
+				game.nextLevel()	
 				}
-			})
-		}
+			})}
 	}
 
-	isEndBlock(block) {
-		return block.isEndBlock
+	isEndBlock(block){
+			return block.isEndBlock
 	}
+	
+	handleKillBlock(){
+		/**goal:
+		 * transfer player onto next level upon contact
+		 *Ingredients:*
+		 * need a way to check(hascollided) if the player had touched that block (function)
+		 * need a way to change level (function)
 
-	handleKillBlock() {
+		*/
+		
+		
 		if (this.collisionCheck()) {
-
+		
 			const collisions = this.getCollisions()
 			collisions.forEach(collision => {
 				const block = collision.bodyB
-
+		
 				if (this.isKillBlock(block)) {
-
-					game.playerHandler.resetPlayer()
+			
+				game.playerHandler.resetPlayer()
 				}
-			})
-		}
+			})}
 	}
 
-	isKillBlock(block) {
-
-		return block.isKillBlock
+	isKillBlock(block){
+	
+			return block.isKillBlock
 	}
 
 	addObstacles(obstacles, options = {
 		isStatic: true,
 		restitution: 0,
-
+		
 	}) {
-
+	
 		obstacles.forEach(obstacle => {
 			let {
 				position: {
@@ -180,7 +196,7 @@ class PhysicsHandler {
 			Matter.Composite.add(this.getObstacleComposite(), rect)
 		});
 	}
-
+	
 	getPlayerComposite() {
 		return Matter.Composite.allComposites(this.engine.world).filter(
 			(composite) => composite.label == this.compositeStructure.player
@@ -249,16 +265,5 @@ class PhysicsHandler {
 		Matter.Body.setAngularSpeed(this.getPlayerBody(), 0);
 		Matter.Body.setAngle(this.getPlayerBody(), 0);
 		Matter.Body.setVelocity(this.getPlayerBody(), Matter.Vector.create(0, 0));
-	}
-
-	addEnemies(enemies) {
-		enemies.forEach(enemy => {
-			Matter.Composite.add(this.engine.world, Matter.Body.rectangle({ enemy }))
-		})
-	}
-
-	getEnemyData() {
-
-		return enemies
 	}
 }

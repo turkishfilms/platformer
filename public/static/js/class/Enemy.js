@@ -3,22 +3,18 @@
 - (Methods) Follow te player (move), Attack
 **/
 class Enemy {
-	constructor({ health = 1, position = { x: 0, y: 0 }, speed = { x: 0, y: 0 }, size = { width: 0, height: 0 }, damage = 0,
-		sprites = { moving: { left: 0, right: 0 }, attacking: { left: 0, right: 0 }, die: 0, damaged: 0 } } = {}) {
-		this.position = position
-		this.size = size
-		this.speed = speed
-		this.damage = damage
+	constructor({ health = 1, position = { x: 0, y: 0 }, speed = { x: 0, y: 0 }, size = { width: 0, height: 0 }, damage = 0, sprites = [] } = {}) {
 		this.health = health
+		this.position = position
+		this.speed = speed
+		this.size = size
+		this.damage = damage
 		this.sprites = sprites
 	}
-
 	move() {
-
 	}
 
 	attack() {
-
 	}
 
 

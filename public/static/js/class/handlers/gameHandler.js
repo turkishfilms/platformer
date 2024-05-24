@@ -27,7 +27,7 @@ class GameHandler {
 		this.playerHandler.updatePlayer(
 			this.physicsHandler.getPlayerBody().position,
 			this.hasCollided(),
-			{ Xspeed: this.physicsHandler.getPlayerBody().velocity.x, Yspeed: this.physicsHandler.getPlayerBody().velocity.y }
+			{Xspeed:this.physicsHandler.getPlayerBody().velocity.x,Yspeed:this.physicsHandler.getPlayerBody().velocity.y}
 		);
 
 
@@ -44,7 +44,6 @@ class GameHandler {
 			this.playerHandler.resetPlayer();
 		}
 	}
-
 	levelInit() {
 		const currentLevelNumber = this.getCurrentLevel();
 		const currrentLevel = this.levelHandler.getLevelData(currentLevelNumber);
@@ -52,10 +51,8 @@ class GameHandler {
 			physics: currrentLevel.physics,
 		}); //FIXME physics is beng added in a wierd way fix it
 		this.playerHandler.addPlayer(currrentLevel.player[0]);
-		//FIXME: Combine all Physics Add fucntions, it doestn care if you are a player or not
 		physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions());
 		physicsHandler.addObstacles(currrentLevel.obstacles);
-		physicsHandler.addEnemies(currentLevel.enemies)
 		this.physicsHandler = physicsHandler;
 	}
 

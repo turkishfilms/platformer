@@ -4,9 +4,7 @@ const clay = 'clay',
 	cryskull = 'cryskull',
 	gemWhite = 'gemWhite',
 	cryptd = 'cryptd',
-	abyss = 'abyss',
-	enemyLeft = 'enemyLeft',
-	enemyRight = 'enemyRight'
+	abyss = 'abyss'
 
 
 let levelData = [
@@ -24,7 +22,6 @@ let levelData = [
 			new Obstacle({ x: 800, y: 500, w: 25, h: 25, sprite: redskull, isKillBlock: true, }),
 			new Obstacle({ x: 950, y: 450, w: 25, h: 25, sprite: dark }),
 			new Obstacle({ x: 1100, y: 400, w: 25, h: 25, sprite: gemWhite, isEndBlock: true })],
-		enemies: [new Enemy({ position: { x: 80, y: 495 }, speed: { x: 1, y: 0 }, size: { width: 10, height 10}, damage: 1, sprites: { moving: { left: enemyLeft, right: enemyRight } } })],
 		redraw: true,
 		backdrop: clay
 	},

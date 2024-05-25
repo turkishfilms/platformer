@@ -1,8 +1,6 @@
 class PhysicsHandler2 {
   constructor({ physics = new Physics() } = {}) {
-    this.engine = Matter.Engine.create({
-      ...physics,
-    });
+    this.engine = Matter.Engine.create({ ...physics, });
     this.bounds = Matter.Bounds.create(this.initVertices());
   }
 
@@ -88,8 +86,8 @@ class PhysicsHandler2 {
   }
 
   getItem(label) {
-    return Matter.Composite.allBodies(this.engine.world).map(
-      (body) => body.label == label
+    return Matter.Composite.allBodies(this.engine.world).filter(
+      body => body.label == label
     );
   }
 
@@ -100,15 +98,15 @@ class PhysicsHandler2 {
     };
   }
 
-  getPositionFromBody(body){
-	return {x:body.position.x, y:body.position.y}
+  getPositionFromBody(body) {
+    return { x: body.position.x, y: body.position.y }
   }
 
-  getSpriteFromBody(body){
-	return body.sprite
+  getSpriteFromBody(body) {
+    return body.sprite
   }
 
-  hasCollided(item,label) {
+  hasCollided(item, label) {
     return (
       Matter.Query.collides(
         item,

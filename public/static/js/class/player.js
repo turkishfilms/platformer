@@ -42,7 +42,6 @@ class Player {
 		this.jumpCount = startingJumpCount
 		this.maxJumpCount = maxJumpCount
 		this.options = options
-		this.alternateColors = alternateColors
 		this.isFacingRight = isFacingRight
 		this.sprite = sprite
 	}

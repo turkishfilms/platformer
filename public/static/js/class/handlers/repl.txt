@@ -1,0 +1,10 @@
+REPL
+1. Read
+2. Evaluate
+3. Print
+4. Loop
+
+
+make 3 variables
+and print them in the 
+repl

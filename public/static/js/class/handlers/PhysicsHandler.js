@@ -1,7 +1,12 @@
 class PhysicsHandler {
-  constructor({ physics = new Physics() } = {}) {
-    this.engine = Matter.Engine.create({ ...physics, });
-    this.bounds = Matter.Bounds.create(this.initVertices());
+  constructor({ physics = new Physics(), corners = [
+    { x: 0, y: 0 },
+    { x: windowWidth, y: 0 },
+    { x: windowWidth, y: windowHeight },
+    { x: windowWidth, y: windowHeight },
+  ]} = {}) {
+    this.engine = this.newEngine(physics);
+    this.bounds = Matter.Bounds.create(this.initVertices(corners));
   }
 
   nextFrame({ types, actions }) {
@@ -11,13 +16,7 @@ class PhysicsHandler {
     );
   }
 
-  initVertices() {
-    const corners = [
-      { x: 0, y: 0 },
-      { x: windowWidth, y: 0 },
-      { x: windowWidth, y: windowHeight },
-      { x: windowWidth, y: windowHeight },
-    ];
+  initVertices(corners = []) {
     return Matter.Vertices.create(
       corners.map((corner) => Matter.Vector.create(corner.x, corner.y)),
       Matter.Body.create()
@@ -123,5 +122,9 @@ class PhysicsHandler {
     Matter.Body.setAngularSpeed(item, 0);
     Matter.Body.setAngle(item, 0);
     Matter.Body.setVelocity(item, Matter.Vector.create(0, 0));
+  }
+
+  newEngine(physics = new Physics()){
+this.engine = Matter.Engine.create({ ...physics, })
   }
 }

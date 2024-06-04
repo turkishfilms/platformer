@@ -128,7 +128,7 @@ class GameHandler {
 		this.playerHandler.incrementLives();
 	}
 
-	gameOpeningScreen() {
+	gameOpeningScreen() {w
 		image(assets.burger, windowWidth / 2, windowHeight / 2, windowWidth, windowHeight)
 		text("start here", 50, 50)
 		this.isPaused = true

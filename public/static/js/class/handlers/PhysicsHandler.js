@@ -4,7 +4,7 @@ class PhysicsHandler {
     { x: windowWidth, y: 0 },
     { x: windowWidth, y: windowHeight },
     { x: windowWidth, y: windowHeight },
-  ]} = {}) {
+  ] } = {}) {
     this.engine = this.newEngine(physics);
     this.bounds = Matter.Bounds.create(this.initVertices(corners));
   }
@@ -104,7 +104,7 @@ class PhysicsHandler {
     return body.sprite
   }
 
-  hasCollided(itemLabel,index, label) {
+  hasCollided(itemLabel, index, label) {
     return (
       Matter.Query.collides(
         this.getItem(itemLabel)[index],
@@ -124,7 +124,7 @@ class PhysicsHandler {
     Matter.Body.setVelocity(item, Matter.Vector.create(0, 0));
   }
 
-  newEngine(physics = new Physics()){
-this.engine = Matter.Engine.create({ ...physics, })
+  newEngine(physics = new Physics()) {
+    this.engine = Matter.Engine.create({ ...physics, })
   }
 }

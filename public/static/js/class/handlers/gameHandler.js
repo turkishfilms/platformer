@@ -29,7 +29,7 @@ class GameHandler {
 		console.log(player)
 		this.playerHandler.updatePlayer(
 			player.position,
-			this.hasCollided('player','obstacle'),
+			this.hasCollided('player', 'obstacle'),
 			{ Xspeed: player.velocity.x, Yspeed: player.velocity.y }
 		);
 		//this.physicsHandler.handleSpecialBlocks() - wraps those two into one function
@@ -77,11 +77,11 @@ class GameHandler {
 		return this.levelHandler.currentLevel;
 	}
 
-	getPlayer(index){
+	getPlayer(index) {
 		return this.physicsHandler.getItem('player')[index]
 	}
 
-	getLives(index){
+	getLives(index) {
 		return this.playerHandler.getLives(index)
 	}
 
@@ -120,7 +120,7 @@ class GameHandler {
 		this.renderHandler.deathScreen();
 	}
 
-	setPaused(bool){
+	setPaused(bool) {
 		this.isPaused = bool
 	}
 
@@ -128,7 +128,8 @@ class GameHandler {
 		this.playerHandler.incrementLives();
 	}
 
-	gameOpeningScreen() {w
+	gameOpeningScreen() {
+		w
 		image(assets.burger, windowWidth / 2, windowHeight / 2, windowWidth, windowHeight)
 		text("start here", 50, 50)
 		this.isPaused = true
@@ -140,11 +141,11 @@ class GameHandler {
 		game.startGameButton.show()
 		game.gameOpeningScreen()
 	}
-// Reset death button FIXME: game.
- 	hideDeathButton() {
+	// Reset death button FIXME: game.
+	hideDeathButton() {
 		game.deathButton.hide()
-	} 
-//returns a new button that resets the game ->name-str ->p5JsButton
+	}
+	//returns a new button that resets the game ->name-str ->p5JsButton
 	createDeathButton(name) {
 		let button = createButton(name);
 		button.position(windowWidth - 100, windowHeight / 2);
@@ -177,8 +178,8 @@ class GameHandler {
 		return button
 	}
 
-	hasCollided(label1,label2) {
-		return this.physicsHandler.hasCollided(label1,0,label2);
+	hasCollided(label1, label2) {
+		return this.physicsHandler.hasCollided(label1, 0, label2);
 	}
 
 	getBackdrop() {
@@ -197,10 +198,10 @@ class GameHandler {
 		});
 		return data;
 	}
-/**
- * 
- * @returns 
- */
+	/**
+	 * 
+	 * @returns 
+	 */
 	getPlayerData() {
 		const { x, y, width, height } = this.playerHandler.getPlayerAsOptions();
 		return {
@@ -213,7 +214,4 @@ class GameHandler {
 		};
 	}
 
-
 }
-
-

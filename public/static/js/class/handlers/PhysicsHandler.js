@@ -5,7 +5,7 @@ class PhysicsHandler {
     { x: windowWidth, y: windowHeight },
     { x: windowWidth, y: windowHeight },
   ] } = {}) {
-    this.engine = this.newEngine(physics);
+    this.engine = Matter.Engine.create({ ...physics })
     this.bounds = Matter.Bounds.create(this.initVertices(corners));
   }
 
@@ -43,7 +43,8 @@ class PhysicsHandler {
   }
 
   simulateWorldByOneFrame() {
-    Matter.Engine.update(this.engine);
+    console.log(this.engine, typeof engine)
+    // Matter.Engine.update(this.engine);
   }
 
   addItem(item) {
@@ -77,7 +78,7 @@ class PhysicsHandler {
 
   handleSpecialItems(type, action) {
     if (this.collisionCheck()) {
-      this.getCollisions().forEach((collision) => {
+      this.getCollisions().forEach(collision => {
         if (this.isTypeBlock(collision.bodyB, type)) action();
       });
     }

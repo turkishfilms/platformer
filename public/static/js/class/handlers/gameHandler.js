@@ -26,15 +26,13 @@ class GameHandler {
 		if (this.isPaused) return;
 		this.physicsHandler.simulateWorldByOneFrame();
 		const player = this.getPlayer(0)
-		console.log(player)
+		console.log('gh nextFrame player', player)
 		this.playerHandler.updatePlayer(
 			player.position,
 			this.hasCollided('player', 'obstacle'),
 			{ Xspeed: player.velocity.x, Yspeed: player.velocity.y }
 		);
 		//this.physicsHandler.handleSpecialBlocks() - wraps those two into one function
-		this.physicsHandler.handleDisappear()
-		this.physicsHandler.handleEndBlock()
 		this.renderHandler.showFrame(
 			this.getItemData(),
 			[{ text: this.getLives(0), x: 80, y: 80 }],
@@ -50,9 +48,9 @@ class GameHandler {
 		this.physicsHandler.newEngine(currrentLevel.physics)
 
 		// FIXME: LevelData restructure---currentLevel.entity.forEach(entity=>entity.forEach(x=>this.physicsHandler.addItem({ label: entity, ...x }))))
-		currrentLevel.player.forEach(player => this.physicsHandler.addItem({ label: "player", ...player }))
+		currrentLevel.player.forEach(player => this.physicsHandler.addItem({ options: { label: "player" }, x: player.position.x, y: player.position.y, width: player.bounds.width, height: player.bounds.height }))
 		currrentLevel.obstacles.forEach(obs => this.physicsHandler.addItem({ label: "obstacle", ...obs }))
-		currrentLevel.enemies.forEach(enemy => this.physicsHandler.addItem({ label: "enemy", ...enemy }))
+		// currrentLevel.enemies.forEach(enemy => this.physicsHandler.addItem({ label: "enemy", ...enemy }))
 	}
 
 	movePlayerRight() {
@@ -78,7 +76,9 @@ class GameHandler {
 	}
 
 	getPlayer(index) {
-		return this.physicsHandler.getItem('player')[index]
+		const player = this.physicsHandler.getItem('player')[index]
+		console.log("gh gPl player", player)
+		return player
 	}
 
 	getLives(index) {
@@ -129,7 +129,7 @@ class GameHandler {
 	}
 
 	gameOpeningScreen() {
-		w
+
 		image(assets.burger, windowWidth / 2, windowHeight / 2, windowWidth, windowHeight)
 		text("start here", 50, 50)
 		this.isPaused = true

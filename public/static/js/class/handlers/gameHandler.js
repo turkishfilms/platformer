@@ -7,7 +7,7 @@ class GameHandler {
 		playerHandler = new PlayerHandler({ player: player }),
 		levelHandler = new LevelHandler({ levels: levels }),
 		physicsHandler = new PhysicsHandler({ physics: physics }),
-		dimensions = { width: 100, height: 100 },
+		dimensions = { width: 0, height: 0 },
 		renderHandler = new RenderHandler({ screenDimensions: dimensions }),
 	} = {}) {
 		this.playerHandler = playerHandler;
@@ -26,6 +26,7 @@ class GameHandler {
 		if (this.isPaused) return;
 		this.physicsHandler.simulateWorldByOneFrame();
 		const player = this.getPlayer(0)
+		console.log(player)
 		this.playerHandler.updatePlayer(
 			player.position,
 			this.hasCollided('player','obstacle'),
@@ -35,8 +36,8 @@ class GameHandler {
 		this.physicsHandler.handleDisappear()
 		this.physicsHandler.handleEndBlock()
 		this.renderHandler.showFrame(
-			this.getItemData(),/** items */
-			[{ text: this.playerHandler.player.lives, x: 80, y: 80 }],
+			this.getItemData(),
+			[{ text: this.getLives(0), x: 80, y: 80 }],
 			this.getBackdrop()
 		);
 		if (this.physicsHandler.isPlayerOffScreen()) {
@@ -46,16 +47,12 @@ class GameHandler {
 
 	levelInit() {
 		const currrentLevel = this.levelHandler.getLevelData(this.getCurrentLevel());
-		const physicsHandler = new PhysicsHandler({
-			physics: currrentLevel.physics,
-		}); //FIXME physics is beng added in a wierd way fix it
-		// currentLevel.entity.forEach(entity=>entity.forEach(x=>this.physicsHandler.addItem({ label: entity, ...x }))))
+		this.physicsHandler.newEngine(currrentLevel.physics)
+
+		// FIXME: LevelData restructure---currentLevel.entity.forEach(entity=>entity.forEach(x=>this.physicsHandler.addItem({ label: entity, ...x }))))
 		currrentLevel.player.forEach(player => this.physicsHandler.addItem({ label: "player", ...player }))
 		currrentLevel.obstacles.forEach(obs => this.physicsHandler.addItem({ label: "obstacle", ...obs }))
 		currrentLevel.enemies.forEach(enemy => this.physicsHandler.addItem({ label: "enemy", ...enemy }))
-		// physicsHandler.addPlayer(this.playerHandler.getPlayerAsOptions());
-		// physicsHandler.addObstacles(currrentLevel.obstacles);
-		this.physicsHandler = physicsHandler;
 	}
 
 	movePlayerRight() {
@@ -82,6 +79,10 @@ class GameHandler {
 
 	getPlayer(index){
 		return this.physicsHandler.getItem('player')[index]
+	}
+
+	getLives(index){
+		return this.playerHandler.getLives(index)
 	}
 
 	resetLevel() {
@@ -114,23 +115,19 @@ class GameHandler {
 		this.isPaused = this.isPaused ? false : true;
 	}
 
- /**
-  * Description
-  * @returns {any}
-  */
 	pauseDeath() {
-		this.isPaused = true;
+		this.setPaused(true)
 		this.renderHandler.deathScreen();
 	}
 
-	addLives() {
-		game.playerHandler.player.lives++;
+	setPaused(bool){
+		this.isPaused = bool
 	}
 
- /**
-  * Description
-  * @returns {any}
-  */
+	addLives() {
+		this.playerHandler.incrementLives();
+	}
+
 	gameOpeningScreen() {
 		image(assets.burger, windowWidth / 2, windowHeight / 2, windowWidth, windowHeight)
 		text("start here", 50, 50)

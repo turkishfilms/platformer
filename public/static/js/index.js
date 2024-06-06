@@ -1,12 +1,3 @@
-/**
- * Goal: Make the resting sprite not the attacking spider
- * Ingredients:
- * Non attacking sprite
- * Translate:
- * assets.spiderSheet
- * assets.spiderSprite
- * getSpriteFromSheet
- */
 let game,
   assets = {};
 
@@ -28,14 +19,11 @@ function preload() {
   assets.gem = loadImage(
     "static/assets/Collectibles/gems_db16.png"
   );
-
   assets.redskull= loadImage("static/assets/skull_emblem-red.png")
-
   assets.underWaterAbyss = loadImage("static/assets/abyss.jpg")
   assets.crypt1 = loadImage("static/assets/crypt-2.jpg")
   assets.crypt2 = loadImage("static/assets/crypt-3-hall.jpg")
   assets.crypt3 = loadImage("static/assets/crypt-dungeon.jpg")
-
 }
 
 function setup() {
@@ -59,32 +47,10 @@ function getSpriteFromSheet(sheet,sizeWidth,sizeHeight,numImg,row,startCol) {
 		spriteList.push(sheet.get(index * sizeWidth, row * sizeHeight, sizeWidth, sizeHeight))
 	}
 	return spriteList
-
 }
+
 function keyPressed() {
-  switch (key) {
-    case "d" || "D":
-      game.movePlayerRight();
-      break;
-    case "a" || "A":
-      game.movePlayerLeft();
-      break;
-    case "w" || "W":
-      game.movePlayerUp();
-      break;
-    case "q" || "Q":
-      game.togglePaused();
-      break;
-    case "e" || "E":
-      game.resetLevel();
-      break;
-    case "p" || "P":
-      game.nextLevel();
-      break;
-    case "o" || "O":
-      game.previousLevel();
-      break;
-  }
+  game.keyPressed(key)
 }
 
 function draw() {

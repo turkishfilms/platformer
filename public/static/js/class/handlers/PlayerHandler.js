@@ -13,7 +13,7 @@ class PlayerHandler {
     this.player = player;
   }
 
-  updatePlayer(position, hasCollided, {Xspeed,Yspeed}) {
+  updatePlayer(position, hasCollided, { Xspeed, Yspeed }) {
     this.player.position = position;
     this.player.speed.x = Xspeed
     this.player.speed.y = Yspeed
@@ -114,34 +114,20 @@ class PlayerHandler {
       this.player.noJumpColor;
   }
 
-  getSprite() {
-    /**
-     * Goal 
-     * Return the Sprtie as the same direction as the player
-     * Sprite
-     * Direction
-     * Translate.
-     * Direction =this.player.isFacingRight 
-     */
-    let directionIsRight = this.player.isFacingRight
-    let showSprite
-    if (directionIsRight) {
-      showSprite = this.player.sprite.right
-    } else {
-      showSprite = this.player.sprite.left
-    }
-    if (this.player.speed.x == 0) {
-      showSprite = this.player.sprite.rest
-    }
-    if(this.player.speed.y < 0 ){
+  getSprite({ sprite, isFacingRight, speed, } = this.player) {
+    const animation = this.getSpriteKind(sprite, isFacingRight, { xSpeed: speed.x, ySpeed: speed.y })
+    return this.getAnimationFrame(animation, 1)
+  }
 
-    showSprite = this.player.sprite.jump
-    }
-    const frameModulus = frameCount % (showSprite.length -2  );
-    // ????? -2 ??????????
-    const sprite = showSprite[frameModulus];
-    
-    return sprite
+  getSpriteKind(sprite, isFacingRight, { xSpeed, ySpeed }) {
+    if (ySpeed < 0) return sprite.jump
+    if (xSpeed === 0) return sprite.rest
+    return isFacingRight ? sprite.right : sprite.left
+  }
+
+  getAnimationFrame(animation, speed = 1) {
+    const frameModulus = frameCount % (animation.length - 2) * speed
+    return animation[frameModulus];
   }
 
   addPlayer(player) {

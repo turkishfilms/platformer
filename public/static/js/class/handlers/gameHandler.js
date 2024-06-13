@@ -233,16 +233,17 @@ class GameHandler {
 
   getItemData(itemTypes) {
     const thing = itemTypes.reduce((prev, type) => {
-      const prevThing = prev
-      console.log(type)
-      const curThing = this.physicsHandler.getItem(type).map(item => ({
-        size: { w: width, h: height } = this.physicsHandler.getSizeFromBody(item),
-        position: item.position,
-        angle: 0,
-        sprite: assets[item.sprite]
-      }))
-      const intermediateThing = prevThing.concat(curThing)
-      console.log("GH,gID,REDUCE:pre,cur,int", prevThing, curThing, intermediateThing)
+      const curThing = this.physicsHandler.getItem(type).map(item => {
+        const { width, height } = this.physicsHandler.getSizeFromBody(item)
+        return {
+          size: { w: width, h: height },
+          position: item.position,
+          angle: 0,
+          sprite: assets[item.sprite]
+        }
+      })
+      const intermediateThing = prev.concat(curThing)
+      console.log("GH,gID,REDUCE:pre,cur,int", prev, curThing, intermediateThing)
       return intermediateThing
     }, [])
     console.log("GH,gID,data", thing)

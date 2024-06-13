@@ -14,13 +14,15 @@ class RenderHandler {
       background(0);
       if (backdrop) this.backgroundChanger(backdrop);
     }
-    items.forEach((item) => this.showSprite(item));
-    data.forEach((info) => this.showText(info.text, info.x, info.y));
+    console.log("RH,sF,items", items, typeof items)
+    items.forEach(item => this.showSprite(item));
+    data.forEach(info => this.showText(info.text, info.x, info.y));
   }
   backgroundChanger(userImage) {
     const { width: w, height: h } = this.screenDimensions;
     image(userImage, w / 2, h / 2, w, h);
   }
+
   showRect(data) {
     const {
       color: { r, g, b, a } = {
@@ -46,12 +48,6 @@ class RenderHandler {
 
   showSprite(data) {
     const {
-      color: { r, g, b, a } = {
-        r: 255,
-        g: 255,
-        b: 255,
-        a: 255,
-      },
       size: { w, h },
       position: { x, y },
       angle = 0,
@@ -59,7 +55,6 @@ class RenderHandler {
     } = data;
     translate(x, y);
     rotate(angle);
-    fill(r, g, b, a);
     image(sprite, 0, 0, w, h);
     resetMatrix();
   }
@@ -75,16 +70,16 @@ class RenderHandler {
     this.showText("You Died Loser💀!", w / 2, h / 2);
     game.deathButton.show();
   }
- 
-  moveSpriteDirection(){
-     /**
-      * Goal
-      * To make sprite face the same direction when the player is moving
-      * Ingridents: 
-      *Sprite 
-       player's postion
-      player's Direction
-      */
+
+  moveSpriteDirection() {
+    /**
+     * Goal
+     * To make sprite face the same direction when the player is moving
+     * Ingridents: 
+     *Sprite 
+      player's postion
+     player's Direction
+     */
   }
 }
 

@@ -5,7 +5,8 @@ class PhysicsHandler {
     { x: windowWidth, y: windowHeight },
     { x: windowWidth, y: windowHeight },
   ] } = {}) {
-    this.engine = Matter.Engine.create({ ...physics })
+    this.engine = this.newEngine(physics)
+    // this.engine = Matter.Engine.create({ ...physics })
     this.bounds = Matter.Bounds.create(this.initVertices(corners));
   }
 
@@ -18,12 +19,13 @@ class PhysicsHandler {
 
   initVertices(corners = []) {
     return Matter.Vertices.create(
-      corners.map((corner) => Matter.Vector.create(corner.x, corner.y)),
+      corners.map(corner => Matter.Vector.create(corner.x, corner.y)),
       Matter.Body.create()
     );
   }
 
-  isItemOffScreen(item) {
+  isItemOffScreen(label) {
+    const item = this.getItem(label)
     return (
       Matter.Query.region([item], this.bounds, {
         outside: true,
@@ -105,13 +107,14 @@ class PhysicsHandler {
     return body.sprite
   }
 
-  hasCollided(itemLabel, index, label) {
-    return (
-      Matter.Query.collides(
-        this.getItem(itemLabel)[index],
-        this.getItem(label)
-      ).length > 0
-    );
+  hasCollided(colliderLabel, index, collidableLabels) {
+    return this.generateCollisionList(colliderLabel, index, collidableLabels).length > 0
+  }
+
+  generateCollisionList(colliderLabel, index, collidableLabels) {
+    return (collidableLabels.reduce((prev, label) => prev + Matter.Query.collides(
+      this.getItem(colliderLabel)[index], this.getItem(label)
+    )))
   }
 
   clearComposite() {

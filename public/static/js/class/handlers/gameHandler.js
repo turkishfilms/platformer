@@ -14,6 +14,7 @@ class GameHandler {
     this.physicsHandler = physicsHandler;
     this.renderHandler = renderHandler;
     this.dimensions = dimensions;
+    this.itemTypes = ["player", "obstacle", "enemy"]
     this.isPaused = true;
     this.startGameButton = this.createStartGameButton("START GAME!!! >:)");
     this.deathButton = this.createDeathButton("WOW GARB");
@@ -25,19 +26,17 @@ class GameHandler {
     if (this.isPaused) return;
     this.physicsHandler.simulateWorldByOneFrame();
     const player = this.getPlayer(0);
-    console.log("gh nextFrame player", player);
     this.playerHandler.updatePlayer(
-      player.position,
-      this.hasCollided("player", "obstacle"),
+      this.hasCollided("player", ["obstacle", "enemy"]),
       { Xspeed: player.velocity.x, Yspeed: player.velocity.y }
     );
     //this.physicsHandler.handleSpecialBlocks() - wraps those two into one function
     this.renderHandler.showFrame(
-      this.getItemData(),
-      [{ text: this.getLives(0), x: 80, y: 80 }],
+      this.getItemData(this.itemTypes),//size position angle sprite
+      this.getText(),
       this.getBackdrop()
     );
-    if (this.physicsHandler.isPlayerOffScreen()) {
+    if (this.physicsHandler.isItemOffScreen("player")) {
       this.playerHandler.resetPlayer();
     }
   }
@@ -84,8 +83,8 @@ class GameHandler {
         height: player.bounds.height,
       })
     );
-    currrentLevel.obstacles.forEach((obs) =>
-      this.physicsHandler.addItem({ label: "obstacle", ...obs })
+    currrentLevel.obstacles.forEach(obs =>
+      this.physicsHandler.addItem({ options: { label: "obstacle" }, ...obs })
     );
     // currrentLevel.enemies.forEach(enemy => this.physicsHandler.addItem({ label: "enemy", ...enemy }))
   }
@@ -231,28 +230,26 @@ class GameHandler {
       backdrop: assets[backdrop],
     };
   }
-  getItemData() {
-    const data = [];
-    data.push(this.getPlayerData());
-    this.physicsHandler.getObstacleData().map((obstacle) => {
-      obstacle.sprite = assets[obstacle.sprite];
-      data.push(obstacle);
-    });
-    return data;
+
+  getItemData(itemTypes) {
+    const thing = itemTypes.reduce((prev, type) => {
+      const prevThing = prev
+      console.log(type)
+      const curThing = this.physicsHandler.getItem(type).map(item => ({
+        size: { w: width, h: height } = this.physicsHandler.getSizeFromBody(item),
+        position: item.position,
+        angle: 0,
+        sprite: assets[item.sprite]
+      }))
+      const intermediateThing = prevThing.concat(curThing)
+      console.log("GH,gID,REDUCE:pre,cur,int", prevThing, curThing, intermediateThing)
+      return intermediateThing
+    }, [])
+    console.log("GH,gID,data", thing)
+    return thing
   }
-  /**
-   *
-   * @returns
-   */
-  getPlayerData() {
-    const { x, y, width, height } = this.playerHandler.getPlayerAsOptions();
-    return {
-      color: this.playerHandler.getColor(),
-      sprite: this.playerHandler.getSprite(),
-      size: { w: width, h: height },
-      position: { x: x, y: y + 10 },
-      angle: this.physicsHandler.getPlayerBody().angle,
-      type: "player",
-    };
+
+  getText() {
+    return [{ text: this.getLives(0), x: 80, y: 80 }]
   }
 }

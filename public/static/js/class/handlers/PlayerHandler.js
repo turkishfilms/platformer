@@ -13,8 +13,7 @@ class PlayerHandler {
     this.player = player;
   }
 
-  updatePlayer(position, hasCollided, { Xspeed, Yspeed }) {
-    this.player.position = position;
+  updatePlayer(hasCollided, { Xspeed, Yspeed }) {
     this.player.speed.x = Xspeed
     this.player.speed.y = Yspeed
 
@@ -81,31 +80,12 @@ class PlayerHandler {
     else this.livesZero();
     game.physicsHandler.playerStill();
     game.physicsHandler.translatePlayer(
-      game.levelHandler.getPlayerStartingPosition()
+      game.levelHandler.getPlayerStarting
     );
   }
 
-  getPlayerAsOptions() {
-    const {
-      position: {
-        x,
-        y
-      },
-      bounds: {
-        width,
-        height
-      },
-      options: {
-        restitution
-      },
-    } = this.player;
-    return {
-      x,
-      y,
-      width,
-      height,
-      restitution
-    };
+  getLives(index) {
+    return this.player.lives
   }
 
   getColor() {
@@ -150,20 +130,5 @@ class PlayerHandler {
      * playera.sprite.resting = assets.spiderSpriteRest
      */
 
-  }
-  livesDeath() {
-    // goal when player lives = 0 change color.
-    //ingriedents player, color, lives
-    if (this.isPlayerDead()) {
-      this.colorPicker({
-        r: 0,
-        g: 0,
-        b: 0,
-        a: 250
-      });
-    }
-  }
-  colorPicker(color) {
-    this.player.color = color;
   }
 }

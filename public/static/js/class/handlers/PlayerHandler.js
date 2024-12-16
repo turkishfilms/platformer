@@ -13,11 +13,14 @@ class PlayerHandler {
     this.player = player;
   }
 
-  updatePlayer(position, hasCollided, {Xspeed,Yspeed}) {
+  updatePlayer(position, hasCollided, {
+    Xspeed,
+    Yspeed
+  }) {
     this.player.position = position;
     this.player.speed.x = Xspeed
     this.player.speed.y = Yspeed
-
+    this.attackTime()
     if (hasCollided) this.incrementJumpCount();
   }
 
@@ -26,6 +29,7 @@ class PlayerHandler {
       this.player.jumpCount + 1,
       this.player.maxJumpCount
     );
+    
   }
 
   livesZero() {
@@ -115,32 +119,33 @@ class PlayerHandler {
   }
 
   getSprite() {
+  // ERROR length error when move right gets a error
     /**
-     * Goal 
-     * Return the Sprtie as the same direction as the player
-     * Sprite
-     * Direction
-     * Translate.
-     * Direction =this.player.isFacingRight 
+     * Is if facing right but jumping it should still use the same attack right animation
+     * Is if facing left but jumping it should still use the same attack left animation
+     * Prop
+     * isFacingRight
+     * isAttacking
+     * isFacingSpeed
      */
-    let directionIsRight = this.player.isFacingRight
-    let showSprite
-    if (directionIsRight) {
-      showSprite = this.player.sprite.right
-    } else {
-      showSprite = this.player.sprite.left
-    }
-    if (this.player.speed.x == 0) {
-      showSprite = this.player.sprite.rest
-    }
-    if(this.player.speed.y < 0 ){
+    return this.getFrameFromSprite(this.getAnimation(this.player))
+  }
 
-    showSprite = this.player.sprite.jump
-    }
-    const frameModulus = frameCount % (showSprite.length -2  );
+  getAnimation({isFacingRight,isAttacking,speed, sprite}){
+    //Pick the correct sprite to hsow based on atk and dir
+    if (isAttacking) { //is attack 
+      if (isFacingRight)  return sprite.attack.right
+      else return sprite.attack.left
+    } else if (speed.y < 0) return sprite.jump //player jumping
+      else if (speed.x == 0) return sprite.rest //resting
+      else if (isFacingRight) return sprite.right
+      else return sprite.left
+      }
+
+getFrameFromSprite(spriteList){
+    const frameModulus = frameCount % (spriteList.length - 2);
     // ????? -2 ??????????
-    const sprite = showSprite[frameModulus];
-    
+    const sprite = spriteList[frameModulus];
     return sprite
   }
 
@@ -151,6 +156,15 @@ class PlayerHandler {
     playera.sprite.right = assets.spiderSpriteWalkRight
     playera.sprite.jump = assets.spiderSpriteJump
     playera.sprite.rest = assets.spiderSpriteRest
+    playera.sprite.attack.left = assets.spiderSpriteAttackLeft
+    playera.sprite.attack.right = assets.spiderSpriteAttackRight
+    /**
+     * Goal
+     * When you press a key it will do a attack animation
+     * Ingriedent 
+     * Sprite
+     * 
+     */
     this.player = playera;
 
     /**
@@ -179,5 +193,9 @@ class PlayerHandler {
   }
   colorPicker(color) {
     this.player.color = color;
+  }
+  attackTime(){
+    if(frameCount > this.player.attackEndFrame)
+  this.player.isAttacking = false
   }
 }
